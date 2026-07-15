@@ -1,0 +1,7 @@
+alias_name,canonical_name,expected_phone,expected_address,reason
+연세대학교원주세브란스기독병원,연세대학교 원주세브란스기독병원,,,spacing variant
+연세명인요양병원,연세명인병원,033-813-1111,,historical category/name
+마음편한정신건강의학과의원,하늘정신건강의학과의원,,,requires phone or address confirmation
+원주인성병원,의료법인일산의료재단 일산병원,,,requires phone or address confirmation
+강남신경정신과,강남신경정신과의원,,,spacing/category variant
+마음한정신과의원,마음편한정신건강의학과의원,,,requires phone or address confirmation

@@ -1,0 +1,6 @@
+﻿source_dataset,source_row_number,source_name,source_address,source_phone,candidate_institution_id,candidate_name,match_reason,name_similarity,address_similarity,phone_match,review_type
+clinic_2025-11-25,51,리블룸의원,"강원특별자치도 원주시 능라동길 73, 3층 (무실동)",0507-1489-2050,wonju:13192649,리블룸의원,similarity_candidate,1.0,0.875,false,ambiguous_match
+clinic_2025-11-25,452,산현보건진료소,강원특별자치도 원주시 호저면 칠봉로 380,033-737-4523,public:5223b87fac866af6,고산보건진료소,similarity_candidate,0.8571,0.7568,false,ambiguous_match
+clinic_2025-11-25,470,부론면보건지소,강원특별자치도 원주시 부론면 법천시장길 59,033-737-4535,public:be79b69ae8d741a8,판부면보건지소,similarity_candidate,0.8571,0.5946,false,ambiguous_match
+mental_2022-08-13,8,내안에병원,강원도 원주시 남원로 562-5,033-733-1199,,,no_match,0.0,0.0,false,no_match
+mental_2022-08-13,13,새마음병원,강원도 원주시 문막읍 귀문로 1217,033-731-3111,,,no_match,0.0,0.0,false,no_match

@@ -1,0 +1,42 @@
+{
+  "dataset": "P0-DATA-01 원주시 관내의료기관",
+  "source_url": "https://www.wonju.go.kr/health/selectResrceListPA3.do?key=1787",
+  "source_reported_count": 2462,
+  "source_reported_pages": 247,
+  "collected_page_count": 247,
+  "raw_row_count": 2462,
+  "normalized_row_count": 2462,
+  "duplicate_count": 0,
+  "missing_list_numbers": [],
+  "coverage": {
+    "category": 1.0,
+    "name": 1.0,
+    "address": 1.0,
+    "phone": 0.582047,
+    "detail_url": 1.0,
+    "source_id": 1.0,
+    "coordinates": 0.0
+  },
+  "category_counts": {
+    "동물병원": 29,
+    "병원": 248,
+    "안경업소": 72,
+    "안전상비의약품판매점": 356,
+    "약국": 191,
+    "요양병원": 7,
+    "의료기기판매업소": 1221,
+    "의약품도매업": 63,
+    "종합병원": 2,
+    "치과": 111,
+    "치과기공소": 42,
+    "치과병원": 2,
+    "한방병원": 4,
+    "한의원": 114
+  },
+  "checks": {
+    "raw_count_matches_source": true,
+    "all_pages_collected": true,
+    "list_number_gaps_absent": true
+  },
+  "partial_collection": false
+}

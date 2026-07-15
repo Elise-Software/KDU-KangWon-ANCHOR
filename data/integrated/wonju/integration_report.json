@@ -1,0 +1,79 @@
+{
+  "input_files": {
+    "data\\raw\\공공데이터포털\\강원특별자치도 원주시_의원 정보_20251125.csv": 471,
+    "data\\raw\\공공데이터포털\\강원도 원주시_정신건강증진시설 및 요양병원 현황_20220813.csv": 23,
+    "data\\raw\\공공데이터포털\\강원도 원주시_치과기공소 현황_20230612.csv": 37
+  },
+  "existing_master_count": 2462,
+  "final_institution_count": 2481,
+  "new_institution_count": 19,
+  "clinic_new_candidate_count": 16,
+  "review_decision_new_count": 3,
+  "review_decision_count": 8,
+  "match_counts": {
+    "clinic_2025-11-25": {
+      "phone_exact": 446,
+      "name_address_exact": 6,
+      "similarity_candidate": 3,
+      "no_match": 16
+    },
+    "mental_2022-08-13": {
+      "phone_exact": 16,
+      "no_match": 5,
+      "similarity_candidate": 1,
+      "name_address_exact": 1
+    },
+    "dental_lab_2023-06-12": {
+      "phone_exact": 34,
+      "no_match": 1,
+      "similarity_candidate": 1,
+      "name_address_exact": 1
+    }
+  },
+  "automatic_merge_count": 524,
+  "aliases_created": 7,
+  "conflicts": 979,
+  "coordinates_linked": 17,
+  "manual_review_count": 5,
+  "final_category_counts": {
+    "종합병원": 2,
+    "병원": 248,
+    "치과병원": 2,
+    "한방병원": 4,
+    "요양병원": 7,
+    "치과": 111,
+    "한의원": 114,
+    "약국": 191,
+    "의료기기판매업소": 1221,
+    "치과기공소": 42,
+    "안경업소": 72,
+    "안전상비의약품판매점": 356,
+    "의약품도매업": 63,
+    "동물병원": 29,
+    "의원": 18,
+    "정신재활시설(생활)": 1
+  },
+  "output_files": [
+    "data\\integrated\\wonju\\institution_aliases.csv",
+    "data\\integrated\\wonju\\institution_coordinates.csv",
+    "data\\integrated\\wonju\\institution_source_records.csv",
+    "data\\integrated\\wonju\\institutions.csv",
+    "data\\integrated\\wonju\\institutions.jsonl",
+    "data\\integrated\\wonju\\integration_report.json",
+    "data\\integrated\\wonju\\manual_review.csv",
+    "data\\integrated\\wonju\\merge_conflicts.csv",
+    "data\\integrated\\wonju\\review_decisions.csv"
+  ],
+  "checks": {
+    "institution_id_unique": true,
+    "master_preserved": true,
+    "source_id_unique": true,
+    "required_fields_complete": true,
+    "aliases_reference_institutions": true,
+    "coordinates_reference_institutions": true,
+    "coordinates_in_range": true,
+    "source_records_traceable": true
+  },
+  "all_checks_passed": true,
+  "executed_at": "2026-07-15T21:06:00+09:00"
+}

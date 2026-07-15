@@ -1,0 +1,8 @@
+﻿institution_id,alias_name,normalized_alias_name,source_dataset,source_reference_date,alias_reason,verified
+wonju:13192971,허승한의원,허승한의원,clinic_2025-11-25,2025-11-25,phone_exact,false
+wonju:13192598,연세명인요양병원,연세명인요양병원,mental_2022-08-13,2022-08-13,phone_exact,false
+wonju:13192838,강봉선신경정신과,강봉선신경정신과,mental_2022-08-13,2022-08-13,phone_exact,false
+wonju:13192702,마음사랑정신건강의학과 의원,마음사랑정신건강의학과의원,mental_2022-08-13,2022-08-13,phone_exact,false
+wonju:13192600,원주세인트병원,원주세인트병원,mental_2022-08-13,2022-08-13,phone_exact,false
+wonju:13192673,마음편한정신의학과,마음편한정신의학과,mental_2022-08-13,2022-08-13,phone_exact,false
+wonju:13192705,고석만정신건강의학과,고석만정신건강의학과,mental_2022-08-13,2022-08-13,phone_exact,false

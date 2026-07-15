@@ -1,0 +1,9 @@
+source_dataset,source_row_number,source_name,decision,institution_id,reason
+mental_2022-08-13,8,내안애병원,pending,,No exact phone/address or verified alias in current master; keep pending.
+mental_2022-08-13,12,강원도원주의료원,merge_existing,wonju:13192596,Same basic address as current 강원특별자치도원주의료원; historical name variant. Phone differs and is retained as a conflict record.
+mental_2022-08-13,13,새마음병원,pending,,No exact phone/address or verified alias in current master; keep pending.
+mental_2022-08-13,22,원주시정신건강복지센터,add_new,,Explicit public mental-health facility; add as source-provided pending current verification.
+mental_2022-08-13,23,원주시중독관리통합지원센터,add_new,,Explicit public mental-health facility; add as source-provided pending current verification.
+mental_2022-08-13,24,별자리,add_new,,Explicit public mental-health facility; add as source-provided pending current verification.
+dental_lab_2023-06-12,3,지스마트(하이지)치과기공소,historical_only,,Historical dental-lab source only; do not create or update a current institution.
+dental_lab_2023-06-12,15,미소치과기공소,historical_only,,Historical dental-lab source only; candidate is not exact and must not be merged.
