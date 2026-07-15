@@ -422,7 +422,7 @@ def collect(args: argparse.Namespace) -> int:
     run_date = args.run_date or started_at.date().isoformat()
 
     output_root = Path(args.output_dir).resolve()
-    raw_root = output_root / "raw" / "wonju_medical" / run_date
+    raw_root = output_root / "raw" / "medical_institutions" / "runs" / run_date
     pages_dir = raw_root / "pages"
     checkpoints_dir = raw_root / "page_rows"
     pages_dir.mkdir(parents=True, exist_ok=True)

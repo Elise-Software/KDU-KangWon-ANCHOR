@@ -1,0 +1,12 @@
+{
+  "dataset": "P0-DATA-03 Wonju public-health source collection",
+  "seed_count": 21,
+  "collected_page_count": 21,
+  "fetch_error_count": 0,
+  "scope_restricted_to_seed_urls": true,
+  "files": {
+    "source_pages": "data/collected/public_health/processed/p0_data_03_source_pages.csv",
+    "page_evidence": "data/collected/public_health/processed/p0_data_03_page_evidence.csv",
+    "raw_html_directory": "data/collected/public_health/raw/2026-07-15"
+  }
+}

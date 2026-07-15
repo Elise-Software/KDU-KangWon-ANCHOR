@@ -1,0 +1,3 @@
+﻿check,source_url,detail
+tls_compat_retry,https://www.alja.or.kr/,"HTTPSConnectionPool(host='www.alja.or.kr', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1082)')))"
+tls_compat_retry,https://www.e-gen.or.kr/egen/search_hospital.do,"HTTPSConnectionPool(host='www.e-gen.or.kr', port=443): Max retries exceeded with url: /egen/search_hospital.do (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1082)')))"

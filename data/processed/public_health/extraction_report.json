@@ -1,0 +1,24 @@
+{
+  "target_count": 26,
+  "entity_candidate_count": 25,
+  "entity_target_count": 25,
+  "contact_candidate_count": 23,
+  "schedule_candidate_count": 0,
+  "service_candidate_count": 15,
+  "public_health_branch_count": 9,
+  "public_health_clinic_count": 8,
+  "warning_count": 1,
+  "error_count": 0,
+  "duplicate_candidate_count": 0,
+  "offline_only": true,
+  "integrity_checks": {
+    "source_validation_passed": true,
+    "only_saved_seed_html_used": true,
+    "target_count_is_26": true,
+    "branch_count_is_9": true,
+    "clinic_count_is_8": true,
+    "candidate_ids_unique": true,
+    "all_candidates_traceable": true
+  },
+  "integrity_checks_passed": true
+}

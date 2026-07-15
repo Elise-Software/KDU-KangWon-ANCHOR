@@ -1,0 +1,20 @@
+{
+  "dataset": "P0-DATA-02 Wonju pharmacy operations preprocessing",
+  "source_record_count": 25,
+  "schedule_segment_count": 75,
+  "parse_error_count": 0,
+  "source_schedule_conflict_count": 4,
+  "integrity_checks": {
+    "all_source_records_retained": true,
+    "three_segments_per_source_record": true,
+    "parse_errors_retained": true
+  },
+  "integrity_checks_passed": true,
+  "files": {
+    "sources_processed": "data/processed/pharmacy_operations/pharmacy_operation_sources_processed.csv",
+    "schedule_segments": "data/processed/pharmacy_operations/pharmacy_operation_schedule_segments.csv",
+    "source_conflicts": "data/processed/pharmacy_operations/pharmacy_operation_source_conflicts.csv",
+    "parse_errors": "data/processed/pharmacy_operations/pharmacy_operation_parse_errors.csv"
+  },
+  "generated_at": "2026-07-15T23:30:55+09:00"
+}

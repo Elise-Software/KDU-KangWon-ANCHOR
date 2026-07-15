@@ -1,0 +1,18 @@
+{
+  "seed_count": 21,
+  "source_page_count": 21,
+  "evidence_page_count": 21,
+  "error_count": 0,
+  "warning_count": 2,
+  "integrity_checks": {
+    "all_seeds_present": true,
+    "only_seed_urls_used": true,
+    "all_raw_html_and_sha256_valid": true,
+    "all_pages_linked_to_evidence": true
+  },
+  "integrity_checks_passed": true,
+  "tls_compat_retry_pages": [
+    "https://www.alja.or.kr/",
+    "https://www.e-gen.or.kr/egen/search_hospital.do"
+  ]
+}

@@ -1,7 +1,7 @@
 import importlib.util
 from pathlib import Path
 
-MODULE = Path(__file__).parents[1] / "scripts" / "integrate_wonju_public_data.py"
+MODULE = Path(__file__).parents[1] / "scripts" / "integrate_wonju_medical_institutions.py"
 spec = importlib.util.spec_from_file_location("integrate", MODULE)
 integrate = importlib.util.module_from_spec(spec); spec.loader.exec_module(integrate)
 

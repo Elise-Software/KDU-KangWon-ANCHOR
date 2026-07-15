@@ -1,0 +1,108 @@
+{
+  "dataset": "P0-DATA-02 원주시 약국 운영정보",
+  "source_counts": {
+    "late_night": 16,
+    "year_round": 9
+  },
+  "expected_counts": {
+    "late_night": 16,
+    "year_round": 9
+  },
+  "fixed_count_check_enabled": true,
+  "source_row_audit": {
+    "late_night": {
+      "dom_data_row_count": 16,
+      "parsed_row_count": 16,
+      "previous_expected_count": 16,
+      "parse_loss_count": 0,
+      "parse_complete": true,
+      "source_count_changed": false
+    },
+    "year_round": {
+      "dom_data_row_count": 9,
+      "parsed_row_count": 9,
+      "previous_expected_count": 9,
+      "parse_loss_count": 0,
+      "parse_complete": true,
+      "source_count_changed": false
+    }
+  },
+  "source_record_count": 25,
+  "unique_pharmacy_count": 16,
+  "source_conflict_count": 4,
+  "source_conflict_pharmacies": [
+    "구곡시장약국",
+    "원주대문약국"
+  ],
+  "master_match_count": 16,
+  "master_conflict_count": 1,
+  "master_conflict_pharmacies": [
+    "아침약국"
+  ],
+  "conflict_summary": {
+    "source_schedule_conflicts": {
+      "pharmacy_count": 2,
+      "field_count": 4
+    },
+    "master_identity_conflicts": {
+      "pharmacy_count": 1,
+      "field_count": 1
+    },
+    "master_address_variants": {
+      "pharmacy_count": 3,
+      "review_required_count": 0
+    }
+  },
+  "integrity_checks": {
+    "both_sources_collected": true,
+    "all_rows_have_name": true,
+    "all_rows_have_address": true,
+    "all_rows_have_phone": true,
+    "all_rows_have_weekday_hours": true,
+    "all_rows_have_source_updated_at": true,
+    "raw_and_normalized_values_both_preserved": true,
+    "source_urls_are_official_wonju": true,
+    "html_sha256_recorded": true,
+    "merged_rows_traceable": true,
+    "all_dom_rows_parsed": true,
+    "master_supplied": true,
+    "all_merged_rows_matched_to_master": true,
+    "master_identity_conflicts_recorded": true
+  },
+  "integrity_checks_passed": true,
+  "review_required": true,
+  "manual_review_count": 3,
+  "dataset_status": "conditionally_verified",
+  "source_checks": {
+    "both_sources_collected": true,
+    "all_rows_have_name": true,
+    "all_rows_have_address": true,
+    "all_rows_have_phone": true,
+    "all_rows_have_weekday_hours": true,
+    "all_rows_have_source_updated_at": true,
+    "raw_and_normalized_values_both_preserved": true,
+    "source_urls_are_official_wonju": true,
+    "html_sha256_recorded": true,
+    "merged_rows_traceable": true,
+    "all_dom_rows_parsed": true
+  },
+  "master_checks": {
+    "master_supplied": true,
+    "all_merged_rows_matched_to_master": true,
+    "master_identity_conflicts_recorded": true
+  },
+  "all_checks_passed": true,
+  "started_at": "2026-07-15T23:26:14+09:00",
+  "finished_at": "2026-07-15T23:26:15+09:00",
+  "run_date": "2026-07-15",
+  "raw_html_directory": "data/collected/pharmacy_operations/raw/2026-07-15",
+  "files": {
+    "sources": "data/collected/pharmacy_operations/processed/pharmacy_operation_sources.csv",
+    "merged": "data/collected/pharmacy_operations/processed/pharmacy_operations_merged.csv",
+    "source_conflicts": "data/collected/pharmacy_operations/processed/pharmacy_operation_conflicts.csv",
+    "master_matches": "data/collected/pharmacy_operations/processed/master_matches.csv",
+    "master_conflicts": "data/collected/pharmacy_operations/processed/master_conflicts.csv",
+    "validation_report": "data/collected/pharmacy_operations/processed/validation_report.json",
+    "manifest": "data/collected/pharmacy_operations/processed/collection_manifest.json"
+  }
+}

@@ -1,0 +1,1 @@
+﻿candidate_id,target_id,source_url,source_updated_at,schedule_type,day_type,hours_raw,hours_normalized,open_time,close_time,closes_next_day,break_start,break_end,break_note,holiday_status,reservation_required,schedule_note,parse_status,evidence_text,evidence_hash,review_required

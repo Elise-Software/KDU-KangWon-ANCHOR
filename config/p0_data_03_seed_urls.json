@@ -1,0 +1,23 @@
+[
+  {"scope":"wonju_public_health","url":"https://www.wonju.go.kr/health/contents.do?key=1624"},
+  {"scope":"wonju_public_health","url":"https://www.wonju.go.kr/health/selectEmployeeList.do?key=5464&searchCnd=all&searchDeptCode=1%404191050"},
+  {"scope":"wonju_public_health","url":"https://www.wonju.go.kr/health/contents.do?key=5463"},
+  {"scope":"wonju_public_health","url":"https://www.wonju.go.kr/health/contents.do?key=1623"},
+  {"scope":"wonju_public_health","url":"https://www.wonju.go.kr/health/contents.do?key=1627"},
+  {"scope":"health_subcenters_and_clinics","url":"https://www.wonju.go.kr/health/contents.do?key=5155"},
+  {"scope":"health_living_support","url":"https://www.wonju.go.kr/health/contents.do?key=3745"},
+  {"scope":"health_living_support","url":"https://www.wonju.go.kr/health/contents.do?key=5551"},
+  {"scope":"mental_health","url":"https://www.wonju.go.kr/health/contents.do?key=6230"},
+  {"scope":"mental_health","url":"https://loveme.yonsei.kr/"},
+  {"scope":"mental_health","url":"https://loveme.yonsei.kr/sub.php?menukey=12"},
+  {"scope":"mental_health","url":"https://loveme.yonsei.kr/sub.php?menukey=31"},
+  {"scope":"mental_health","url":"https://loveme.yonsei.kr/sub.php?menukey=14"},
+  {"scope":"addiction","url":"https://www.wonju.go.kr/health/contents.do?key=1671"},
+  {"scope":"addiction","url":"https://www.alja.or.kr/"},
+  {"scope":"dementia","url":"https://wonju.nid.or.kr/"},
+  {"scope":"dementia","url":"https://wonju.nid.or.kr/center/map.aspx"},
+  {"scope":"emergency_and_holiday_care","url":"https://www.wonju.go.kr/health/selectBbsNttList.do?bbsNo=53&key=2438"},
+  {"scope":"emergency_and_holiday_care","url":"https://www.wonju.go.kr/health/selectBbsNttList.do?bbsNo=55&key=1655"},
+  {"scope":"emergency_and_holiday_care","url":"https://www.wonju.go.kr/health/selectResrceListPA3.do?key=1787"},
+  {"scope":"emergency_and_holiday_care","url":"https://www.e-gen.or.kr/egen/search_hospital.do"}
+]

@@ -1,0 +1,39 @@
+{
+  "target_count": 26,
+  "public_health_branch_target_count": 9,
+  "recovered_canonical_count": 2,
+  "supporting_source_count": 4,
+  "coverage_gap_count": 23,
+  "duplicate_candidate_id_count": 0,
+  "duplicate_schedule_key_count": 0,
+  "supporting_source_foreign_key_error_count": 0,
+  "schedule_owner_target_ids": [
+    "mh:addiction",
+    "mh:wonju"
+  ],
+  "integrity_checks": {
+    "target_count_is_26": true,
+    "target_ids_unique": true,
+    "public_health_branch_count_is_9": true,
+    "target_resolution_complete": true,
+    "exact_verified_mental_health_schedule": true,
+    "exact_verified_addiction_schedule": true,
+    "canonical_schedule_count_is_2": true,
+    "candidate_ids_unique": true,
+    "canonical_schedule_keys_unique": true,
+    "supporting_source_count_is_4": true,
+    "supporting_source_ids_unique": true,
+    "supporting_source_foreign_keys_valid": true,
+    "supporting_sources_match_canonical": true,
+    "schedule_evidence_hashes_valid": true,
+    "supporting_evidence_hashes_valid": true,
+    "suicide_has_no_direct_schedule": true,
+    "dementia_has_no_general_schedule": true,
+    "no_program_or_timestamp_false_positive": true,
+    "suicide_is_organizational_unit": true,
+    "coverage_gap_targets_complete": true,
+    "coverage_gap_count_is_23": true,
+    "coverage_gaps_are_not_manual_review": true
+  },
+  "integrity_checks_passed": true
+}

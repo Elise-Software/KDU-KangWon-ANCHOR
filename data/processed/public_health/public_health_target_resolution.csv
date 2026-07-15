@@ -1,0 +1,27 @@
+﻿target_id,canonical_name,institution_type,target_resolution_status,parent_target_id,schedule_coverage_status,reason,review_required
+phc:wonju,원주시보건소,public_health_center,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:munmak,문막읍보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:socho,소초면보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:jijeong,지정면보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:buro,부론면보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:gwichang,귀래면보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:heungeop,흥업면보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:hojeo,호저면보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:panjeon,판부면보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phb:sillim,신림면보건지소,public_health_branch,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phc:bi-do,비두보건진료소,public_health_clinic,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phc:hakgok,학곡보건진료소,public_health_clinic,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phc:gosan,고산보건진료소,public_health_clinic,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phc:sanhyeon,산현보건진료소,public_health_clinic,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phc:pandae,판대보건진료소,public_health_clinic,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phc:dangang,단강보건진료소,public_health_clinic,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phc:saje,사제보건진료소,public_health_clinic,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+phc:hwangdun,황둔보건진료소,public_health_clinic,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+hls:namwonju,남원주건강생활지원센터,health_life_support_center,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+hls:namwonju-annex,남원주건강생활지원센터 혁신분소,health_life_support_center,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+hls:seowonju,서원주건강생활지원센터,health_life_support_center,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+mh:wonju,원주시정신건강복지센터,mental_health_welfare_center,insufficient_evidence,,canonical_available,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+mh:suicide,원주시자살예방센터,suicide_prevention_center,organizational_unit,mh:wonju,inherited_from_parent,No separate address or independent operating-hours evidence; managed as a mental-health-center unit.,False
+mh:addiction,원주시중독관리통합지원센터,addiction_management_center,insufficient_evidence,,canonical_available,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+mh:dementia,원주시치매안심센터,dementia_safety_center,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False
+mh:byeoljari,별자리,mental_rehabilitation_facility,insufficient_evidence,,not_present_in_collected_sources,Entity/master resolution is deferred to integration; schedule coverage is recorded separately.,False

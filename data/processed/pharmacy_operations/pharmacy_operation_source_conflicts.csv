@@ -1,0 +1,5 @@
+﻿pharmacy_name,identity_type,identity_value,field_name,field_label,late_night_value,late_night_source_raw,late_night_source_updated_at,year_round_value,year_round_source_raw,year_round_source_updated_at,resolution
+구곡시장약국,phone,033-761-4827,saturday_hours_normalized,토요일 운영시간,-,-,2026-07-08,08:30~22:00,08:30~22:00,2026-04-02,manual_review_required
+원주대문약국,phone,033-763-6342,weekday_hours_normalized,평일 운영시간,08:00~24:00,08:00~24:00,2026-07-08,08:00~12:00,08:00~12:00,2026-04-02,manual_review_required
+원주대문약국,phone,033-763-6342,saturday_hours_normalized,토요일 운영시간,08:00~24:00,08:00~24:00,2026-07-08,08:00~12:00,08:00~12:00,2026-04-02,manual_review_required
+원주대문약국,phone,033-763-6342,sunday_hours_normalized,일요일 운영시간,08:00~24:00,08:00~24:00,2026-07-08,08:00~12:00,08:00~12:00,2026-04-02,manual_review_required

@@ -1,0 +1,4 @@
+target_id,field_name,resolved_value,resolution_status,decision_source,decision_note
+phc:wonju,representative_phone,033-737-4011,user_confirmed_current_official_value,user_confirmation,2026-07-16 user confirmed the Wonju Public Health Center representative phone.
+phb:sillim,address,"원주시 신림면 치악로 28-2 (신림리 530-9)",user_confirmed_current_official_value,user_confirmation,2026-07-16 user confirmed the Sillim Public Health Branch current address.
+mh:byeoljari,current_status,operating_confirmed,user_confirmed_operating_status,user_confirmation,2026-07-16 user confirmed Byeoljari is operating.

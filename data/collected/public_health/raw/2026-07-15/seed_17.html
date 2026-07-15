@@ -1,0 +1,894 @@
+<script>console.log('DAC_010_009')</script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d717d2082a92cfe51c8ffabfb1a6aedd&libraries=services"></script>
+
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" >
+<meta name="naver-site-verification" content="b9b2f27462214fe5d304febec089d4e8828c6487">
+<meta name="naver-site-verification" content="0b4c0f897768555604d1ef4d3c7c128c263976a9">
+<meta property="og:site_name" content="강원특별자치도 원주시 치매안심센터" >
+<meta property="og:title" content="강원특별자치도 원주시 치매안심센터" >
+<meta name="description" content="강원특별자치도 원주시 치매안심센터 안내, 치매안심센터 사업 안내, 치매전문교육, 안심지원서비스, 커뮤니티, 알림마당 등 안내">
+<meta property="og:description" content="강원특별자치도 원주시 치매안심센터 안내, 치매안심센터 사업 안내, 치매전문교육, 안심지원서비스, 커뮤니티, 알림마당 등 안내" >
+<title>강원특별자치도 원주시 치매안심센터</title>
+<link rel="shortcut icon" href="/images/pavicon/img_ja.ico">
+<link rel="stylesheet" href="/common/css/default.css">
+<link rel="stylesheet" href="/common/css/slick.css">
+<link rel="stylesheet" href="/common/css/swiper-bundle.min.css">
+<script src="/common/js/jquery-3.7.1.min.js"></script>
+<script src="/common/js/jquery-migrate-3.5.2.min.js"></script>
+<script src="/common/js/jquery.easing.1.3.js"></script>
+<script src="/common/js/common.js"></script>
+<script src="/common/js/module/param.js"></script>
+<script src="/common/js/design.js"></script>
+<script src="/common/js/main.js"></script>
+<script src="/common/js/slick.min.js"></script>
+<script src="/common/js/swiper.min.js"></script>
+<script src="/common/js/frameLayer.js"></script>
+<script src="/common/js/calendar.js"></script>
+<script src="//t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+  function user_popup(url) {
+    window.open(url, 'user_popup', 'height=' + (screen.height - 30) + ', width=' + (screen.width - 30) + ', scrollbars=yes, resizable=yes');
+  }
+</script>
+
+<script>
+
+  $(document).ready(function () {
+
+    var gugun_as = param.get('gugun_as');
+
+    if (gugun_as != null) {
+      change_sido_as(gugun_as.substring(0, 7), gugun_as);
+    }
+
+  });
+
+  // 지도 표기위한 첫값
+  var giox = 37.3247016553805;
+  var gioy = 127.924841639146;
+  var ansim_name = '강원특별자치도원주시치매안심센터';
+  var addr = '강원특별자치도 원주시 지니기길 11-20 (무실동, 치매안심센터)';
+  var tel_num = '033-737-4542';
+
+  //안심센터 선택
+  function change_sido_as(sido, gugun) {
+
+    if (!gugun) gugun = "";
+
+    if (sido) {
+
+      $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "./map.aspx/GetGuGunAS",
+        data: "{ 'sido': '" + sido + "', 'gugun': '" + gugun + "' }",
+        success: change_sido_as_result
+      });
+
+    } else {
+
+      $("#gugun_as").html("<option value=''>시/군/구 선택 (안심센터)</option>");
+
+    }
+
+  }
+
+  function change_sido_as_result(data) {
+
+    var html = "<option value=''>시/군/구 선택 (안심센터)</option>";
+    html += data.d;
+    $("#gugun_as").html(html);
+
+  }  
+
+</script>
+
+
+</head>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var $_li = $("#v_chk").find("li");
+
+        if ($_li.length < 1) {
+
+            $("#v_img_chk").css("background", "none");
+
+        }
+
+        $(".loc_box").find("li").eq(1).find("a").css("background", "none");
+
+        var url = window.location.hostname;
+
+
+        //### CSRF 토큰 삽입
+        $('form[method=post]').prepend('<input type="hidden" name="_csrf" value="MzI0NTIzMTUwNzI2MTcyMjUzMDEyNzY1MzQ3OTk5">');
+		
+		
+		// quick menu height
+		var quickHeight = $("#container").height();
+		$(".quick_menu_wrap .quick_menu").css("height" , quickHeight - 135);
+
+    });
+
+
+</script>
+<body>
+<!-- wrap -->
+<div class="body_wrap">
+
+	<!-- 스킵네비게이션 -->
+    <p class="skip_cont">
+        <a href="#contents">본문으로 바로가기</a>
+        <a href="#gnb">주메뉴로 바로가기</a>
+        <a href="#footer">카피라이트 바로가기</a>
+    </p>
+
+	<!-- header -->
+	<div id="header" class="header_wrap">
+		<div class="header_section fix">
+			<h1>
+				<a href="../main/main.aspx" target="_parent">
+					<img src="/images/new_logo/dementia_ansim_center_logo/defalut/DAC_010_009.jpg" alt="치매안심센터">
+				</a>
+
+			</h1>
+
+
+			<!--navi_section-->
+			<div class="nav_section fix">
+				<div class="nav_area">
+					<div class="nav_box">
+						<ul class="nav_ul_1 top_depth fix">
+
+						
+
+                  				<li class="nav_li_1">
+								    <a href="#" class="nav_link_1">센터안내</a>
+								    <div class="sec_depth_div fix">
+									    <dl class="title">
+										    <dt>센터안내</dt>
+										    <dd>
+											    치매안심센터 홈페이지<br/>
+											    방문해주셔서 감사합니다.
+										    </dd>
+									    </dl>
+									    <div class="dep_wrap">
+										    <ul class="two_dep">
+
+						  						<li><a  target='_parent' href='../center/center_intro.aspx'>센터소개</a></li><li><a  target='_parent' href='../center/organiztion.aspx'>조직도</a></li><li><a  target='_parent' href='../center/map.aspx'>찾아오시는길</a></li>
+
+<!--
+  -->
+											</ul>
+										</div>
+										<ul class="quick_banner_li">
+											<li><a href="https://www.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="중앙치매센터"/>중앙치매센터</a></li>
+											<li><a href="https://gangwon.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="광역치매센터"/>강원특별자치도 광역치매센터</a></li>
+											<li><a href="https://partner.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu02.png" alt="치매파트너"/>치매파트너</a></li>
+											<li><a href="https://www.nid.or.kr/support/hi_list.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu03.png" alt="온라인자가진단"/>온라인자가진단</a></li>
+											<li><a href="https://www.nid.or.kr/support/callcenter.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu04.png" alt="치매상담신청"/>치매상담신청</a></li>
+											<li><a href="https://ansim.nid.or.kr/service/service_01.aspx" class="q_link1"><img src="../images/main/ico_lft_topmenu05.png" alt="실종치매노인지원"/>실종치매노인지원</a></li>
+										</ul>
+									</div>
+								</li>
+
+                				
+
+                  				<li class="nav_li_1">
+								    <a href="#" class="nav_link_1">사업안내</a>
+								    <div class="sec_depth_div fix">
+									    <dl class="title">
+										    <dt>사업안내</dt>
+										    <dd>
+											    치매안심센터 홈페이지<br/>
+											    방문해주셔서 감사합니다.
+										    </dd>
+									    </dl>
+									    <div class="dep_wrap">
+										    <ul class="two_dep">
+
+						  						<li><a href='../introduce/object_service.aspx' class='depth'>등록관리서비스</a><ul class='three_dep'><li><a target='_parent' href = '../introduce/object_service.aspx'>대상자 등록 서비스</a></li></ul></li><li><a  target='_parent' href='../introduce/early_service.aspx'>치매조기검진서비스</a></li><li><a href='../introduce/senior_tag.aspx' class='depth'>치매환자서비스</a><ul class='three_dep'><li><a target='_parent' href = '../introduce/senior_tag.aspx'>배회가능어르신인식표</a></li><li><a target='_parent' href = '../introduce/expenses_free.aspx'>치매치료관리비</a></li><li><a target='_parent' href = '../introduce/relief.aspx'>조호물품</a></li><li><a target='_parent' href = '../introduce/shelters.aspx'>치매환자쉼터</a></li><li><a target='_parent' href = '../introduce/case_manage.aspx'>맞춤형사례관리</a></li></ul></li><li><a href='../introduce/family_counsel.aspx' class='depth'>치매가족지원서비스</a><ul class='three_dep'><li><a target='_parent' href = '../introduce/family_counsel.aspx'>상담 및 돌봄부담분석</a></li><li><a target='_parent' href = '../introduce/class_service.aspx'>가족교실</a></li><li><a target='_parent' href = '../introduce/group_service.aspx'>자조모임</a></li><li><a target='_parent' href = '../introduce/healing_service.aspx'>힐링프로그램</a></li><li><a target='_parent' href = '../introduce/cafe_service.aspx'>가족카페</a></li><li><a target='_parent' href = '../introduce/companion_service.aspx'>동반치매환자보호서비스</a></li></ul></li><li><a href='../introduce/preventive_service.aspx' class='depth'>치매예방서비스</a><ul class='three_dep'><li><a target='_parent' href = '../introduce/preventive_service.aspx'>치매예방교실 서비스</a></li><li><a target='_parent' href = '../introduce/training_service.aspx'>인지강화교실 서비스</a></li></ul></li><li><a href='../introduce/dementia_campaign.aspx' class='depth'>치매친화적 지역사회</a><ul class='three_dep'><li><a target='_parent' href = '../introduce/dementia_campaign.aspx'>치매극복캠페인</a></li><li><a target='_parent' href = '../introduce/partner_service.aspx'>치매파트너</a></li><li><a target='_parent' href = '../introduce/society_list.aspx'>치매극복선도단체</a></li><li><a target='_parent' href = '../introduce/custodian_service.aspx'>치매공공후견사업</a></li></ul></li>
+
+<!--
+  -->
+											</ul>
+										</div>
+										<ul class="quick_banner_li">
+											<li><a href="https://www.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="중앙치매센터"/>중앙치매센터</a></li>
+											<li><a href="https://gangwon.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="광역치매센터"/>강원특별자치도 광역치매센터</a></li>
+											<li><a href="https://partner.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu02.png" alt="치매파트너"/>치매파트너</a></li>
+											<li><a href="https://www.nid.or.kr/support/hi_list.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu03.png" alt="온라인자가진단"/>온라인자가진단</a></li>
+											<li><a href="https://www.nid.or.kr/support/callcenter.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu04.png" alt="치매상담신청"/>치매상담신청</a></li>
+											<li><a href="https://ansim.nid.or.kr/service/service_01.aspx" class="q_link1"><img src="../images/main/ico_lft_topmenu05.png" alt="실종치매노인지원"/>실종치매노인지원</a></li>
+										</ul>
+									</div>
+								</li>
+
+                				
+
+                  				<li class="nav_li_1">
+								    <a href="#" class="nav_link_1">치매전문교육</a>
+								    <div class="sec_depth_div fix">
+									    <dl class="title">
+										    <dt>치매전문교육</dt>
+										    <dd>
+											    치매안심센터 홈페이지<br/>
+											    방문해주셔서 감사합니다.
+										    </dd>
+									    </dl>
+									    <div class="dep_wrap">
+										    <ul class="two_dep">
+
+						  						<li><a  target='_parent' href='../study/study_01.aspx'>소개</a></li><li><a  target='_parent' href='../study/annual_plan.aspx'>연간계획</a></li>
+
+<!--
+  -->
+											</ul>
+										</div>
+										<ul class="quick_banner_li">
+											<li><a href="https://www.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="중앙치매센터"/>중앙치매센터</a></li>
+											<li><a href="https://gangwon.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="광역치매센터"/>강원특별자치도 광역치매센터</a></li>
+											<li><a href="https://partner.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu02.png" alt="치매파트너"/>치매파트너</a></li>
+											<li><a href="https://www.nid.or.kr/support/hi_list.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu03.png" alt="온라인자가진단"/>온라인자가진단</a></li>
+											<li><a href="https://www.nid.or.kr/support/callcenter.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu04.png" alt="치매상담신청"/>치매상담신청</a></li>
+											<li><a href="https://ansim.nid.or.kr/service/service_01.aspx" class="q_link1"><img src="../images/main/ico_lft_topmenu05.png" alt="실종치매노인지원"/>실종치매노인지원</a></li>
+										</ul>
+									</div>
+								</li>
+
+                				
+
+                  				<li class="nav_li_1">
+								    <a href="#" class="nav_link_1">안심지원서비스</a>
+								    <div class="sec_depth_div fix">
+									    <dl class="title">
+										    <dt>안심지원서비스</dt>
+										    <dd>
+											    치매안심센터 홈페이지<br/>
+											    방문해주셔서 감사합니다.
+										    </dd>
+									    </dl>
+									    <div class="dep_wrap">
+										    <ul class="two_dep">
+
+						  						<li><a  target='_parent' href='../service/mental_health.aspx'>마음건강수첩</a></li><li><a  target='_parent' href='../service/net_info.aspx'>알짜정보내비게이션</a></li><li><a href='../service/service_01.aspx' class='depth'>실종치매노인지원</a><ul class='three_dep'><li><a target='_parent' href = '../service/service_01.aspx'>사업안내</a></li><li><a target='_parent' href = '../service/service_03.aspx'>실종노인 찾기</a></li><li><a target='_parent' href = '../service/service_02.aspx'>실종노인  무료 홍보물 제작 신청</a></li><li><a target='_parent' href = '../service/service_04.aspx'>무연고노인 신상카드 제출</a></li><li><a target='_parent' href = '../service/service_05.aspx'>실종시 대처요령</a></li></ul></li><li><a  target='_parent' href='../service/letterbox.aspx'>희망우체통</a></li><li><a  target='_parent' href='../service/facility_list.aspx'>치매시설정보</a></li><li><a href='#' onclick=user_popup('http://www.nid.or.kr/info/today_list_2023.aspx')>치매오늘은</a></li>
+
+<!--
+  -->
+											</ul>
+										</div>
+										<ul class="quick_banner_li">
+											<li><a href="https://www.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="중앙치매센터"/>중앙치매센터</a></li>
+											<li><a href="https://gangwon.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="광역치매센터"/>강원특별자치도 광역치매센터</a></li>
+											<li><a href="https://partner.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu02.png" alt="치매파트너"/>치매파트너</a></li>
+											<li><a href="https://www.nid.or.kr/support/hi_list.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu03.png" alt="온라인자가진단"/>온라인자가진단</a></li>
+											<li><a href="https://www.nid.or.kr/support/callcenter.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu04.png" alt="치매상담신청"/>치매상담신청</a></li>
+											<li><a href="https://ansim.nid.or.kr/service/service_01.aspx" class="q_link1"><img src="../images/main/ico_lft_topmenu05.png" alt="실종치매노인지원"/>실종치매노인지원</a></li>
+										</ul>
+									</div>
+								</li>
+
+                				
+
+                  				<li class="nav_li_1">
+								    <a href="#" class="nav_link_1">정보마당</a>
+								    <div class="sec_depth_div fix">
+									    <dl class="title">
+										    <dt>정보마당</dt>
+										    <dd>
+											    치매안심센터 홈페이지<br/>
+											    방문해주셔서 감사합니다.
+										    </dd>
+									    </dl>
+									    <div class="dep_wrap">
+										    <ul class="two_dep">
+
+						  						<li><a href='https://www.nid.or.kr/info/diction_list1.aspx?gubun=0101' target='_blank'>치매대백과</a></li><li><a  target='_parent' href='../community/pds_list.aspx'>자료실</a></li><li><a  target='_parent' href='../community/etc_expert_list.aspx'>전문가칼럼</a></li><li><a  target='_parent' href='../community/relate_company.aspx'>관련/협력기관</a></li>
+
+<!--
+  -->
+											</ul>
+										</div>
+										<ul class="quick_banner_li">
+											<li><a href="https://www.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="중앙치매센터"/>중앙치매센터</a></li>
+											<li><a href="https://gangwon.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="광역치매센터"/>강원특별자치도 광역치매센터</a></li>
+											<li><a href="https://partner.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu02.png" alt="치매파트너"/>치매파트너</a></li>
+											<li><a href="https://www.nid.or.kr/support/hi_list.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu03.png" alt="온라인자가진단"/>온라인자가진단</a></li>
+											<li><a href="https://www.nid.or.kr/support/callcenter.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu04.png" alt="치매상담신청"/>치매상담신청</a></li>
+											<li><a href="https://ansim.nid.or.kr/service/service_01.aspx" class="q_link1"><img src="../images/main/ico_lft_topmenu05.png" alt="실종치매노인지원"/>실종치매노인지원</a></li>
+										</ul>
+									</div>
+								</li>
+
+                				
+
+                  				<li class="nav_li_1">
+								    <a href="#" class="nav_link_1">알림마당</a>
+								    <div class="sec_depth_div fix">
+									    <dl class="title">
+										    <dt>알림마당</dt>
+										    <dd>
+											    치매안심센터 홈페이지<br/>
+											    방문해주셔서 감사합니다.
+										    </dd>
+									    </dl>
+									    <div class="dep_wrap">
+										    <ul class="two_dep">
+
+						  						<li><a  target='_parent' href='../notice/notice_list.aspx'>공지사항</a></li><li><a  target='_parent' href='../notice/activity_list.aspx'>센터활동일지</a></li><li><a  target='_parent' href='../notice/schedule.aspx'>센터일정안내</a></li><li><a  target='_parent' href='../notice/press_list.aspx'>언론보도</a></li><li><a  target='_parent' href='../notice/recruit_list.aspx'>채용공고</a></li><li><a  target='_parent' href='../notice/pct_list.aspx'>행사 및 교육</a></li>
+
+<!--
+  -->
+											</ul>
+										</div>
+										<ul class="quick_banner_li">
+											<li><a href="https://www.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="중앙치매센터"/>중앙치매센터</a></li>
+											<li><a href="https://gangwon.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu01.png" alt="광역치매센터"/>강원특별자치도 광역치매센터</a></li>
+											<li><a href="https://partner.nid.or.kr" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu02.png" alt="치매파트너"/>치매파트너</a></li>
+											<li><a href="https://www.nid.or.kr/support/hi_list.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu03.png" alt="온라인자가진단"/>온라인자가진단</a></li>
+											<li><a href="https://www.nid.or.kr/support/callcenter.aspx" target="_blank" class="q_link1"><img src="../images/main/ico_lft_topmenu04.png" alt="치매상담신청"/>치매상담신청</a></li>
+											<li><a href="https://ansim.nid.or.kr/service/service_01.aspx" class="q_link1"><img src="../images/main/ico_lft_topmenu05.png" alt="실종치매노인지원"/>실종치매노인지원</a></li>
+										</ul>
+									</div>
+								</li>
+
+                				
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--navi_section-->
+			
+			<!-- <div class="search">
+			   <a href="/search/search.aspx" class="btn_search"></a>
+		   </div> -->
+
+			<div class="header_util">
+			
+				<div class="member_menu">
+					<a href="/member/login.aspx" class="btn_login"><span>로그인</span></a>
+				  <a href="/member/join_01.aspx" class="btn_signup"><span>회원가입</span></a>
+				</div>
+				
+				<div class="search">
+				  <a href="/search/search.aspx" class="btn_search"></a>
+				</div>
+				<div class="site_map">
+				  <a href="javascrip:void(0);" class="btn_sitemap" onclick="site_map_open()"><img src="/common/images/main/btn_menu.png" alt=""></a>
+				</div>
+          </div>
+
+		</div>
+		<span class="line"></span>
+	</div>
+	<!-- //header -->
+
+
+	<!-- quick_wrap -->
+	
+	<aside class="quick_menu_wrap">
+		<div class="quick_menu">
+			<div class="top_menu">
+				<button class="btn_quick_menu"><span>QUICK</span></button>
+			</div>
+			<div id="top_quick_member_out" class="member_menu">
+				<a href="/member/login.aspx" class="btn_login"><span>로그인</span></a>
+				<a href="/member/join_01.aspx" class="btn_signup"><span>회원가입</span></a>
+			</div>
+			
+			<div class="link_menu">
+				<a href="https://www.mohw.go.kr" target="_blank" title="새창열림"><span>보건복지부</span></a>
+				<a href="https://www.nid.or.kr" target="_blank" title="새창열림"><span>중앙<br>치매센터</span></a>
+				<a href="https://gangwon.nid.or.kr" target="_blank" title="새창열림"><span>광역<br>치매센터</span></a>
+				<a href="https://partner.nid.or.kr" target="_blank" title="새창열림"><span>치매파트너</span></a>
+				<a href="https://edu.nid.or.kr" target="_blank" title="새창열림"><span>국가<br>치매교육</span></a>
+			</div>
+			<!--
+			<div class="sns_menu">
+				<a href="https://www.instagram.com/national_institute_of_dementia" target="_blank" title="새창열림"><img src="../images/main/ico_sns_instargram.png" alt="인스타그램"></a>
+				<a href="https://www.youtube.com/user/NIDPARTNER" target="_blank" title="새창열림"><img src="../images/main/ico_sns_youtube.png" alt="유튜브"></a>
+				<a href="https://twitter.com/nid_info" target="_blank" title="새창열림"><img src="../images/main/ico_sns_twitter.png" alt="트위터"></a>
+				<a href="https://www.facebook.com/nidinfo" target="_blank" title="새창열림"><img src="../images/main/ico_sns_facebook.png" alt="페이스북"></a>
+			</div>
+			-->
+		</div>
+	</aside>
+	
+	<!-- // quick_wrap -->
+
+
+  
+    <!-- container -->
+    <div id="container" class="container_wrap">
+	    <div class="sub_container">
+
+			  <!-- 로케이션 -->
+			  <div class="loc_wrap loc_type_01">
+				  <div class="loc_area fix">
+					  <ul class="loc_box">
+						  <li class="loc_home bdr_x">
+							  <a href="../main/main.aspx"><span>HOME</span></a>
+						  </li>
+              
+						  <li class="loc_li loc_li_1">
+							  <a href="#""><span>센터안내</span></a>
+                <ul class="loc_dpth" id="">
+                  
+								</ul>
+						  </li>
+              
+
+							<li class="loc_li loc_li_3">
+							  <a href="#" id="v_img_chk"><span>찾아오시는길</span></a>
+
+								<!-- 기존코드 -->
+							  <!-- <a href="../center/map.aspx" id="v_img_chk"><span>찾아오시는길</span></a> -->
+                <ul class="loc_dpth" id="v_chk">
+                  
+
+    								  <li>
+                        <a href="../center/center_intro.aspx"  >
+                          <span>센터소개</span>
+                        </a>
+    								  </li>
+
+						        
+
+    								  <li>
+                        <a href="../center/organiztion.aspx"  >
+                          <span>조직도</span>
+                        </a>
+    								  </li>
+
+						        
+								</ul>
+						  </li>
+					  </ul>
+
+
+				  </div>
+			  </div>
+			  <!-- //로케이션 -->
+      
+
+
+
+			<!-- 본문영역 -->
+			<div class="sub_container_area">
+				<!-- 콘텐츠 -->
+				<div class="sub_cont_wrap">
+
+					<!-- 콘텐츠 타이틀 -->
+					<div class="sub_cont_tit">
+						<h2 class="h2_style">찾아오시는길</h2>
+						<p class="sc_tit_txt">치매안심센터의 찾아오시는길 입니다.</p>
+					</div>
+					<!-- //콘텐츠 타이틀 -->
+
+					<!-- 콘텐츠 내용 -->
+					<div class="sub_cont">
+						
+						<div class="map_wrap">
+							<div class="map_con fix">
+								<div class="map_lft_wrap">
+		              <form name="searchform" id="searchform" method="get" action="./map.aspx">
+									  <fieldset>
+											<legend>치매안심센터 검색</legend>
+											<div class="sch_area">
+												<ul class="slc_box center">
+													<li>
+                            <select id="sido_as" name="sido_as" class="slc_city" style="width: 40%; min-width: 80px;" onchange="change_sido_as( this.value );">
+                              <option value="">시도 선택 (안심센터)</option>
+                              <option value='DAC_010'  >강원특별자치도</option><option value='DAC_009'  >경기도</option><option value='DAC_016'  >경상남도</option><option value='DAC_015'  >경상북도</option><option value='DAC_005'  >광주광역시</option><option value='DAC_003'  >대구광역시</option><option value='DAC_006'  >대전광역시</option><option value='DAC_002'  >부산광역시</option><option value='DAC_001'  >서울특별시</option><option value='DAC_008'  >세종특별자치시</option><option value='DAC_007'  >울산광역시</option><option value='DAC_004'  >인천광역시</option><option value='DAC_014'  >전라남도</option><option value='DAC_013'  >전북특별자치도</option><option value='DAC_017'  >제주특별자치도</option><option value='DAC_012'  >충청남도</option><option value='DAC_011'  >충청북도</option>
+                            </select>
+                            <select id="gugun_as" name="gugun_as" class="slc_city ml5" style="width: 40%; min-width: 80px;" >
+                              <option value="">시/군/구 선택 (안심센터)</option>
+                            </select>
+													</li>
+													<li>
+														<label for="searchword" class="skip">센터명 검색창</label>
+														<input type="text" class="sch_ipt" name="searchword" id="searchword" placeholder="센터명 검색"/>
+														<input type="image" src="../images/service/btn_search.png" alt="검색"/>
+													</li>
+												</ul>
+												<p class="sch_tol">검색결과 </p>
+
+												<div class="sch_result">
+													<ul class="sch_list">
+
+                            
+
+														    <li>
+															    <dl>
+																    <dt class="c_name">
+                                      <a href="#" onClick="setCenter(37.3247016553805, 127.924841639146, '강원특별자치도원주시치매안심센터', '강원특별자치도 원주시 지니기길 11-20 (무실동, 치매안심센터)', '033-737-4542');return false;">
+                                        강원특별자치도원주시치매안심센터</td>
+                                      </a>
+																    </dt>
+																    <dd class="c_add">강원특별자치도 원주시 지니기길 11-20 (무실동, 치매안심센터)</dd>
+																    <!--<dd class="c_phone">033-737-4542</dd>-->
+															    </dl>
+														    </li>
+
+                              
+
+														    <li>
+															    <dl>
+																    <dt class="c_name">
+                                      <a href="#" onClick="setCenter(37.3129269413822, 127.817376661339, '원주시 치매안심센터 문막분소', '강원특별자치도 원주시 문막읍 건등로 11 (건등리, 문막읍 행정복지센터)', '033-737-5226');return false;">
+                                        원주시 치매안심센터 문막분소(분소)</td>
+                                      </a>
+																    </dt>
+																    <dd class="c_add">강원특별자치도 원주시 문막읍 건등로 11 (건등리, 문막읍 행정복지센터)</dd>
+																    <!--<dd class="c_phone">033-737-5226</dd>-->
+															    </dl>
+														    </li>
+
+                              
+
+														    <li>
+															    <dl>
+																    <dt class="c_name">
+                                      <a href="#" onClick="setCenter(37.3201290504383, 127.9896710078, '원주시 치매안심센터 혁신분소', '강원특별자치도 원주시 건강로 73 (반곡동)', '033-737-3869');return false;">
+                                        원주시 치매안심센터 혁신분소(분소)</td>
+                                      </a>
+																    </dt>
+																    <dd class="c_add">강원특별자치도 원주시 건강로 73 (반곡동)</dd>
+																    <!--<dd class="c_phone">033-737-3869</dd>-->
+															    </dl>
+														    </li>
+
+                              
+
+							              
+
+
+													</ul>
+												</div>
+													
+												
+											</div>
+										</fieldset>
+									</form>
+								</div>
+								<div class="map_rgt_wrap">
+									<div class="map_con" id="map" style="height:492px;"></div>
+
+									<script>
+
+										var container = document.getElementById('map');
+										var options = {
+												center: new daum.maps.LatLng(giox, gioy),
+											level: 3
+										};
+
+                    var map = new daum.maps.Map(container, options);
+
+                    // 주소-좌표 변환 객체를 생성합니다
+                    var geocoder = new daum.maps.services.Geocoder();
+
+                    var address_start = $(".c_add").text().trim();
+                    console.log("주소지 : "+address_start);
+                    // 주소로 좌표를 검색합니다 
+                    geocoder.addressSearch(address_start, function (result, status) {
+
+                        // 정상적으로 검색이 완료됐으면
+                      if (status === daum.maps.services.Status.OK) {
+
+                        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+
+                        console.log("1.다음지도=====" + result[0].y); /// 위도
+                        console.log("2.다음지도=====" + result[0].x); /// 경도
+
+                      } else {
+                        console.log("daum.maps.services.Status.OK === false");
+                      }
+                    });
+
+                    
+                    // 마커가 표시될 위치입니다 
+                    var markerPosition = new daum.maps.LatLng(giox, gioy);
+
+                    // 마커를 생성합니다
+                    var marker = new daum.maps.Marker({
+                      position: markerPosition
+                    });
+
+                    // 마커가 지도 위에 표시되도록 설정합니다
+                    marker.setMap(map);
+
+                    var iwContent = '<div class="map_tool_box"><div style="padding:5px; box-sizing: border-box; line-height: 1.2; font-size: 12px;"><p class="ct_name">' + ansim_name + '</p><dl><dt>주소</dt><dd>' + addr + '</dd></dl><p class="center"><a href="http://map.daum.net/link/map/' + ansim_name + ',' + giox + ',' + gioy + '" class="btn_map11" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/' + ansim_name + ',' + giox + ',' + gioy + '" class="btn_map22" target="_blank">길찾기</a></p></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                    //var iwContent = '<div class="map_tool_box"><div style="padding:5px;"><p class="ct_name">' + ansim_name + '</p><dl class="mb15"><dt>대표번호</dt><dd>' + tel_num + '</dd></dl><dl><dt>주소</dt><dd>' + addr + '</dd></dl><p class="center mt10"><a href="http://map.daum.net/link/map/' + ansim_name + ',' + giox + ',' + gioy + '" class="btn_map11" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/' + ansim_name + ',' + giox + ',' + gioy + '" class="btn_map22" target="_blank">길찾기</a></p></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                      iwPosition = new daum.maps.LatLng(giox, gioy); //인포윈도우 표시 위치입니다
+
+                    // 인포윈도우를 생성합니다
+                    var infowindow = new daum.maps.InfoWindow({
+                      position: iwPosition,
+                      content: iwContent
+                    });
+
+                    // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+                    infowindow.open(map, marker);
+
+                    function setCenter(giox, gioy, ansim_name, addr, tel) {
+
+                      // 이동할 위도 경도 위치를 생성합니다 
+                      var moveLatLon = new daum.maps.LatLng(giox, gioy);
+
+                      // 지도 중심을 이동 시킵니다
+                      map.setCenter(moveLatLon);
+
+
+                      // 마커가 표시될 위치입니다 
+                      var markerPosition = new daum.maps.LatLng(giox, gioy);
+
+                      // 마커를 생성합니다
+                      var marker = new daum.maps.Marker({
+                        position: markerPosition
+                      });
+
+                      // 마커가 지도 위에 표시되도록 설정합니다
+                      marker.setMap(map);
+
+                      var iwContent = '<div class="map_tool_box"><div style="padding:5px; box-sizing: border-box; line-height: 1.2; font-size: 12px;"><p class="ct_name">' + ansim_name + '</p><dl><dt>주소</dt><dd>' + addr + '</dd></dl><p class="center"><a href="http://map.daum.net/link/map/' + ansim_name + ',' + giox + ',' + gioy + '" class="btn_map11" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/' + ansim_name + ',' + giox + ',' + gioy + '" class="btn_map22" target="_blank">길찾기</a></p></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                      //var iwContent = '<div class="map_tool_box"><div style="padding:5px;"><p class="ct_name">' + ansim_name + '</p><dl class="mb15"><dt>대표번호</dt><dd>' + tel_num + '</dd></dl><dl><dt>주소</dt><dd>' + addr + '</dd></dl><p class="center mt10"><a href="http://map.daum.net/link/map/' + ansim_name + ',' + giox + ',' + gioy + '" class="btn_map11" target="_blank">큰지도보기</a> <a href="http://map.daum.net/link/to/' + ansim_name + ',' + giox + ',' + gioy + '" class="btn_map22" target="_blank">길찾기</a></p></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                      iwPosition = new daum.maps.LatLng(giox, gioy); //인포윈도우 표시 위치입니다
+
+                      // 인포윈도우를 생성합니다
+                      var infowindow = new daum.maps.InfoWindow({
+                        position: iwPosition,
+                        content: iwContent
+                      });
+
+                      // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+                      infowindow.open(map, marker);
+
+                    }
+
+									</script>
+								</div>
+							
+							</div>
+						</div>
+
+					</div>
+					<!-- //콘텐츠 내용 -->
+
+				</div>
+				<!-- //콘텐츠 -->
+			</div>
+			<!-- //본문영역 -->
+
+
+
+
+
+
+</div>
+<!-- // sub_container -->
+
+</div>
+<!-- // container_wrap -->
+
+
+<!-- footer -->
+<div class="footer_wrapper">
+
+    <div class="footer_section">
+
+        <div class="lft_footer">
+            <img src="/images/new_logo/dementia_ansim_center_logo/footer/DAC_010_009.jpg" alt="치매안심센터" />
+        
+        </div>
+
+        <div class="ctn_footer">
+            <ul class="">
+		<!--
+                <li><a onclick="window.open('https://www.nmc.or.kr/nmc/main/contents.do?menuNo=200414','player', 'width=920, height=800, scrollbars=yes, resizable=no, top=1, left=1');" style="font-weight: 700; cursor: pointer;">개인정보처리방침</a></li>
+		-->
+                <li><a href="https://www.nmc.or.kr/nmc/privacy_policy" target="_blank" style="font-weight: 700; cursor: pointer;">개인정보처리방침</a></li>
+                <li><a href="../member/agreement.aspx" target="_parent">이용약관</a></li>
+                <li><a href="../center/map.aspx" target="_parent">찾아오시는 길</a></li>
+            </ul>
+            <address>
+                강원특별자치도 원주시 지니기길 11-20 (무실동, 치매안심센터) /
+					Tel.033-737-4542 /
+					Fax.033-737-3855<br>
+                Copyright (c) 중앙치매센터 all rights reserved
+            </address>
+        </div>
+
+        <div class="family">
+            <div class="family_inner">
+                <button type="button">치매안심센터 바로가기</button>
+                <div class="family_list_wrapper">
+                    <ul class="family_list">
+                        
+                                <li><a target="_blank" href="https://gn.nid.or.kr">강원특별자치도 강릉시 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://gwgs.nid.or.kr">강원특별자치도 고성군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://dh.nid.or.kr">강원특별자치도 동해시 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://samcheok.nid.or.kr">강원특별자치도 삼척시 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://sokcho.nid.or.kr">강원특별자치도 속초시 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://yanggu.nid.or.kr">강원특별자치도 양구군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://yangyang.nid.or.kr">강원특별자치도 양양군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://ywbogun.nid.or.kr">강원특별자치도 영월군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://wonju.nid.or.kr">강원특별자치도 원주시 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://inje.nid.or.kr">강원특별자치도 인제군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://jeongseon.nid.or.kr">강원특별자치도 정선군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://cwg.nid.or.kr">강원특별자치도 철원군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://chuncheon.nid.or.kr">강원특별자치도 춘천시 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://taebaek.nid.or.kr">강원특별자치도 태백시 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://pyeongchang.nid.or.kr">강원특별자치도 평창군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://hongcheon.nid.or.kr">강원특별자치도 홍천군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://ihc.nid.or.kr">강원특별자치도 화천군 치매안심센터</a></li>
+                            
+                                <li><a target="_blank" href="https://hsg.nid.or.kr">강원특별자치도 횡성군 치매안심센터</a></li>
+                            
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- //footer -->
+ <!-- 사이트맵 -->
+    <div class="site_map_wrap">
+      <div class="site_map_inner">
+        <div class="site_map_header">
+          <p class="site_map_tit">사이트맵</p>
+          <a href="javascript:void(0);" class="site_map_close" onclick="site_map_close()"><img src="/common/images/main/sm_close.png" alt=""></a>
+        </div>
+        <div class="site_map_cnt">
+          <ul class="site_map_list">
+           
+                
+                        <li class="site_map_first">
+                            <a href="javascript:void(0);" class="site_map_first_link">센터안내 <i class=""><img src="/images/sub/ico_down.png" alt=""></i></a>
+                            <div class="site_map_second">
+                                <ul class="dep_two">
+                                    <li><a href='/center/center_intro.aspx'>센터소개</a></li><li><a href='/center/organiztion.aspx'>조직도</a></li><li><a href='/center/map.aspx'>찾아오시는길</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    
+                        <li class="site_map_first">
+                            <a href="javascript:void(0);" class="site_map_first_link">사업안내 <i class=""><img src="/images/sub/ico_down.png" alt=""></i></a>
+                            <div class="site_map_second">
+                                <ul class="dep_two">
+                                    <li><a href='javascript:void(0);' class="depth_detail">등록관리서비스<i class=""><img src="/images/sub/ico_down.png" alt=""></i></a><ul class='dep_three'><li><a href='/introduce/object_service.aspx'>대상자 등록 서비스</a></li></ul></li><li><a href='/introduce/early_service.aspx'>치매조기검진서비스</a></li><li><a href='javascript:void(0);' class="depth_detail">치매환자서비스<i class=""><img src="/images/sub/ico_down.png" alt=""></i></a><ul class='dep_three'><li><a href='/introduce/senior_tag.aspx'>배회가능어르신인식표</a></li><li><a href='/introduce/expenses_free.aspx'>치매치료관리비</a></li><li><a href='/introduce/relief.aspx'>조호물품</a></li><li><a href='/introduce/shelters.aspx'>치매환자쉼터</a></li><li><a href='/introduce/case_manage.aspx'>맞춤형사례관리</a></li></ul></li><li><a href='javascript:void(0);' class="depth_detail">치매가족지원서비스<i class=""><img src="/images/sub/ico_down.png" alt=""></i></a><ul class='dep_three'><li><a href='/introduce/family_counsel.aspx'>상담 및 돌봄부담분석</a></li><li><a href='/introduce/class_service.aspx'>가족교실</a></li><li><a href='/introduce/group_service.aspx'>자조모임</a></li><li><a href='/introduce/healing_service.aspx'>힐링프로그램</a></li><li><a href='/introduce/cafe_service.aspx'>가족카페</a></li><li><a href='/introduce/companion_service.aspx'>동반치매환자보호서비스</a></li></ul></li><li><a href='javascript:void(0);' class="depth_detail">치매예방서비스<i class=""><img src="/images/sub/ico_down.png" alt=""></i></a><ul class='dep_three'><li><a href='/introduce/preventive_service.aspx'>치매예방교실 서비스</a></li><li><a href='/introduce/training_service.aspx'>인지강화교실 서비스</a></li></ul></li><li><a href='javascript:void(0);' class="depth_detail">치매친화적 지역사회<i class=""><img src="/images/sub/ico_down.png" alt=""></i></a><ul class='dep_three'><li><a href='/introduce/dementia_campaign.aspx'>치매극복캠페인</a></li><li><a href='/introduce/partner_service.aspx'>치매파트너</a></li><li><a href='/introduce/society_list.aspx'>치매극복선도단체</a></li><li><a href='/introduce/custodian_service.aspx'>치매공공후견사업</a></li></ul></li>
+                                </ul>
+                            </div>
+                        </li>
+                    
+                        <li class="site_map_first">
+                            <a href="javascript:void(0);" class="site_map_first_link">치매전문교육 <i class=""><img src="/images/sub/ico_down.png" alt=""></i></a>
+                            <div class="site_map_second">
+                                <ul class="dep_two">
+                                    <li><a href='/study/study_01.aspx'>소개</a></li><li><a href='/study/annual_plan.aspx'>연간계획</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    
+                        <li class="site_map_first">
+                            <a href="javascript:void(0);" class="site_map_first_link">안심지원서비스 <i class=""><img src="/images/sub/ico_down.png" alt=""></i></a>
+                            <div class="site_map_second">
+                                <ul class="dep_two">
+                                    <li><a href='/service/mental_health.aspx'>마음건강수첩</a></li><li><a href='/service/net_info.aspx'>알짜정보내비게이션</a></li><li><a href='javascript:void(0);' class="depth_detail">실종치매노인지원<i class=""><img src="/images/sub/ico_down.png" alt=""></i></a><ul class='dep_three'><li><a href='/service/service_01.aspx'>사업안내</a></li><li><a href='/service/service_03.aspx'>실종노인 찾기</a></li><li><a href='/service/service_02.aspx'>실종노인  무료 홍보물 제작 신청</a></li><li><a href='/service/service_04.aspx'>무연고노인 신상카드 제출</a></li><li><a href='/service/service_05.aspx'>실종시 대처요령</a></li></ul></li><li><a href='/service/letterbox.aspx'>희망우체통</a></li><li><a href='/service/facility_list.aspx'>치매시설정보</a></li><li><a href='http://www.nid.or.kr/info/today_list_2023.aspx' target='_blank' >치매오늘은</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    
+                        <li class="site_map_first">
+                            <a href="javascript:void(0);" class="site_map_first_link">정보마당 <i class=""><img src="/images/sub/ico_down.png" alt=""></i></a>
+                            <div class="site_map_second">
+                                <ul class="dep_two">
+                                    <li><a href='https://www.nid.or.kr/info/diction_list1.aspx?gubun=0101' target='_blank' >치매대백과</a></li><li><a href='/community/pds_list.aspx'>자료실</a></li><li><a href='/community/etc_expert_list.aspx'>전문가칼럼</a></li><li><a href='/community/relate_company.aspx'>관련/협력기관</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    
+                        <li class="site_map_first">
+                            <a href="javascript:void(0);" class="site_map_first_link">알림마당 <i class=""><img src="/images/sub/ico_down.png" alt=""></i></a>
+                            <div class="site_map_second">
+                                <ul class="dep_two">
+                                    <li><a href='/notice/notice_list.aspx'>공지사항</a></li><li><a href='/notice/activity_list.aspx'>센터활동일지</a></li><li><a href='/notice/schedule.aspx'>센터일정안내</a></li><li><a href='/notice/press_list.aspx'>언론보도</a></li><li><a href='/notice/recruit_list.aspx'>채용공고</a></li><li><a href='/notice/pct_list.aspx'>행사 및 교육</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <!-- //사이트맵 -->
+
+
+
+
+
+</div>
+<!-- //wrap -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130374259-9"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag("js", new Date());
+ gtag("config", "UA-130374259-9");
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130556984-1"></script>
+<script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag("js", new Date());
+ gtag("config", "UA-130556984-1");
+</script>
+</body>
+<script>
+    function site_map_open() {
+        $('.site_map_wrap').show();
+        $('body').css('overflow', 'hidden');
+    }
+
+    function site_map_close() {
+        $('.site_map_wrap').hide();
+        $('body').css('overflow', "");
+    }
+
+    $(document).ready(function () {
+
+        $('.site_map_list > .site_map_first > .site_map_first_link').on('click', function () {
+            $('.site_map_first_link').removeClass('on');
+            $('.site_map_second').hide();
+            $('.depth_detail').removeClass('on');
+            $('.dep_three').hide();
+            $(this).addClass('on');
+            $(this).siblings('.site_map_second').show();
+        });
+
+        // 3뎁스가있는 2뎁스 클릭시
+        $('.depth_detail').on('click', function (e) {
+            e.preventDefault();
+            $('.depth_detail').removeClass('on');
+            $('.dep_three').hide();
+            $(this).addClass('on');
+            $(this).siblings('.dep_three').show();
+        });
+    });
+</script>
+
+</html>

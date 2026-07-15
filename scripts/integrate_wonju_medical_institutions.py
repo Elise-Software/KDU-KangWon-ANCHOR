@@ -163,9 +163,9 @@ def incoming_rows(path: Path, kind: str) -> Iterable[dict[str, str]]:
         else: yield {"name": get(r, "기공소명"), "address": get(r, "주소"), "phone": get(r, "연락처"), "category": "치과기공소", "source_id": "", "row_number": str(n), "date": "2023-06-12"}
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(); p.add_argument("--master", default="data/processed/wonju_medical/wonju_medical_institutions.csv"); p.add_argument("--clinic", required=True); p.add_argument("--mental", required=True); p.add_argument("--dental-lab", required=True); p.add_argument("--aliases", default="config/wonju_institution_aliases.csv"); p.add_argument("--review-decisions", default="config/wonju_manual_review_decisions.csv"); p.add_argument("--output-dir", default="data/integrated/wonju"); p.add_argument("--strict", action="store_true"); a = p.parse_args(argv)
+    p = argparse.ArgumentParser(); p.add_argument("--master", default="data/processed/medical_institutions/wonju_medical_institutions.csv"); p.add_argument("--clinic", required=True); p.add_argument("--mental", required=True); p.add_argument("--dental-lab", required=True); p.add_argument("--aliases", default="config/wonju_institution_aliases.csv"); p.add_argument("--review-decisions", default="config/wonju_manual_review_decisions.csv"); p.add_argument("--output-dir", default="data/integrated/wonju"); p.add_argument("--strict", action="store_true"); a = p.parse_args(argv)
     master = Path(a.master)
-    if not master.exists(): master = Path("data/wonju_medical_institutions.csv")
+    if not master.exists(): master = Path("data/processed/medical_institutions/wonju_medical_institutions.csv")
     inst, aliases_cfg, decisions = parse_master(master), load_csv_with_encoding(a.aliases), load_review_decisions(a.review_decisions)
     source, aliases, conflicts, reviews, coords = [], [], [], [], []
     datasets = [(Path(a.clinic), "clinic"), (Path(a.mental), "mental"), (Path(a.dental_lab), "dental_lab")]

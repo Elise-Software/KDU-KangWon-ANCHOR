@@ -1,0 +1,46 @@
+{
+  "dataset": "P0-DATA-02 원주시 약국 운영정보",
+  "sources": {
+    "late_night": {
+      "url": "https://www.wonju.go.kr/health/contents.do?key=1801",
+      "label": "심야약국",
+      "expected_count": 16
+    },
+    "year_round": {
+      "url": "https://www.wonju.go.kr/health/contents.do?key=1802",
+      "label": "연중무휴약국",
+      "expected_count": 9
+    }
+  },
+  "fetch_metadata": {
+    "late_night": {
+      "requested_url": "https://www.wonju.go.kr/health/contents.do?key=1801",
+      "final_url": "https://www.wonju.go.kr/health/contents.do?key=1801",
+      "status_code": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "etag": "",
+      "last_modified_header": "",
+      "content_length": 114031,
+      "sha256": "c1b030ff02076f473ffbea9c035ed274d0e5a690731c861542afd24c52b7aa9c",
+      "parsed_row_count": 16,
+      "dom_data_row_count": 16,
+      "source_updated_at": "2026-07-08"
+    },
+    "year_round": {
+      "requested_url": "https://www.wonju.go.kr/health/contents.do?key=1802",
+      "final_url": "https://www.wonju.go.kr/health/contents.do?key=1802",
+      "status_code": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "etag": "",
+      "last_modified_header": "",
+      "content_length": 110229,
+      "sha256": "fdda794f795acfbc79c53a990b1ee634577820954c688ec9ddd41f5f2947d958",
+      "parsed_row_count": 9,
+      "dom_data_row_count": 9,
+      "source_updated_at": "2026-04-02"
+    }
+  },
+  "collected_at": "2026-07-15T23:26:14+09:00",
+  "run_date": "2026-07-15",
+  "script": "collect_wonju_pharmacy_operations.py"
+}

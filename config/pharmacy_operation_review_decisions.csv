@@ -1,0 +1,4 @@
+pharmacy_name,institution_id,institution_match_status,review_scope,resolution,effective_status
+구곡시장약국,wonju:13193207,verified,source_schedule,keep_both_source_values,source_specific_only
+아침약국,wonju:13193124,verified_by_name_address,master_identity,keep_master_and_source_phone,unresolved
+원주대문약국,wonju:13193248,verified,source_schedule,keep_both_source_values,source_specific_only

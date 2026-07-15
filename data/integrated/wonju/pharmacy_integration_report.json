@@ -1,0 +1,44 @@
+{
+  "dataset": "P0-DATA-02 Wonju pharmacy operations integration",
+  "master_institution_count_before": 2481,
+  "master_institution_count_after": 2481,
+  "source_record_count": 25,
+  "unique_pharmacy_count": 16,
+  "schedule_segment_count": 75,
+  "institution_auto_match_count": 16,
+  "institution_unmatched_count": 0,
+  "source_schedule_conflicts": {
+    "pharmacy_count": 2,
+    "field_count": 4
+  },
+  "master_identity_conflicts": {
+    "pharmacy_count": 1,
+    "field_count": 1
+  },
+  "master_address_variants": {
+    "pharmacy_count": 3,
+    "review_required_count": 0
+  },
+  "parse_loss_count": 0,
+  "foreign_key_error_count": 0,
+  "manual_review_count": 3,
+  "review_decision_count": 3,
+  "integrity_checks": {
+    "master_count_unchanged": true,
+    "all_sources_matched": true,
+    "three_segments_per_source": true,
+    "no_foreign_key_errors": true,
+    "all_conflicts_have_review_decisions": true
+  },
+  "dataset_status": "conditionally_verified",
+  "files": {
+    "enriched_institutions": "data/integrated/wonju/institutions_pharmacy_enriched.csv",
+    "operations": "data/integrated/wonju/institution_pharmacy_operations.csv",
+    "operation_sources": "data/integrated/wonju/institution_pharmacy_operation_sources.csv",
+    "conflicts": "data/integrated/wonju/pharmacy_operation_conflicts.csv",
+    "manual_review": "data/integrated/wonju/pharmacy_operation_manual_review.csv",
+    "review_decisions": "config/pharmacy_operation_review_decisions.csv"
+  },
+  "generated_at": "2026-07-15T23:34:09+09:00",
+  "integrity_checks_passed": true
+}

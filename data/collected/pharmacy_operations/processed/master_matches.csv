@@ -1,0 +1,17 @@
+﻿pharmacy_name,source_address,source_phone,master_institution_id,master_name,master_address,master_phone,normalized_base_address,address_detail_difference,match_status,matched_by,name_match,address_match,phone_match,needs_manual_review,resolution
+만종대형약국,원주시 원문로 631 (호저면),033-731-1365,wonju:13193112,만종대형약국,강원특별자치도 원주시 호저면 원문로 631,033-731-1365,원문로631,True,address_detail_variant,phone,True,True,True,False,auto_matched
+원주대형약국,원주시 호저면 원문로 691 (호저면),033-733-1065,wonju:13193118,원주대형약국,강원특별자치도 원주시 호저면 원문로 691,033-733-1065,호저면원문로691,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+온누리바다약국,원주시 북원로2698 (태장동),033-742-4146,wonju:13193270,온누리바다약국,강원특별자치도 원주시 북원로 2698 (태장동),033-742-4146,북원로2698,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+금빛누리약국,원주시 지정면 신지정로 190 105호,033-742-5458,wonju:13193121,금빛누리약국,"강원특별자치도 원주시 지정면 신지정로 190, 센트럴타워 104,105호",033-742-5458,지정면신지정로190,True,address_detail_variant,name_address,True,True,True,False,auto_matched
+행복약국,원주시 시청로 70 (무실동),033-742-5875,wonju:13193192,행복약국,강원특별자치도 원주시 시청로 70 (무실동),033-742-5875,시청로70,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+이마트윤약국,원주시 북원로 1928 (무실동 이마트 2층),033-743-7199,wonju:13193188,이마트윤약국,강원특별자치도 원주시 북원로 1928 (무실동),033-743-7199,북원로1928,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+무실하늘약국,원주시 시청로 72 (무실동),033-744-4056,wonju:13193155,무실하늘약국,"강원특별자치도 원주시 시청로 72, 무실동애드피아3 110,111호 (무실동)",033-744-4056,시청로72,True,address_detail_variant,name_address,True,True,True,False,auto_matched
+원주시장약국,원주시 중앙로136 (중앙동),033-745-7575,wonju:13193249,원주시장약국,강원특별자치도 원주시 중앙로 136 (중앙동),033-745-7575,중앙로136,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+D마트약국,원주시 천사로 50 (단계동),033-746-0114,wonju:13193242,D마트약국,"강원특별자치도 원주시 천사로 50, 1층 (단계동, 새동빌딩)",033-746-0114,천사로50,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+아리시장약국,원주시 무실로 178 (단계동),033-747-7515,wonju:13193193,아리시장약국,강원특별자치도 원주시 무실로 178 (단계동),033-747-7515,무실로178,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+아침약국,원주시 단구로 394 (단구동),033-761-2003,wonju:13193124,아침약국,"강원특별자치도 원주시 단구로 394, 101호 (단구동)",033-763-3434,단구로394,False,exact_or_base_match,name_address,True,True,False,True,manual_review_required
+구곡시장약국,원주시 남원로534번길 14 (단구동),033-761-4827,wonju:13193207,구곡시장약국,"강원특별자치도 원주시 남원로534번길 14 (단구동,원일빌딩상가1층)",033-761-4827,남원로534번길14,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+나나약국,원주시 오성마을길 57-22 (단구동),033-762-2783,wonju:13193085,나나약국,"강원특별자치도 원주시 오성마을길 57-22, 103호 (단구동)",033-762-2783,오성마을길5722,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+유한약국,원주시 예술관길 28 (명륜동),033-763-0097,wonju:13193257,유한약국,강원특별자치도 원주시 예술관길 28 (명륜동),033-763-0097,예술관길28,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+삼육오약국,원주시 단구로 386 (단구동),033-763-4072,wonju:13193180,삼육오약국,강원특별자치도 원주시 단구로 386 (단구동),033-763-4072,단구로386,False,exact_or_base_match,name_address,True,True,True,False,auto_matched
+원주대문약국,원주시 서원대로 174 (단계동),033-763-6342,wonju:13193248,원주대문약국,강원특별자치도 원주시 서원대로 174 (단계동),033-763-6342,서원대로174,False,exact_or_base_match,name_address,True,True,True,False,auto_matched

@@ -1,0 +1,27 @@
+﻿target_id,canonical_name,institution_type,entity_candidate_count,normalized_profile_count,integrated_profile_count,organizational_unit_count,target_resolution_status,institution_id,trace_status,drop_reason,address_status,phone_status,homepage_status,schedule_status,review_status
+phc:wonju,원주시보건소,public_health_center,1,1,1,0,matched_existing,public:442a5f81460e13ce,resolved,,present,present,present,not_present_in_collected_sources,verified
+phb:munmak,문막읍보건지소,public_health_branch,1,1,1,0,matched_existing,public:98f872e7825d45cd,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phb:socho,소초면보건지소,public_health_branch,1,1,1,0,matched_existing,public:508212201bfb7f86,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phb:jijeong,지정면보건지소,public_health_branch,1,1,1,0,matched_existing,public:02acfead706a2eb8,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phb:buro,부론면보건지소,public_health_branch,1,1,1,0,created_new,public:p0:edd7e0e80c7973ce,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phb:gwichang,귀래면보건지소,public_health_branch,1,1,1,0,matched_existing,public:e6751a5267a0999a,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phb:heungeop,흥업면보건지소,public_health_branch,1,1,1,0,matched_existing,public:854880130c8c10d7,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phb:hojeo,호저면보건지소,public_health_branch,1,1,1,0,matched_existing,public:64530d40bd82a021,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phb:panjeon,판부면보건지소,public_health_branch,1,1,1,0,matched_existing,public:be79b69ae8d741a8,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phb:sillim,신림면보건지소,public_health_branch,1,1,1,0,matched_existing,public:2bfea25adb535f46,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phc:bi-do,비두보건진료소,public_health_clinic,1,1,1,0,matched_existing,public:deac038acdad6485,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phc:hakgok,학곡보건진료소,public_health_clinic,1,1,1,0,matched_existing,public:265f46739ae16abe,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phc:gosan,고산보건진료소,public_health_clinic,1,1,1,0,matched_existing,public:5223b87fac866af6,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phc:sanhyeon,산현보건진료소,public_health_clinic,1,1,1,0,created_new,public:p0:110991d0a71108ed,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phc:pandae,판대보건진료소,public_health_clinic,1,1,1,0,matched_existing,public:824c56bcb6d1960f,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phc:dangang,단강보건진료소,public_health_clinic,1,1,1,0,matched_existing,public:25f21278d23c6b7d,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phc:saje,사제보건진료소,public_health_clinic,1,1,1,0,matched_existing,public:6be7a95483830a6b,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+phc:hwangdun,황둔보건진료소,public_health_clinic,1,1,1,0,matched_existing,public:3fb4371ac44e2666,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+hls:namwonju,남원주건강생활지원센터,health_life_support_center,1,1,1,0,created_new,public:p0:5806f0e0ec6a5bbf,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+hls:namwonju-annex,남원주건강생활지원센터 혁신분소,health_life_support_center,1,1,1,0,created_new,public:p0:b9c5349b1a66315c,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+hls:seowonju,서원주건강생활지원센터,health_life_support_center,1,1,1,0,created_new,public:p0:d1a1681a17ef4e55,resolved,,present,coverage_gap,coverage_gap,not_present_in_collected_sources,verified
+mh:wonju,원주시정신건강복지센터,mental_health_welfare_center,1,1,1,0,matched_existing,public:2ccd4b4d5f184c56,resolved,,present,present,present,canonical_available,verified
+mh:suicide,원주시자살예방센터,suicide_prevention_center,1,0,0,1,organizational_unit,,resolved,,not_applicable,not_applicable,not_applicable,inherited_context_no_direct_schedule,verified
+mh:addiction,원주시중독관리통합지원센터,addiction_management_center,1,1,1,0,matched_existing,public:c9fd2c3fa79e41ef,resolved,,present,coverage_gap,present,canonical_available,verified
+mh:dementia,원주시치매안심센터,dementia_safety_center,1,1,1,0,created_new,public:p0:e30af8d4e37b4656,resolved,,present,present,present,not_present_in_collected_sources,verified
+mh:byeoljari,별자리,mental_rehabilitation_facility,0,0,1,0,matched_existing,public:c8ed3721eb29eca1,resolved,,coverage_gap,coverage_gap,coverage_gap,not_present_in_collected_sources,verified

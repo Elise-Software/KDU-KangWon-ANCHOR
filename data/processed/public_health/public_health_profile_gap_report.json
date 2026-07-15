@@ -1,0 +1,21 @@
+{
+  "target_count": 26,
+  "represented_target_count": 26,
+  "unrepresented_target_count": 0,
+  "entity_candidate_count": 25,
+  "normalized_profile_count": 24,
+  "integrated_profile_count": 25,
+  "organizational_unit_count": 1,
+  "candidate_count": 65,
+  "traced_candidate_count": 65,
+  "candidate_trace_rate": 1.0,
+  "unexplained_dropped_candidate_count": 0,
+  "integrity_checks": {
+    "target_count_is_26": true,
+    "resolution_set_matches_targets": true,
+    "all_targets_represented": true,
+    "candidate_trace_complete": true,
+    "unexplained_dropped_candidates_absent": true
+  },
+  "integrity_checks_passed": true
+}

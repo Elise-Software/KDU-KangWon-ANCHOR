@@ -1,0 +1,34 @@
+[
+  {
+    "source": "wonju_health_medical_institution",
+    "source_id": "13193302",
+    "number_raw": "2461",
+    "category_raw": "동물병원",
+    "name_raw": "바른 정 동물병원",
+    "address_raw": "강원특별자치도 원주시 치악로 1639, 1,2층 (단구동)",
+    "phone_raw": "033-813-0004",
+    "detail_url": "https://www.wonju.go.kr/health/viewTnResrceDataPA.do?resrceNo=13193302&sc1=10&si1=27&cpn=247&key=1787&from=",
+    "map_action_raw": "href=#n | onclick=javascript:fn_setAddressToMapPosition('강원특별자치도 원주시 치악로 1639, 1,2층 (단구동)','바른 정 동물병원');",
+    "page": 247,
+    "row_index": 1,
+    "source_url": "https://www.wonju.go.kr/health/selectResrceListPA3.do?key=1787&sc1=10&si1=27&cpn=247",
+    "http_method": "GET",
+    "collected_at": "2026-07-15T22:55:11+09:00"
+  },
+  {
+    "source": "wonju_health_medical_institution",
+    "source_id": "13193303",
+    "number_raw": "2462",
+    "category_raw": "동물병원",
+    "name_raw": "키다리아저씨 동물병원",
+    "address_raw": "강원특별자치도 원주시 양지뜰4길 17, 1층 (반곡동)",
+    "phone_raw": "033-813-0212",
+    "detail_url": "https://www.wonju.go.kr/health/viewTnResrceDataPA.do?resrceNo=13193303&sc1=10&si1=27&cpn=247&key=1787&from=",
+    "map_action_raw": "href=#n | onclick=javascript:fn_setAddressToMapPosition('강원특별자치도 원주시 양지뜰4길 17, 1층 (반곡동)','키다리아저씨 동물병원');",
+    "page": 247,
+    "row_index": 2,
+    "source_url": "https://www.wonju.go.kr/health/selectResrceListPA3.do?key=1787&sc1=10&si1=27&cpn=247",
+    "http_method": "GET",
+    "collected_at": "2026-07-15T22:55:11+09:00"
+  }
+]

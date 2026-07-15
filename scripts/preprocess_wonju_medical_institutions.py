@@ -627,7 +627,7 @@ def parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--output-dir",
-        default="data/processed/wonju_medical",
+        default="data/processed/medical_institutions",
         help="전처리 결과 출력 디렉터리",
     )
     parser.add_argument(

@@ -1,0 +1,22 @@
+source_url,source_role,target_scope,authority_level,parse_strategy,allow_multiple_institutions,dynamic_content_expected,notes
+https://www.wonju.go.kr/health/contents.do?key=1624,institution_profile,phc:wonju,wonju_official,profile,false,false,
+https://www.wonju.go.kr/health/selectEmployeeList.do?key=5464&searchCnd=all&searchDeptCode=1%404191050,employee_directory,all,wonju_official,directory,true,false,
+https://www.wonju.go.kr/health/contents.do?key=5463,navigation_only,phc:wonju,wonju_official,text,false,false,
+https://www.wonju.go.kr/health/contents.do?key=1623,navigation_only,phc:wonju,wonju_official,text,false,false,
+https://www.wonju.go.kr/health/contents.do?key=1627,service_description,phc:wonju,wonju_official,text,false,false,
+https://www.wonju.go.kr/health/contents.do?key=5155,institution_list,branches_clinics,wonju_official,table,true,false,
+https://www.wonju.go.kr/health/contents.do?key=3745,institution_profile,hls:namwonju,wonju_official,profile,true,false,
+https://www.wonju.go.kr/health/contents.do?key=5551,institution_profile,hls:seowonju,wonju_official,profile,false,false,
+https://www.wonju.go.kr/health/contents.do?key=6230,service_description,mental_health,wonju_official,text,true,false,
+https://loveme.yonsei.kr/,center_direct_site,mh:wonju,institution_direct,profile,false,false,
+https://loveme.yonsei.kr/sub.php?menukey=12,center_direct_site,mh:wonju,institution_direct,text,false,false,
+https://loveme.yonsei.kr/sub.php?menukey=31,center_direct_site,mh:wonju,institution_direct,text,false,false,
+https://loveme.yonsei.kr/sub.php?menukey=14,center_direct_site,mh:wonju,institution_direct,text,false,false,
+https://www.wonju.go.kr/health/contents.do?key=1671,service_description,mh:addiction,wonju_official,profile,false,false,
+https://www.alja.or.kr/,center_direct_site,mh:addiction,institution_direct,profile,false,false,tls fallback recorded
+https://wonju.nid.or.kr/,center_direct_site,mh:dementia,institution_direct,profile,false,true,
+https://wonju.nid.or.kr/center/map.aspx,institution_profile,mh:dementia,institution_direct,profile,false,true,
+https://www.wonju.go.kr/health/selectBbsNttList.do?bbsNo=53&key=2438,emergency_notice_list,emergency,wonju_official,notice,false,true,
+https://www.wonju.go.kr/health/selectBbsNttList.do?bbsNo=55&key=1655,emergency_notice_list,emergency,wonju_official,notice,false,true,
+https://www.wonju.go.kr/health/selectResrceListPA3.do?key=1787,institution_list,emergency,wonju_official,list,true,true,
+https://www.e-gen.or.kr/egen/search_hospital.do,external_validation,emergency,national_public,dynamic,false,true,no dynamic results used

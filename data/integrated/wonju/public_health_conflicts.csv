@@ -1,0 +1,3 @@
+﻿conflict_id,target_id,institution_id,conflict_scope,field_name,master_value,source_value,source_url,evidence_hash,resolution_status,review_required
+conflict:c84c513a4beea952b0ae,phc:wonju,public:442a5f81460e13ce,master_vs_current_official_source,representative_phone,033-737-4026,033-737-4011,https://www.wonju.go.kr/health/contents.do?key=1624,314d84ec74c7075ab836a2800a4620db7f7c7bda396256030f405b6b6976e896,user_confirmed_current_source,False
+conflict:bebd255e911fd89d730b,phb:sillim,public:2bfea25adb535f46,master_vs_current_official_source,address,강원특별자치도 원주시 신림면 치악로 32,원주시 신림면 치악로 28-2 (신림리 530-9),https://www.wonju.go.kr/health/contents.do?key=5155,1fa21b849d1d2c38edd7ba4c4be8babd66f5d005e2c837b31e630585475eef6b,user_confirmed_current_source,False

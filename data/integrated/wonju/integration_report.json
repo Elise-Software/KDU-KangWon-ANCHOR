@@ -1,8 +1,8 @@
 {
   "input_files": {
-    "data\\raw\\공공데이터포털\\강원특별자치도 원주시_의원 정보_20251125.csv": 471,
-    "data\\raw\\공공데이터포털\\강원도 원주시_정신건강증진시설 및 요양병원 현황_20220813.csv": 23,
-    "data\\raw\\공공데이터포털\\강원도 원주시_치과기공소 현황_20230612.csv": 37
+    "data\\raw\\public_datasets\\강원특별자치도 원주시_의원 정보_20251125.csv": 471,
+    "data\\raw\\public_datasets\\강원도 원주시_정신건강증진시설 및 요양병원 현황_20220813.csv": 23,
+    "data\\raw\\public_datasets\\강원도 원주시_치과기공소 현황_20230612.csv": 37
   },
   "existing_master_count": 2462,
   "final_institution_count": 2481,
@@ -75,5 +75,5 @@
     "source_records_traceable": true
   },
   "all_checks_passed": true,
-  "executed_at": "2026-07-15T21:06:00+09:00"
+  "executed_at": "2026-07-15T23:14:46+09:00"
 }

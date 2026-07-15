@@ -1,0 +1,27 @@
+target_id,canonical_name,institution_type,expected_region,expected_parent,required,source_priority,notes
+phc:wonju,원주시보건소,public_health_center,원주시,원주시,true,wonju_official,
+phb:munmak,문막읍보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phb:socho,소초면보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phb:jijeong,지정면보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phb:buro,부론면보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phb:gwichang,귀래면보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phb:heungeop,흥업면보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phb:hojeo,호저면보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phb:panjeon,판부면보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phb:sillim,신림면보건지소,public_health_branch,원주시,원주시보건소,true,wonju_official,
+phc:bi-do,비두보건진료소,public_health_clinic,원주시,원주시보건소,true,wonju_official,
+phc:hakgok,학곡보건진료소,public_health_clinic,원주시,원주시보건소,true,wonju_official,
+phc:gosan,고산보건진료소,public_health_clinic,원주시,원주시보건소,true,wonju_official,
+phc:sanhyeon,산현보건진료소,public_health_clinic,원주시,원주시보건소,true,wonju_official,official page currently spells 산현보건지료소
+phc:pandae,판대보건진료소,public_health_clinic,원주시,원주시보건소,true,wonju_official,
+phc:dangang,단강보건진료소,public_health_clinic,원주시,원주시보건소,true,wonju_official,
+phc:saje,사제보건진료소,public_health_clinic,원주시,원주시보건소,true,wonju_official,
+phc:hwangdun,황둔보건진료소,public_health_clinic,원주시,원주시보건소,true,wonju_official,
+hls:namwonju,남원주건강생활지원센터,health_life_support_center,원주시,원주시보건소,true,wonju_official,
+hls:namwonju-annex,남원주건강생활지원센터 혁신분소,health_life_support_center,원주시,원주시보건소,true,wonju_official,structure review
+hls:seowonju,서원주건강생활지원센터,health_life_support_center,원주시,원주시보건소,true,wonju_official,
+mh:wonju,원주시정신건강복지센터,mental_health_welfare_center,원주시,원주시보건소,true,wonju_official,
+mh:suicide,원주시자살예방센터,suicide_prevention_center,원주시,원주시정신건강복지센터,true,wonju_official,create only if separate evidence
+mh:addiction,원주시중독관리통합지원센터,addiction_management_center,원주시,원주시보건소,true,wonju_official,
+mh:dementia,원주시치매안심센터,dementia_safety_center,원주시,원주시보건소,true,institution_direct,
+mh:byeoljari,별자리,mental_rehabilitation_facility,원주시,,true,wonju_official,status unverified without current evidence
