@@ -1,0 +1,14 @@
+{
+  "discovered_url_count": 70,
+  "collected_document_count": 70,
+  "error_count": 0,
+  "integrity_checks": {
+    "minimum_document_count": true,
+    "urls_unique": true,
+    "hashes_valid": true,
+    "raw_files_present": true,
+    "official_urls_only": true,
+    "collection_errors_absent": true
+  },
+  "integrity_checks_passed": true
+}

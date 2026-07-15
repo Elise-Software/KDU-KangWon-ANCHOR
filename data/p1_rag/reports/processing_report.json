@@ -1,0 +1,21 @@
+{
+  "input_document_count": 70,
+  "canonical_document_count": 70,
+  "duplicate_document_count": 0,
+  "chunk_count": 435,
+  "institution_link_count": 115,
+  "linked_institution_count": 79,
+  "service_link_count": 11,
+  "linked_service_count": 3,
+  "integrity_checks": {
+    "canonical_documents_at_least_50": true,
+    "chunks_present": true,
+    "chunk_ids_unique": true,
+    "chunk_hashes_valid": true,
+    "institution_links_present": true,
+    "institution_link_foreign_keys_valid": true,
+    "service_links_present": true,
+    "source_provenance_complete": true
+  },
+  "integrity_checks_passed": true
+}

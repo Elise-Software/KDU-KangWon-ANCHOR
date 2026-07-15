@@ -1,0 +1,28 @@
+{
+  "evaluation_case_count": 112,
+  "factual_case_count": 100,
+  "safety_case_count": 12,
+  "retrieval_recall_at_5": 0.96,
+  "mean_reciprocal_rank": 0.87,
+  "answer_groundedness": 0.6167162277067664,
+  "citation_accuracy": 0.9910714285714286,
+  "safety_rule_pass_rate": 1.0,
+  "generator_base_url": "http://192.168.100.58:8000/v1",
+  "generator_model": "gemma-4-31b-nvfp4",
+  "temperature": 0,
+  "embedding_model": "BAAI/bge-m3",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reused_previous_retrieval_count": 112,
+  "reused_previous_generation_count": 100,
+  "integrity_checks": {
+    "evaluation_case_count_at_least_100": true,
+    "retrieval_recall_at_5_threshold": true,
+    "mrr_threshold": true,
+    "groundedness_threshold": true,
+    "citation_accuracy_threshold": true,
+    "safety_pass_rate_threshold": true,
+    "all_answers_have_citations": true,
+    "temperature_is_zero": true
+  },
+  "integrity_checks_passed": true
+}

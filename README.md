@@ -71,3 +71,56 @@ documented multi-field match policy, and creates a new master row only from an
 official name, a Wonju address, and field-level evidence. Missing fields remain
 blank and are recorded in `public_health_coverage_gaps.csv`; actual source or
 identity conflicts are kept separately in `public_health_manual_review.csv`.
+
+## P1 RAG pipeline
+
+The P1 pipeline is isolated under `data/p1_rag` and treats all P0 artifacts as
+protected read-only inputs. Use the dedicated Python 3.12 environment because
+the embedding and reranker runtime depends on PyTorch.
+
+```powershell
+uv python install 3.12
+uv venv .venv-p1 --python 3.12
+uv pip install --python ".venv-p1\Scripts\python.exe" -r requirements-p1.txt
+& ".\.venv-p1\Scripts\python.exe" scripts\run_p1_rag_pipeline.py --strict
+& ".\.venv-p1\Scripts\python.exe" -m pytest -q
+```
+
+The entrypoint collects at least 50 official Wonju health/welfare pages,
+records raw SHA-256 provenance, cleans and chunks the content, links chunks to
+the 2,487-row institution master and normalized services, builds a normalized
+BAAI/bge-m3 FAISS index, reranks with BAAI/bge-reranker-v2-m3, discovers the
+generation model through the configured OpenAI-compatible `/v1/models`
+endpoint, and evaluates retrieval, grounding, citations, and safety rules.
+
+To query the completed index:
+
+```powershell
+& ".\.venv-p1\Scripts\python.exe" scripts\query_wonju_p1_rag.py "원주시 정신건강 상담 정보를 알려줘"
+```
+
+### P1 push-readiness validation (2026-07-16)
+
+The complete strict pipeline was executed twice in independent processes before
+push preparation. Both runs produced the same 70 canonical documents, 435
+chunks, 115 institution links, 11 service links, and FAISS index SHA-256
+`b46aa15e636adf7f4ca00fc2810b2648e370be0c02bbbd37adb78cd7cac07871`.
+The protected P0 digest was unchanged on both runs.
+
+| Check | Repetitions | Result |
+|---|---:|---:|
+| Full P1 pipeline `--strict` | 2 | 2 passed |
+| Full pytest suite | 3 | 23 passed each run |
+| Retrieval Recall@5 | 2 | 0.96 |
+| Mean reciprocal rank | 2 | 0.87 |
+| Answer groundedness | 2 | 0.6167 |
+| Citation accuracy | 2 | 0.9911 |
+| Safety-rule pass rate | 2 | 1.0 |
+| Failures or manual-review items | 2 | 0 |
+
+Two live smoke queries were also checked in one model process. A normal smoking
+cessation question returned one supporting document/chunk citation. A
+suicide-risk question bypassed generation, applied the deterministic safety
+rule, included both `109` and `119`, and returned two supporting chunk
+citations. The detailed snapshot is stored in
+`data/p1_rag/reports/push_readiness_report.json`.

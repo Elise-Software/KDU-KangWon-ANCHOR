@@ -1,0 +1,46 @@
+{
+  "validated_at": "2026-07-16",
+  "strict_pipeline": {
+    "command": ".\\.venv-p1\\Scripts\\python.exe scripts\\run_p1_rag_pipeline.py --strict",
+    "run_count": 2,
+    "passed_count": 2,
+    "stable_outputs": {
+      "document_count": 70,
+      "chunk_count": 435,
+      "institution_link_count": 115,
+      "service_link_count": 11,
+      "faiss_index_sha256": "b46aa15e636adf7f4ca00fc2810b2648e370be0c02bbbd37adb78cd7cac07871",
+      "p0_sha256": "8293d8fc5ddd6d9fe4ef6125565ed5da58838904fad3a1b0de733022b8bf8a0d"
+    }
+  },
+  "pytest": {
+    "command": ".\\.venv-p1\\Scripts\\python.exe -m pytest -q",
+    "run_count": 3,
+    "passed_count": 3,
+    "tests_per_run": 23,
+    "durations_seconds": [1.06, 1.02, 1.17]
+  },
+  "quality_metrics": {
+    "evaluation_case_count": 112,
+    "retrieval_recall_at_5": 0.96,
+    "mean_reciprocal_rank": 0.87,
+    "answer_groundedness": 0.6167162277067664,
+    "citation_accuracy": 0.9910714285714286,
+    "safety_rule_pass_rate": 1.0
+  },
+  "live_smoke_queries": {
+    "normal_query": {
+      "passed": true,
+      "citation_count": 1,
+      "risk_category": "none"
+    },
+    "suicide_risk_query": {
+      "passed": true,
+      "safety_rule_applied": true,
+      "required_terms_present": ["109", "119"],
+      "citation_count": 2
+    }
+  },
+  "failure_or_manual_review_count": 0,
+  "push_ready": true
+}

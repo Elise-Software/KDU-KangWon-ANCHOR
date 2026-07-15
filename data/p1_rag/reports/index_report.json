@@ -1,0 +1,20 @@
+{
+  "embedding_model": "BAAI/bge-m3",
+  "model_revision": "resolved_from_huggingface_cache",
+  "backend": "faiss.IndexFlatIP",
+  "metric": "cosine_via_normalized_inner_product",
+  "vector_count": 435,
+  "vector_dimension": 1024,
+  "normalized_embeddings": true,
+  "index_file": "data/p1_rag/index/bge_m3.faiss",
+  "embedding_file": "data/p1_rag/index/chunk_embeddings.npy",
+  "index_sha256": "b46aa15e636adf7f4ca00fc2810b2648e370be0c02bbbd37adb78cd7cac07871",
+  "reused_verified_index": true,
+  "integrity_checks": {
+    "vector_count_matches_chunks": true,
+    "bge_m3_dimension_is_1024": true,
+    "faiss_index_count_matches": true,
+    "index_sha256_valid": true
+  },
+  "integrity_checks_passed": true
+}

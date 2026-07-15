@@ -1,0 +1,9 @@
+requests>=2.32,<3
+beautifulsoup4>=4.12,<5
+lxml>=5.3,<7
+numpy>=2.0,<3
+torch>=2.6,<3
+transformers>=4.51,<6
+sentence-transformers>=4.1,<6
+faiss-cpu>=1.10,<2
+pytest>=8.3,<10
