@@ -181,6 +181,11 @@ docker compose ps
 검증하고, 이후 재부팅은 `wonju-health-ai.service`가 기존 검증된 이미지를 기동한다.
 `.env`와 Docker volume은 저장소에 포함하지 않는다.
 
+Windows 워크스테이션에서 Spark로 파일을 복사하는 경우에도 `.gitattributes`가
+`*.sh`와 `*.service`를 LF로 유지한다. Linux systemd 스크립트에 CRLF가 들어가면
+`/usr/bin/env: bash\r` 오류로 기동하지 않으므로, 직접 복사한 파일은 서비스 시작 전
+`file systemd/run-wonju-health-ai.sh`로 줄바꿈을 확인한다.
+
 ## 모델 권한
 
 일반 사용자에게 보이는 모델은 정확히 하나여야 한다.

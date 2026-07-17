@@ -167,3 +167,14 @@ def test_dgx_compose_stack_has_a_health_checked_user_service():
     assert "RemainAfterExit=yes" in unit
     assert "TimeoutStartSec=20min" in unit
     assert "enable --now wonju-vllm.service wonju-health-ai.service" in installer
+
+
+def test_dgx_systemd_files_are_checked_in_with_linux_line_endings():
+    for filename in (
+        "run-wonju-vllm.sh",
+        "run-wonju-health-ai.sh",
+        "install-dgx-spark-services.sh",
+        "wonju-vllm.service",
+        "wonju-health-ai.service",
+    ):
+        assert b"\r\n" not in (ROOT / "systemd" / filename).read_bytes()
