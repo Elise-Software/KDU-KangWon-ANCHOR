@@ -156,3 +156,14 @@ def test_vllm_user_service_recovers_with_a_loopback_only_publication():
     assert "0.0.0.0:8000:8000" not in script
     assert "Restart=on-failure" in unit
     assert "WantedBy=default.target" in unit
+
+
+def test_dgx_compose_stack_has_a_health_checked_user_service():
+    script = (ROOT / "systemd" / "run-wonju-health-ai.sh").read_text(encoding="utf-8")
+    unit = (ROOT / "systemd" / "wonju-health-ai.service").read_text(encoding="utf-8")
+    installer = (ROOT / "systemd" / "install-dgx-spark-services.sh").read_text(encoding="utf-8")
+    assert "up -d --remove-orphans --wait --wait-timeout 900" in script
+    assert "wonju-vllm.service" in unit
+    assert "RemainAfterExit=yes" in unit
+    assert "TimeoutStartSec=20min" in unit
+    assert "enable --now wonju-vllm.service wonju-health-ai.service" in installer
