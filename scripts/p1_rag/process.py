@@ -117,6 +117,31 @@ def build_chunks(
         else:
             buffer.append(value)
     flush()
+    # A short factual page (for example a compact address/directions page)
+    # must remain retrievable even when it is shorter than the normal chunk
+    # floor. Dropping the whole canonical document is worse than keeping one
+    # small, well-scoped evidence unit.
+    if not chunks:
+        text = normalize_space(
+            f"{doc['title']} | " + " ".join(
+                f"{section['heading']} | {section['text']}" for section in sections
+            )
+        )
+        if text:
+            chunk_id = stable_id("p1chunk", doc["doc_id"], "0", text)
+            chunks.append({
+                "chunk_id": chunk_id,
+                "doc_id": doc["doc_id"],
+                "chunk_index": 0,
+                "title": doc["title"],
+                "section_title": sections[0]["heading"] if sections else doc["title"],
+                "text": text,
+                "url": doc["url"],
+                "reference_date": doc["reference_date"],
+                "raw_sha256": doc["raw_sha256"],
+                "evidence_hash": sha256_text(text),
+                "character_count": len(text),
+            })
     return chunks
 
 

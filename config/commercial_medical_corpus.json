@@ -1,0 +1,43 @@
+{
+  "schema_version": "commercial-medical-corpus-v1",
+  "user_agent": "KDU-KangWon-ANCHOR-commercial-medical-corpus/1.0 (contact: data-pipeline@example.invalid)",
+  "request_timeout_seconds": 60,
+  "request_interval_seconds": 0.35,
+  "chunking": {
+    "maximum_characters": 1600,
+    "minimum_characters": 120
+  },
+  "licenses": {
+    "pmc_allowed": ["CC0", "CC BY"],
+    "medlineplus_allowed": ["U.S. Public Domain"],
+    "korean_public_allowed": ["KOGL Type 0", "KOGL Type 1"]
+  },
+  "sources": {
+    "pmc_oa_comm": {
+      "enabled": true,
+      "pmcids": ["PMC1043859"]
+    },
+    "medlineplus_health_topics": {
+      "enabled": true,
+      "queries": ["headache", "high blood pressure"],
+      "maximum_results_per_query": 1
+    },
+    "medlineplus_medical_tests": {
+      "enabled": true,
+      "urls": [
+        "https://medlineplus.gov/lab-tests/complete-blood-count-cbc/",
+        "https://medlineplus.gov/lab-tests/blood-glucose-test/"
+      ]
+    },
+    "medlineplus_genetics": {
+      "enabled": true,
+      "urls": [
+        "https://medlineplus.gov/download/genetics/condition/alzheimer-disease.json"
+      ]
+    },
+    "korean_public_documents": {
+      "enabled": true,
+      "urls": []
+    }
+  }
+}

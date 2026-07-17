@@ -1,0 +1,47 @@
+{
+	admin off
+	auto_https off
+}
+
+:80 {
+	log {
+		output stdout
+		format console
+	}
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(), geolocation=(), payment=()"
+		-Server
+	}
+
+	handle /gateway/health {
+		respond "ok" 200
+	}
+
+	# Never expose Open WebUI's generated PWA identity. The browser references
+	# the branded file directly; this rewrite also keeps the conventional path
+	# clean for clients that request it explicitly.
+	handle /manifest.json {
+		rewrite * /wonju-health-manifest.json
+		reverse_proxy open-webui:8080
+	}
+
+	# Provider APIs are deliberately not reachable through the public gateway.
+	@provider_api path /v1 /v1/* /p1-api /p1-api/* /raw-api /raw-api/*
+	handle @provider_api {
+		respond "not found" 404
+	}
+
+	handle {
+		reverse_proxy open-webui:8080 {
+			header_up Host {host}
+			header_up X-Forwarded-Proto {scheme}
+			header_up X-Forwarded-For {remote_host}
+			transport http {
+				read_timeout 600s
+			}
+		}
+	}
+}

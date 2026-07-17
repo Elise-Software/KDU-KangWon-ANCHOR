@@ -1,0 +1,1530 @@
+:root {
+  --wonju-green-900: #123f37;
+  --wonju-green-800: #155247;
+  --wonju-green-700: #176b5b;
+  --wonju-green-100: #e8f3ee;
+  --wonju-green-050: #f3f8f5;
+  --wonju-blue-700: #285f78;
+  --wonju-red-700: #b42318;
+  --wonju-red-100: #ffebe7;
+  --wonju-amber-700: #8a5708;
+  --wonju-amber-100: #fff5df;
+  --wonju-ink: #1c2926;
+  --wonju-muted: #5f6f6a;
+  --wonju-border: #d4dfda;
+  --wonju-surface: #ffffff;
+  --wonju-page: #f6f8f6;
+  color-scheme: light;
+}
+
+html,
+body {
+  min-height: 100%;
+  color: var(--wonju-ink);
+  background: var(--wonju-page);
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  line-height: 1.62;
+}
+
+body {
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+[class^="wonju-health-"],
+[class*=" wonju-health-"] { box-sizing: border-box; }
+textarea,
+input,
+select,
+button { font: inherit; }
+
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible,
+input:focus-visible {
+  outline: 3px solid #e0a526 !important;
+  outline-offset: 3px;
+}
+
+/* Application shell ----------------------------------------------------- */
+body.wonju-health-chat { background: var(--wonju-page); }
+
+body.wonju-health-chat #chat-container {
+  width: 100% !important;
+  margin-left: 0 !important;
+  padding-top: 0 !important;
+  background: transparent !important;
+}
+
+body.wonju-health-chat #chat-pane {
+  min-height: calc(100dvh - 68px);
+  padding-top: 68px !important;
+  background: transparent !important;
+}
+
+body.wonju-health-chat #messages-container { padding-bottom: 1rem; }
+
+body.wonju-health-chat #sidebar,
+.wonju-health-sidebar,
+.wonju-health-native-toolbar,
+.wonju-health-stock-suggestions {
+  display: none !important;
+}
+
+body.wonju-health-developer .wonju-health-native-toolbar {
+  position: sticky !important;
+  z-index: 1150 !important;
+  inset: auto !important;
+  top: 68px !important;
+  display: flex !important;
+  min-height: 48px;
+  border-bottom: 1px solid var(--wonju-border) !important;
+  background: #f8faf9 !important;
+}
+
+body.wonju-health-developer #chat-pane { padding-top: 68px !important; }
+
+.wonju-health-stock-suggestion-shell,
+.wonju-health-native-home-title { display: none !important; }
+
+.wonju-health-service-header {
+  position: fixed;
+  z-index: 1200;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  min-height: 68px;
+  padding: 0 24px;
+  gap: 16px;
+  background: var(--wonju-surface);
+  border-bottom: 1px solid var(--wonju-border);
+}
+
+/* Administrator and workspace shell ---------------------------------- */
+body.wonju-health-admin {
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #eef6f2 0, #f7f9f8 180px, #f7f9f8 100%);
+}
+
+body.wonju-health-admin .wonju-health-admin-root,
+body.wonju-health-admin .wonju-health-admin-shell {
+  height: calc(100dvh - 68px) !important;
+  min-height: 0 !important;
+  margin-top: 68px;
+  overflow: hidden;
+}
+
+.wonju-health-admin-header {
+  box-shadow: 0 1px 0 rgb(18 63 55 / 5%);
+}
+
+.wonju-health-admin-context {
+  display: grid;
+  min-width: 190px;
+  padding-left: 18px;
+  border-left: 1px solid var(--wonju-border);
+  line-height: 1.35;
+}
+
+.wonju-health-admin-context strong {
+  color: var(--wonju-green-900);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.wonju-health-admin-context span {
+  color: var(--wonju-muted);
+  font-size: 12px;
+}
+
+.wonju-health-admin-actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 6px;
+}
+
+.wonju-health-admin-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: var(--wonju-green-900);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  gap: 7px;
+}
+
+.wonju-health-admin-link:hover,
+.wonju-health-admin-link[aria-current="page"] {
+  border-color: #b9d2c8;
+  background: var(--wonju-green-100);
+}
+
+.wonju-health-admin-link:last-child {
+  border-color: #9ebfb2;
+  background: #fff;
+}
+
+.wonju-health-admin-link .wonju-health-icon {
+  width: 18px;
+  height: 18px;
+}
+
+body.wonju-health-admin #sidebar {
+  left: 0 !important;
+  border-color: #d7e3de !important;
+  background: rgb(255 255 255 / 88%) !important;
+  box-shadow: 1px 0 0 rgb(18 63 55 / 3%);
+}
+
+.wonju-health-admin-sidebar-mark {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--wonju-green-700);
+  color: #fff !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
+
+body.wonju-health-admin .wonju-health-admin-tabs {
+  margin: 12px !important;
+  padding: 10px !important;
+  border: 1px solid var(--wonju-border);
+  border-radius: 12px;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 8px 30px rgb(18 63 55 / 4%);
+}
+
+body.wonju-health-admin .wonju-health-admin-tabs > a {
+  min-height: 38px;
+  padding: 8px 10px !important;
+  border-radius: 8px !important;
+  color: #566963 !important;
+  text-align: left !important;
+}
+
+body.wonju-health-admin .wonju-health-admin-tabs > a:hover,
+body.wonju-health-admin .wonju-health-admin-tabs > a.wonju-health-admin-current {
+  background: var(--wonju-green-100) !important;
+  color: var(--wonju-green-900) !important;
+  font-weight: 800 !important;
+}
+
+body.wonju-health-admin .wonju-health-workspace-content {
+  padding: 24px 28px !important;
+  background: transparent;
+}
+
+body.wonju-health-admin input,
+body.wonju-health-admin textarea,
+body.wonju-health-admin select {
+  border-color: #cadbd4 !important;
+}
+
+body.wonju-health-admin .bg-black,
+body.wonju-health-admin button.bg-black {
+  background: var(--wonju-green-800) !important;
+}
+
+body.wonju-health-admin .wonju-health-admin-stock-notice {
+  display: none !important;
+}
+
+body.wonju-health-admin a[href*="discord" i],
+body.wonju-health-admin a[href*="github.com/open-webui" i],
+body.wonju-health-admin a[href*="openwebui.com" i],
+body.wonju-health-admin a[href*="OpenWebUI" i] {
+  display: none !important;
+}
+
+.wonju-health-header-brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.wonju-health-lockup {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 10px;
+}
+
+.wonju-health-lockup-copy {
+  display: grid;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.wonju-health-lockup-copy strong {
+  overflow: hidden;
+  color: var(--wonju-ink);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wonju-health-lockup-copy small {
+  color: var(--wonju-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.wonju-health-brand-mark {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--wonju-green-700);
+  color: #fff;
+}
+
+.wonju-health-lockup.is-compact .wonju-health-brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+}
+
+.wonju-health-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.wonju-health-icon svg {
+  width: 1.25em;
+  height: 1.25em;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.wonju-health-trust-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 8px;
+  color: var(--wonju-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.wonju-health-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #25845f;
+}
+
+.wonju-health-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.wonju-health-header-menu { display: none !important; }
+
+.wonju-health-mobile-menu {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 8px);
+  right: 10px;
+  display: grid;
+  width: min(260px, calc(100vw - 20px));
+  padding: 8px;
+  gap: 3px;
+  border: 1px solid var(--wonju-border);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(18 63 55 / 16%);
+}
+
+.wonju-health-mobile-menu[hidden] { display: none !important; }
+
+.wonju-health-mobile-menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 46px;
+  padding: 8px 11px;
+  gap: 10px;
+  border: 0;
+  border-radius: 7px;
+  background: #fff;
+  color: var(--wonju-ink);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.wonju-health-mobile-menu-item:hover { background: var(--wonju-green-050); }
+.wonju-health-mobile-menu-item .wonju-health-icon { color: var(--wonju-green-700); }
+
+.wonju-health-service-notice {
+  position: fixed;
+  z-index: 1400;
+  right: 18px;
+  bottom: 18px;
+  max-width: min(380px, calc(100vw - 32px));
+  padding: 13px 16px;
+  border: 1px solid #9ebbb1;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--wonju-ink);
+  box-shadow: 0 3px 12px rgb(18 63 55 / 14%);
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.wonju-health-service-notice.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wonju-health-header-button,
+.wonju-health-header-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 13px;
+  gap: 7px;
+  border: 1px solid transparent;
+  border-radius: 8px !important;
+  background: transparent;
+  color: var(--wonju-green-900) !important;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.wonju-health-header-button:hover,
+.wonju-health-header-link:hover {
+  background: var(--wonju-green-050);
+  border-color: var(--wonju-border);
+}
+
+.wonju-health-header-link.is-emergency {
+  border-color: #edb8b0;
+  background: #fff;
+  color: var(--wonju-red-700) !important;
+}
+
+.wonju-health-header-link.is-emergency:hover { background: #fff4f2; }
+
+/* Home ------------------------------------------------------------------ */
+.wonju-health-home-panel {
+  display: block !important;
+  width: min(960px, 100%) !important;
+  max-width: 960px !important;
+  margin: 0 auto !important;
+  padding: 28px 20px 36px !important;
+  transform: none !important;
+  text-align: left !important;
+}
+
+.wonju-health-home-composer-row {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 920px !important;
+  margin-inline: auto !important;
+  justify-content: center !important;
+  gap: 0 !important;
+  font-size: inherit !important;
+}
+
+.wonju-health-home-composer-area {
+  width: 100%;
+  max-width: none !important;
+  gap: 0 !important;
+}
+
+.wonju-health-home-composer-area > :has(#message-input-container) {
+  width: 100% !important;
+  max-width: 920px !important;
+}
+
+.wonju-health-welcome {
+  position: relative;
+  z-index: 2;
+  width: min(920px, calc(100% - 32px));
+  margin: 0 auto 20px;
+  padding: 8px 0 0;
+  border: 0;
+  background: transparent;
+}
+
+.wonju-health-welcome-intro {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.wonju-health-home-tools {
+  width: min(920px, calc(100% - 32px));
+  margin: 20px auto 0;
+}
+
+.wonju-health-kicker {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--wonju-green-700);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.wonju-health-welcome h1 {
+  margin: 0;
+  color: var(--wonju-ink);
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.24;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+.wonju-health-welcome-intro > p {
+  margin: 12px 0 24px;
+  color: var(--wonju-muted);
+  font-size: 17px;
+  word-break: keep-all;
+}
+
+.wonju-health-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.wonju-health-quick-button {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  min-height: 84px;
+  padding: 14px 16px;
+  gap: 12px;
+  border: 1px solid var(--wonju-border);
+  border-radius: 10px !important;
+  background: #fff;
+  color: var(--wonju-ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.wonju-health-quick-button:hover,
+.wonju-health-quick-button:focus-visible {
+  border-color: #83b4a3;
+  background: var(--wonju-green-050);
+}
+
+.wonju-health-quick-button .wonju-health-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--wonju-green-100);
+  color: var(--wonju-green-700);
+  font-size: 19px;
+}
+
+.wonju-health-quick-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.wonju-health-quick-copy strong {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.wonju-health-quick-copy small {
+  color: var(--wonju-muted);
+  font-size: 14px;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.wonju-health-quick-arrow { display: none; }
+
+.wonju-health-welcome-tip {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 18px;
+  gap: 8px;
+  color: var(--wonju-muted);
+  font-size: 14px;
+}
+
+.wonju-health-welcome-tip .wonju-health-icon {
+  margin-top: 2px;
+  color: var(--wonju-blue-700);
+}
+
+.wonju-health-welcome-safety {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  gap: 8px 12px;
+  border-top: 1px solid var(--wonju-border);
+  color: var(--wonju-muted);
+  font-size: 14px;
+}
+
+.wonju-health-welcome-safety strong { color: var(--wonju-red-700); }
+.wonju-health-welcome-safety a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 7px 10px;
+  border: 1px solid #edb8b0;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--wonju-red-700) !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+/* Composer -------------------------------------------------------------- */
+body.wonju-health-chat #message-input-container {
+  width: min(960px, calc(100% - 24px)) !important;
+  margin-inline: auto !important;
+  border: 1px solid #a9c9bd !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  box-shadow: 0 1px 3px rgb(18 63 55 / 10%) !important;
+}
+
+body.wonju-health-chat #message-input-container:focus-within {
+  border-color: var(--wonju-green-700) !important;
+  box-shadow: 0 0 0 3px rgb(23 107 91 / 10%) !important;
+}
+
+body.wonju-health-chat #chat-input-container {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.wonju-health-chat #chat-input {
+  min-height: 42px !important;
+  color: var(--wonju-ink) !important;
+  font-size: 18px !important;
+  line-height: 1.5 !important;
+}
+
+body.wonju-health-chat #chat-input::placeholder { color: #788681 !important; }
+body.wonju-health-chat #input-menu-button { display: none !important; }
+
+body.wonju-health-chat #send-message-button,
+body.wonju-health-chat #voice-input-button {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 8px !important;
+}
+
+.wonju-health-voice-call { display: none !important; }
+
+.wonju-health-composer > div:nth-child(2) {
+  min-height: 40px;
+  margin: 0 4px 3px !important;
+}
+
+/* Once a conversation starts, keep the composer compact so the answer—not
+   an empty input surface—owns the mobile viewport. The native form remains
+   in document flow and the message pane continues to reserve its full space. */
+body.wonju-health-conversation #chat-input-container {
+  padding-top: 6px !important;
+  padding-bottom: 2px !important;
+}
+
+body.wonju-health-conversation #chat-input {
+  min-height: 34px !important;
+  font-size: 17px !important;
+}
+
+body.wonju-health-conversation .wonju-health-composer > div:nth-child(2) {
+  min-height: 38px;
+  margin: 0 4px 2px !important;
+}
+
+body.wonju-health-conversation #send-message-button,
+body.wonju-health-conversation #voice-input-button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+body.wonju-health-conversation .wonju-health-composer-note { display: none; }
+
+body.wonju-health-chat #send-message-button {
+  background: var(--wonju-green-700) !important;
+  color: #fff !important;
+}
+
+body.wonju-health-chat #voice-input-button {
+  background: var(--wonju-green-050) !important;
+  color: var(--wonju-green-700) !important;
+}
+
+.wonju-health-composer-note {
+  padding: 2px 12px 8px;
+  color: var(--wonju-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Messages and resident guidance --------------------------------------- */
+body.wonju-health-chat #response-message-model-name {
+  color: var(--wonju-green-900) !important;
+  font-weight: 700;
+}
+
+body.wonju-health-chat .chat-assistant { max-width: 64rem; }
+
+body.wonju-health-chat .chat-assistant .prose,
+body.wonju-health-chat .chat-assistant .markdown-prose {
+  max-width: 60rem;
+  color: var(--wonju-ink) !important;
+  font-size: 17px !important;
+  line-height: 1.76 !important;
+}
+
+body.wonju-health-chat .chat-assistant .prose p,
+body.wonju-health-chat .chat-assistant .markdown-prose p { margin-block: 10px; }
+
+body.wonju-health-chat .chat-assistant .prose h1,
+body.wonju-health-chat .chat-assistant .prose h2,
+body.wonju-health-chat .chat-assistant .prose h3,
+body.wonju-health-chat .chat-assistant .markdown-prose h1,
+body.wonju-health-chat .chat-assistant .markdown-prose h2,
+body.wonju-health-chat .chat-assistant .markdown-prose h3 {
+  color: var(--wonju-ink);
+  letter-spacing: -0.025em;
+  word-break: keep-all;
+}
+
+.wonju-health-response-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-right: 7px;
+  border-radius: 7px;
+  background: var(--wonju-green-700);
+  color: #fff;
+}
+
+.wonju-health-localized-time { white-space: nowrap; }
+
+.wonju-health-stock-avatar,
+.assistant-message-profile-image,
+[data-testid="assistant-avatar"] { display: none !important; }
+
+.wonju-health-step-heading {
+  max-width: 60rem;
+  margin: 28px 0 8px !important;
+  padding: 24px 0 0 !important;
+  border-top: 1px solid var(--wonju-border);
+  color: var(--wonju-green-800) !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  line-height: 1.45;
+}
+
+.wonju-health-step-heading:first-child {
+  margin-top: 10px !important;
+  padding-top: 0 !important;
+  border-top: 0;
+}
+
+.wonju-health-step-content {
+  max-width: 60rem;
+  margin: 8px 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.wonju-health-step-heading[data-step="medicine"] { color: var(--wonju-amber-700) !important; }
+.wonju-health-evidence-heading { margin-top: 28px !important; }
+.wonju-health-evidence-note {
+  padding: 10px 0 !important;
+  border: 0 !important;
+  color: var(--wonju-muted);
+  font-size: 14px;
+}
+
+.wonju-health-evidence-empty {
+  margin: 8px 0 0 !important;
+  padding: 0 !important;
+  border: 1px solid var(--wonju-border) !important;
+  border-radius: 10px;
+  background: var(--wonju-green-050) !important;
+  color: var(--wonju-ink) !important;
+  list-style: none !important;
+}
+
+.wonju-health-evidence-empty-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 14px 16px;
+  gap: 10px;
+  list-style: none;
+}
+
+.wonju-health-evidence-empty-row::marker { content: ""; }
+.wonju-health-evidence-empty-row > .wonju-health-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  color: var(--wonju-green-700);
+  font-size: 18px;
+}
+
+.wonju-health-evidence-empty-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.wonju-health-evidence-empty-copy strong {
+  color: var(--wonju-ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.wonju-health-evidence-empty-copy span {
+  color: var(--wonju-muted);
+  font-size: 14px;
+}
+
+/* Institution, source, and safety information -------------------------- */
+.wonju-health-card-stack {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  max-width: 60rem;
+  margin-block: 22px;
+  gap: 12px;
+}
+
+.wonju-health-card-stack > h3,
+.wonju-health-section-heading h3 {
+  margin: 0;
+  color: var(--wonju-green-900);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.wonju-health-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 20px 22px;
+  border: 1px solid var(--wonju-border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--wonju-ink);
+}
+
+.wonju-health-card-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wonju-health-card-title-group {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 10px;
+}
+
+.wonju-health-card-title-group .wonju-health-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--wonju-green-100);
+  color: var(--wonju-green-700);
+}
+
+.wonju-health-card h3,
+.wonju-health-card h4 {
+  margin: 0;
+  color: var(--wonju-ink);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.wonju-health-official-badge {
+  flex: 0 0 auto;
+  color: var(--wonju-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.wonju-health-institution-status {
+  margin: 8px 0 12px;
+  color: var(--wonju-muted);
+  font-size: 14px;
+}
+
+.wonju-health-card dl {
+  margin: 0;
+  border-top: 1px solid var(--wonju-border);
+}
+
+.wonju-health-detail {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid #e7ece9;
+}
+
+.wonju-health-card dt {
+  color: var(--wonju-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.wonju-health-card dd {
+  min-width: 0;
+  margin: 0;
+  padding: 0 !important;
+  text-align: left !important;
+  overflow-wrap: anywhere;
+}
+
+.wonju-health-empty-value { color: #73807c; }
+.wonju-health-missing-note {
+  margin: 12px 0 0;
+  color: var(--wonju-muted);
+  font-size: 14px;
+}
+
+.wonju-health-call-actions {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  gap: 8px;
+}
+
+.wonju-health-call-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  gap: 7px;
+  border: 1px solid #8fb9aa;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--wonju-green-900) !important;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.wonju-health-call-button:hover { background: var(--wonju-green-050); }
+.wonju-health-routine-call { background: var(--wonju-green-100); }
+.wonju-health-map-button {
+  border-color: #8aaec4;
+  background: #eef7fb;
+  color: #174e6b !important;
+}
+.wonju-health-map-button:hover { background: #e0f1f8; }
+
+.wonju-health-safety-card {
+  margin-top: 10px;
+  border-color: #e3a69d;
+  background: #fff8f6;
+}
+
+.wonju-health-safety-heading,
+.wonju-health-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.wonju-health-safety-heading .wonju-health-icon { color: var(--wonju-red-700); }
+.wonju-health-safety-card h3 {
+  color: var(--wonju-red-700);
+  font-size: 21px;
+}
+
+.wonju-health-emergency-call.is-primary {
+  border-color: var(--wonju-red-700);
+  background: var(--wonju-red-700);
+  color: #fff !important;
+}
+
+.wonju-health-emergency-call.is-secondary {
+  border-color: #d9958c;
+  background: #fff;
+  color: var(--wonju-red-700) !important;
+}
+
+.wonju-health-safety-card[data-risk="addiction"],
+.wonju-health-safety-card[data-risk="medical_high_risk"] {
+  border-color: #e6cb92;
+  background: var(--wonju-amber-100);
+}
+
+.wonju-health-safety-duplicate { display: none !important; }
+
+.wonju-health-source-stack {
+  margin-top: 28px;
+  gap: 0;
+}
+
+.wonju-health-source-stack > .wonju-health-section-heading {
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--wonju-border);
+}
+
+.wonju-health-section-heading .wonju-health-icon { color: var(--wonju-blue-700); }
+.wonju-health-source-card {
+  padding: 14px 0;
+  border: 0;
+  border-bottom: 1px solid #e3e9e6;
+  border-radius: 0;
+  background: transparent;
+}
+
+.wonju-health-source-card > a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  width: 100%;
+  gap: 6px;
+  color: var(--wonju-blue-700) !important;
+  font-weight: 700;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.wonju-health-source-card > a .wonju-health-icon {
+  display: inline-flex;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.wonju-health-source-title { min-width: 0; }
+.wonju-health-source-technical {
+  margin-top: 5px;
+  color: var(--wonju-muted);
+  font-size: 13px;
+}
+
+.wonju-health-source-technical summary { cursor: pointer; }
+.wonju-health-source-meta {
+  margin-top: 5px;
+  overflow-wrap: anywhere;
+  color: var(--wonju-muted);
+  font-size: 13px;
+}
+
+/* Keep encoded metadata out of sight while the DOM adapter renders it. */
+.language-wonju-health-meta,
+[class~="language-wonju-health-meta"],
+pre:has(> code.language-wonju-health-meta) { display: none !important; }
+.wonju-health-rendered-cards { display: block !important; }
+
+body.wonju-health-chat a[href^="/workspace"],
+body.wonju-health-chat a[href*="/knowledge"],
+body.wonju-health-chat button[aria-label*="Knowledge" i],
+body.wonju-health-chat button[title*="Knowledge" i],
+body.wonju-health-chat button[aria-label*="지식"],
+body.wonju-health-chat button[title*="지식"] { display: none !important; }
+
+.wonju-health-scroll-latest-wrap,
+.wonju-health-scroll-latest,
+.wonju-health-native-action-hidden { display: none !important; }
+
+.wonju-health-message-action {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  padding: 0 10px !important;
+  gap: 6px;
+  border-radius: 7px !important;
+  color: var(--wonju-muted) !important;
+}
+
+.wonju-health-message-action:hover {
+  background: var(--wonju-green-050) !important;
+  color: var(--wonju-green-800) !important;
+}
+
+.wonju-health-message-action[data-wonju-action="helpful"],
+.wonju-health-message-action[data-wonju-action="unhelpful"] { width: 44px !important; padding: 0 !important; }
+
+.wonju-health-message-action > svg,
+.wonju-health-message-action > .wonju-health-icon {
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px;
+}
+
+.wonju-health-action-label {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Authentication ------------------------------------------------------- */
+body.wonju-health-auth,
+body.wonju-health-auth #auth-page,
+body.wonju-health-auth #auth-container { background: var(--wonju-page) !important; }
+
+body.wonju-health-auth #logo { display: none !important; }
+
+body.wonju-health-auth #auth-page {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(440px, 560px);
+  min-height: 100dvh;
+  overflow: auto;
+}
+
+body.wonju-health-auth #auth-container {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative !important;
+  inset: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0;
+  min-height: 100dvh;
+  padding: 32px;
+  background: #fff !important;
+}
+
+.wonju-health-auth-story {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-width: 0;
+  min-height: 100dvh;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(40px, 7vw, 96px);
+  background: var(--wonju-green-800);
+  color: #fff;
+}
+
+.wonju-health-auth-story .wonju-health-brand-mark {
+  background: #fff;
+  color: var(--wonju-green-700);
+}
+
+.wonju-health-auth-story .wonju-health-lockup-copy strong,
+.wonju-health-auth-story h1 { color: #fff; }
+.wonju-health-auth-story .wonju-health-lockup-copy small,
+.wonju-health-auth-story p { color: #dcece6; }
+
+.wonju-health-auth-story-copy { max-width: 580px; }
+.wonju-health-auth-story .wonju-health-kicker {
+  margin-top: 42px;
+  color: #bfe0d3;
+}
+
+.wonju-health-auth-story h1 {
+  max-width: 520px;
+  margin: 10px 0 14px;
+  font-size: clamp(34px, 4.2vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+.wonju-health-auth-story p {
+  max-width: 520px;
+  margin: 0;
+  font-size: 17px;
+}
+
+.wonju-health-auth-features {
+  display: grid;
+  margin: 28px 0 0;
+  padding: 0;
+  gap: 11px;
+  list-style: none;
+}
+
+.wonju-health-auth-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.wonju-health-auth-features .wonju-health-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+}
+
+.wonju-health-auth-urgent {
+  display: grid;
+  margin-top: 36px;
+  gap: 2px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.wonju-health-auth-urgent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  gap: 8px;
+}
+
+.wonju-health-auth-urgent a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 7px 13px;
+  border: 1px solid rgb(255 255 255 / 58%);
+  border-radius: 8px;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.wonju-health-auth-urgent a:hover { background: rgb(255 255 255 / 10%); }
+
+.wonju-health-auth-card,
+.wonju-health-auth-form-card {
+  position: relative;
+  z-index: 2;
+  width: min(420px, 100%);
+  padding: 30px;
+  border: 1px solid var(--wonju-border);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(18 63 55 / 10%);
+  text-align: left;
+}
+
+.wonju-health-auth-form-brand {
+  display: grid;
+  margin-bottom: 22px;
+  gap: 8px;
+}
+
+.wonju-health-auth-form-brand p {
+  margin: 0;
+  color: var(--wonju-muted);
+  font-size: 14px;
+}
+
+.wonju-health-auth-title {
+  margin-bottom: 12px !important;
+  color: var(--wonju-ink) !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+}
+
+body.wonju-health-auth #auth-container form { gap: 12px; }
+body.wonju-health-auth #auth-container input {
+  min-height: 50px;
+  border: 1px solid #b9c9c3;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 16px;
+}
+
+body.wonju-health-auth #auth-container input:focus {
+  border-color: var(--wonju-green-700);
+  box-shadow: 0 0 0 3px rgb(23 107 91 / 12%);
+}
+
+body.wonju-health-auth #auth-container .wonju-health-password-shell {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  overflow: hidden;
+  border: 1px solid #b9c9c3;
+  border-radius: 8px;
+  background: #fff;
+}
+
+body.wonju-health-auth #auth-container .wonju-health-password-shell:focus-within {
+  border-color: var(--wonju-green-700);
+  box-shadow: 0 0 0 3px rgb(23 107 91 / 12%);
+}
+
+body.wonju-health-auth #auth-container .wonju-health-password-input {
+  flex: 1 1 auto;
+  width: 100% !important;
+  min-width: 0;
+  border: 0 !important;
+  border-radius: 8px 0 0 8px !important;
+  box-shadow: none !important;
+  outline-offset: -3px;
+}
+
+body.wonju-health-auth #auth-container .wonju-health-password-toggle {
+  display: inline-grid !important;
+  flex: 0 0 44px;
+  place-items: center;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 8px 8px 0 !important;
+  background: #fff !important;
+  color: var(--wonju-muted) !important;
+}
+
+body.wonju-health-auth #auth-container .wonju-health-password-toggle:hover {
+  background: var(--wonju-green-050) !important;
+  color: var(--wonju-green-800) !important;
+}
+
+body.wonju-health-auth #auth-container button[type="submit"] {
+  min-height: 50px;
+  margin-top: 8px;
+  border-radius: 8px !important;
+  background: var(--wonju-green-700) !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+
+/* Responsive behavior -------------------------------------------------- */
+@media (max-width: 900px) {
+  .wonju-health-trust-status { display: none; }
+  .wonju-health-header-new,
+  .wonju-health-header-history,
+  .wonju-health-header-account { display: none; }
+  .wonju-health-header-menu { display: inline-flex !important; }
+
+  body.wonju-health-auth #auth-page {
+    grid-template-columns: minmax(0, 1fr) minmax(400px, 48%);
+  }
+
+  .wonju-health-auth-story { padding: 48px 36px; }
+  .wonju-health-auth-story h1 { font-size: 36px; }
+}
+
+@media (max-width: 640px) {
+  body.wonju-health-chat #chat-container { padding-top: 0 !important; }
+  body.wonju-health-chat #chat-pane {
+    min-height: calc(100dvh - 64px);
+    padding-top: 64px !important;
+  }
+  body.wonju-health-developer .wonju-health-native-toolbar { top: 64px !important; }
+  body.wonju-health-chat.wonju-health-developer #chat-pane { padding-top: 64px !important; }
+
+  .wonju-health-service-header {
+    min-height: 64px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .wonju-health-lockup { gap: 8px; }
+  .wonju-health-brand-mark { width: 36px; height: 36px; }
+  .wonju-health-header-brand .wonju-health-lockup-copy strong { font-size: 14px; }
+  .wonju-health-header-brand .wonju-health-lockup-copy small { display: none; }
+  .wonju-health-header-actions { gap: 5px; }
+  .wonju-health-header-brand .wonju-health-lockup-copy { max-width: 168px; }
+  .wonju-health-header-button {
+    width: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    font-size: 0;
+  }
+  .wonju-health-header-button .wonju-health-icon { font-size: 19px; }
+  .wonju-health-header-link { min-height: 44px; padding: 0 10px; font-size: 13px; }
+
+  body.wonju-health-admin .wonju-health-admin-root,
+  body.wonju-health-admin .wonju-health-admin-shell {
+    height: calc(100dvh - 64px) !important;
+    margin-top: 64px;
+  }
+  .wonju-health-admin-header { padding-inline: 10px; }
+  .wonju-health-admin-header .wonju-health-lockup-copy small,
+  .wonju-health-admin-context,
+  .wonju-health-admin-link:not(:last-child) { display: none; }
+  .wonju-health-admin-actions { gap: 4px; }
+  .wonju-health-admin-link:last-child {
+    min-height: 44px;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  body.wonju-health-admin .wonju-health-workspace-content { padding: 16px 12px !important; }
+
+  .wonju-health-welcome {
+    width: 100%;
+    margin: 0 auto 14px;
+    padding: 4px 8px 0;
+  }
+
+  .wonju-health-home-panel { padding: 18px 10px 28px !important; }
+  .wonju-health-home-root {
+    align-items: flex-start !important;
+    overflow-y: auto;
+  }
+  .wonju-health-home-tools { width: 100%; margin-top: 14px; }
+  .wonju-health-welcome h1 { font-size: 29px; }
+  .wonju-health-welcome-intro > p { margin-bottom: 12px; font-size: 16px; }
+  .wonju-health-quick-grid { grid-template-columns: 1fr; gap: 8px; }
+  .wonju-health-quick-button { min-height: 74px; padding: 11px 12px; }
+  .wonju-health-welcome-tip { font-size: 14px; }
+  .wonju-health-welcome-safety { align-items: flex-start; font-size: 14px; }
+  .wonju-health-welcome-safety > span { flex-basis: 100%; }
+
+  body.wonju-health-chat #message-input-container { width: calc(100% - 16px) !important; }
+  .wonju-health-composer-note { font-size: 14px; }
+  body.wonju-health-chat .chat-assistant .prose,
+  body.wonju-health-chat .chat-assistant .markdown-prose { font-size: 17px !important; }
+
+  .wonju-health-card-stack {
+    width: calc(100dvw - 48px);
+    max-width: calc(100dvw - 48px);
+  }
+  .wonju-health-card { padding: 17px 16px; }
+  .wonju-health-card-topline { display: block; }
+  .wonju-health-official-badge {
+    display: block;
+    width: max-content;
+    max-width: calc(100% - 44px);
+    margin: 7px 0 0 44px;
+    white-space: normal;
+  }
+  .wonju-health-detail { grid-template-columns: 76px minmax(0, 1fr); gap: 10px; }
+  .wonju-health-call-button { width: 100%; }
+
+  body.wonju-health-auth #auth-page {
+    display: flex !important;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  .wonju-health-auth-story {
+    order: 1;
+    min-height: 220px;
+    padding: 28px 22px;
+  }
+
+  .wonju-health-auth-story .wonju-health-kicker { margin-top: 20px; }
+  .wonju-health-auth-story h1 { margin-block: 6px 8px; font-size: 28px; }
+  .wonju-health-auth-story p { font-size: 15px; }
+  .wonju-health-auth-features { display: none; }
+  .wonju-health-auth-urgent { margin-top: 16px; }
+  .wonju-health-auth-urgent-actions { gap: 6px; }
+  .wonju-health-auth-urgent a { flex: 1 1 140px; padding-inline: 10px; }
+
+  body.wonju-health-auth #auth-container {
+    order: 2;
+    min-height: auto;
+    padding: 20px 12px 32px;
+  }
+
+  body.wonju-health-auth #auth-container > div {
+    min-height: 0 !important;
+    padding-inline: 0 !important;
+  }
+
+  body.wonju-health-auth #auth-container > div > div { margin-block: 0 !important; }
+  .wonju-health-auth-form-brand .wonju-health-lockup { display: none; }
+
+  .wonju-health-auth-card,
+  .wonju-health-auth-form-card {
+    width: 100%;
+    padding: 24px 20px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .wonju-health-header-brand .wonju-health-lockup-copy { max-width: 90px; }
+  .wonju-health-header-brand .wonju-health-lockup-copy strong { font-size: 0 !important; }
+  .wonju-health-header-brand .wonju-health-lockup-copy strong::after {
+    content: attr(data-mobile-label);
+    font-size: 13px;
+  }
+  .wonju-health-welcome h1 { font-size: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .wonju-health-service-header,
+  .wonju-health-welcome,
+  .wonju-health-card,
+  .wonju-health-auth-card { border: 2px solid CanvasText; }
+  .wonju-health-call-button,
+  .wonju-health-quick-button { border: 2px solid ButtonText; }
+}

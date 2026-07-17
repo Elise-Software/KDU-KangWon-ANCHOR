@@ -1,0 +1,16 @@
+[Unit]
+Description=Wonju Health loopback-only Gemma vLLM container
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/home/elise/KDU-KangWon-ANCHOR/deploy/open-webui/systemd/run-wonju-vllm.sh
+ExecStop=-/usr/bin/docker stop -t 60 wonju-vllm
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=0
+TimeoutStopSec=90
+
+[Install]
+WantedBy=default.target

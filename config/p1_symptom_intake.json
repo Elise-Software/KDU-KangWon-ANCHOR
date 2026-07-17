@@ -1,0 +1,97 @@
+{
+  "schema_version": "p1-symptom-intake-v1",
+  "policy": "Questions narrow urgency and care direction only; they do not diagnose.",
+  "response_consistency_rules": [
+    {
+      "rule_id": "gradual_onset_must_not_be_rewritten_as_sudden",
+      "when_question_contains_any": ["서서히", "천천히 심해"],
+      "literal_rewrites": {
+        "갑작스럽게 머리가 많이 아프셔서": "머리가 많이 아프셔서",
+        "갑자기 머리가 많이 아프셔서": "머리가 많이 아프셔서",
+        "갑작스럽게 심해진 두통 때문에": "심한 두통 때문에",
+        "갑자기 심해진 두통 때문에": "심한 두통 때문에"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "kdca_headache",
+      "title": "두통",
+      "publisher": "질병관리청 국가건강정보포털",
+      "url": "https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5830",
+      "retrieval_terms": ["연관 증상", "편두통", "메스꺼움", "구토", "두통 일기"]
+    },
+    {
+      "source_id": "kdca_stroke",
+      "title": "뇌졸중에 대해서",
+      "publisher": "질병관리청 국가건강정보포털",
+      "url": "https://health.kdca.go.kr/healthinfo/biz/health/ccvdInfo/ccvcdInfo/cbvcacdInfoMain.do",
+      "retrieval_terms": ["대표적인 조기증상", "갑작스런 편측마비", "심한두통", "119"]
+    },
+    {
+      "source_id": "nice_headache_cg150",
+      "title": "Headaches in over 12s: diagnosis and management",
+      "publisher": "NICE",
+      "url": "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "retrieval_terms": ["sudden-onset headache", "frequency, duration and severity", "associated symptoms"]
+    },
+    {
+      "source_id": "nhs_headache_emergency",
+      "title": "Headaches",
+      "publisher": "NHS",
+      "url": "https://www.nhs.uk/symptoms/headaches/",
+      "retrieval_terms": ["When and where to get medical help", "started suddenly", "extremely painful", "ease headaches"]
+    }
+  ],
+  "plans": [
+    {
+      "plan_id": "headache",
+      "match_terms": ["두통", "머리가", "머리 아", "머리 통증", "지끈", "깨질"],
+      "final_evidence_source_ids": ["kdca_headache", "nhs_headache_emergency", "nice_headache_cg150"],
+      "stages": [
+        {
+          "stage_id": "onset_and_peak",
+          "intro": "말씀만 들어도 많이 힘드셨겠어요. 어디로 가야 할지 정하기 전에 응급 신호부터 짧게 확인할게요.",
+          "question": "증상은 언제 시작됐나요? 통증이 몇 초~몇 분 안에 갑자기 최고로 심해졌는지, 아니면 서서히 심해졌는지도 함께 알려주세요.",
+          "evidence_source_ids": ["nice_headache_cg150", "kdca_stroke"]
+        },
+        {
+          "stage_id": "neurologic_and_secondary_red_flags",
+          "intro": "답해주셔서 감사합니다. 다음은 바로 응급실로 가야 하는 신호가 있는지 확인할게요.",
+          "question": "한쪽 얼굴·팔·다리의 힘 빠짐이나 저림, 말이 어눌함, 시야 이상, 의식이 흐림, 걷기 어려움, 고열과 목 뻣뻣함, 반복 구토, 최근 머리 외상 중 하나라도 있나요? 없으면 ‘없어요’라고 답해 주세요.",
+          "evidence_source_ids": ["kdca_headache", "kdca_stroke", "nice_headache_cg150", "nhs_headache_emergency"]
+        },
+        {
+          "stage_id": "risk_context_and_location",
+          "intro": "좋아요. 마지막으로 진료 장소를 고르는 데 필요한 정보만 확인할게요.",
+          "question": "나이대와 중요한 기저질환·임신 여부·복용 중인 약이 있는지, 그리고 현재 계신 원주시 읍면동을 알려주세요. 예: ‘40대, 고혈압약 복용 중, 행구동’",
+          "evidence_source_ids": ["nice_headache_cg150"]
+        }
+      ]
+    },
+    {
+      "plan_id": "general_symptom",
+      "match_terms": [],
+      "stages": [
+        {
+          "stage_id": "onset_and_severity",
+          "intro": "많이 불편하셨겠어요. 안전한 진료 방향을 정하기 위해 몇 가지만 차례로 확인할게요.",
+          "question": "증상이 언제 시작됐고, 갑자기 생겼는지 서서히 생겼는지, 지금 어느 정도로 심한지 알려주세요.",
+          "evidence_source_ids": []
+        },
+        {
+          "stage_id": "associated_danger_signs",
+          "intro": "답해주셔서 감사합니다. 즉시 도움이 필요한 동반 증상이 있는지 확인할게요.",
+          "question": "의식이나 호흡 이상, 마비·말하기 어려움, 심한 출혈, 반복 구토, 고열, 최근 외상처럼 평소와 다른 심한 증상이 함께 있나요?",
+          "evidence_source_ids": []
+        },
+        {
+          "stage_id": "risk_context_and_location",
+          "intro": "마지막으로 이용할 의료기관을 찾는 데 필요한 정보예요.",
+          "question": "나이대, 중요한 질환·임신 여부·복용 중인 약, 현재 계신 원주시 읍면동을 알려주세요.",
+          "evidence_source_ids": []
+        }
+      ]
+    }
+  ]
+}

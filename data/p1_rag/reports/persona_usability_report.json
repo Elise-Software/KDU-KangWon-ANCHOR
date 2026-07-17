@@ -1,0 +1,74 @@
+{
+  "base_url": "http://192.168.100.58",
+  "personas": [
+    {
+      "label": "노인 사용자",
+      "turn_count": 4,
+      "intake_markers": [
+        "증상 확인 1/3",
+        "증상 확인 2/3",
+        "증상 확인 3/3"
+      ],
+      "final_headings": [
+        "1. 먼저 마음부터",
+        "2. 생각해볼 수 있는 원인",
+        "3. 지금 할 수 있는 대처",
+        "4. 상비의약품 안내",
+        "5. 가까운 의료기관 찾기"
+      ],
+      "institution_cards": 3,
+      "source_cards": 4,
+      "evidence_empty_states": 0,
+      "font_metrics": {
+        "fontSize": 16,
+        "lineHeight": 28
+      },
+      "raw_metadata_visible": 0,
+      "exact_dose_detected": false,
+      "passed": true
+    },
+    {
+      "label": "유아 보호자",
+      "turn_count": 4,
+      "intake_markers": [
+        "증상 확인 1/3",
+        "증상 확인 2/3",
+        "증상 확인 3/3"
+      ],
+      "final_headings": [
+        "1. 먼저 마음부터",
+        "2. 생각해볼 수 있는 원인",
+        "3. 지금 할 수 있는 대처",
+        "4. 상비의약품 안내",
+        "5. 가까운 의료기관 찾기"
+      ],
+      "institution_cards": 3,
+      "source_cards": 2,
+      "evidence_empty_states": 0,
+      "font_metrics": {
+        "fontSize": 16,
+        "lineHeight": 28
+      },
+      "raw_metadata_visible": 0,
+      "exact_dose_detected": false,
+      "passed": true
+    },
+    {
+      "label": "일반 사용자",
+      "turn_count": 2,
+      "location_prompted": true,
+      "institution_cards": 3,
+      "source_cards": 2,
+      "map_actions": 3,
+      "call_actions": 3,
+      "font_metrics": {
+        "fontSize": 16,
+        "lineHeight": 28
+      },
+      "raw_metadata_visible": 0,
+      "passed": true
+    }
+  ],
+  "temporary_user_removed": true,
+  "all_checks_passed": true
+}

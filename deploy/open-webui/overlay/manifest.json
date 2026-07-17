@@ -1,0 +1,19 @@
+{
+  "name": "원주시 생활건강 안내 AI",
+  "short_name": "생활건강 AI",
+  "description": "원주시 공식 보건·복지 자료를 바탕으로 생활건강 정보와 기관 안내를 제공합니다.",
+  "lang": "ko",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f8f6",
+  "theme_color": "#155247",
+  "icons": [
+    {
+      "src": "/wonju-health-mark.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}

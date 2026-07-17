@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nlmSearchResult>
+  <term>headache</term>
+  <file>viv_U8UIgv</file>
+  <server>pvlb7srch16</server>
+  <count>71</count>
+  <retstart>0</retstart>
+  <retmax>1</retmax>
+  <list num="71" start="0" per="1">
+    <document rank="0" url="https://medlineplus.gov/headache.html">
+      <content name="healthTopic">
+        <health-topic meta-desc="Nearly everyone has had a headache, the most common form of pain. Learn the different types, the different symptoms of, and when to see a doctor." title="Headache" url="https://medlineplus.gov/headache.html" id="273" language="English" date-created="01/27/1999">
+          <full-summary>&lt;p&gt;Almost everyone has had a headache. Headache is the most common form of pain. It's a major reason people miss days at work or school or visit the doctor.&lt;/p&gt;
+
+&lt;p&gt;The most common type of headache is a tension headache. Tension headaches are due to tight muscles in your shoulders, neck, scalp and jaw. They are often related to stress, depression or anxiety. You are more likely to get tension headaches if you work too much, don't get enough sleep, miss meals, or use alcohol.&lt;/p&gt; 
+
+&lt;p&gt;Other common types of headaches include &lt;a href="https://medlineplus.gov/migraine.html"&gt;migraines&lt;/a&gt;, cluster headaches, and sinus headaches. Most people can feel much better by making lifestyle changes, learning ways to relax and taking &lt;a href="https://medlineplus.gov/painrelievers.html"&gt;pain relievers&lt;/a&gt;.&lt;/p&gt; 
+
+&lt;p&gt;Not all headaches require a doctor's attention. But sometimes headaches warn of a more serious disorder. Let your health care provider know if you have sudden, severe headaches. Get medical help right away if you have a headache after a blow to your head, or if you have a headache along with a stiff neck, fever, confusion, loss of consciousness, or pain in the eye or ear.&lt;/p&gt;
+
+&lt;p class=""&gt;NIH: National Institute of Neurological Disorders and Stroke&lt;/p&gt;</full-summary>
+          <group url="https://medlineplus.gov/brainandnerves.html" id="14">Brain and Nerves</group>
+          <group url="https://medlineplus.gov/symptoms.html" id="31">Symptoms</group>
+          <language-mapped-topic url="https://medlineplus.gov/spanish/headache.html" id="1933" language="Spanish">Dolor de cabeza</language-mapped-topic>
+          <mesh-heading>
+            <descriptor id="D006261">Headache</descriptor>
+          </mesh-heading>
+          <mesh-heading>
+            <descriptor id="D020773">Headache Disorders</descriptor>
+          </mesh-heading>
+          <other-language vernacular-name="العربية" url="https://medlineplus.gov/languages/headache.html#Arabic">Arabic</other-language>
+          <other-language vernacular-name="简体中文" url="https://medlineplus.gov/languages/headache.html#Chinese, Simplified (Mandarin dialect)">Chinese, Simplified (Mandarin dialect)</other-language>
+          <other-language vernacular-name="français" url="https://medlineplus.gov/languages/headache.html#French">French</other-language>
+          <other-language vernacular-name="हिन्दी" url="https://medlineplus.gov/languages/headache.html#Hindi">Hindi</other-language>
+          <other-language vernacular-name="日本語" url="https://medlineplus.gov/languages/headache.html#Japanese">Japanese</other-language>
+          <other-language vernacular-name="नेपाली" url="https://medlineplus.gov/languages/headache.html#Nepali">Nepali</other-language>
+          <other-language vernacular-name="Русский" url="https://medlineplus.gov/languages/headache.html#Russian">Russian</other-language>
+          <other-language vernacular-name="Af-Soomaali " url="https://medlineplus.gov/languages/headache.html#Somali">Somali</other-language>
+          <other-language vernacular-name="español" url="https://medlineplus.gov/spanish/headache.html">Spanish</other-language>
+          <other-language vernacular-name="español" url="https://medlineplus.gov/languages/headache.html#Spanish">Spanish</other-language>
+          <primary-institute url="http://www.ninds.nih.gov/">National Institute of Neurological Disorders and Stroke</primary-institute>
+          <related-topic url="https://medlineplus.gov/migraine.html" id="3157">Migraine</related-topic>
+          <see-reference>Cluster Headache</see-reference>
+          <see-reference>Tension Headache</see-reference>
+          <see-reference>Vascular Headache</see-reference>
+          <site title="Acute Therapy: Why Not Over-The-Counter or Other Nonspecific Options?" url="https://americanmigrainefoundation.org/resource-library/acute-therapy-why-not-otc-options/">
+            <information-category>Treatments and Therapies</information-category>
+            <organization>American Migraine Foundation</organization>
+          </site>
+          <site title="Chronic Daily Headaches" url="https://www.mayoclinic.org/diseases-conditions/chronic-daily-headaches/symptoms-causes/syc-20370891?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/chronic-daily-headaches/symptoms-causes/syc-20370891?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="ClinicalTrials.gov: Cluster Headache" url="https://clinicaltrials.gov/search?cond=%22Cluster+Headache%22&amp;aggFilters=status:not%20rec">
+            <information-category>Clinical Trials</information-category>
+            <organization>National Institutes of Health</organization>
+            <standard-description>NIH</standard-description>
+          </site>
+          <site title="ClinicalTrials.gov: Headache" url="https://clinicaltrials.gov/search?cond=%22Headache%22&amp;aggFilters=status:not%20rec">
+            <information-category>Clinical Trials</information-category>
+            <organization>National Institutes of Health</organization>
+            <standard-description>NIH</standard-description>
+          </site>
+          <site title="ClinicalTrials.gov: Headache Disorders" url="https://clinicaltrials.gov/search?cond=%22Headache+Disorders%22&amp;aggFilters=status:not%20rec">
+            <information-category>Clinical Trials</information-category>
+            <organization>National Institutes of Health</organization>
+            <standard-description>NIH</standard-description>
+          </site>
+          <site title="ClinicalTrials.gov: Tension Headache" url="https://clinicaltrials.gov/search?cond=%22Tension+Headache%22&amp;aggFilters=status:not%20rec">
+            <information-category>Clinical Trials</information-category>
+            <organization>National Institutes of Health</organization>
+            <standard-description>NIH</standard-description>
+          </site>
+          <site title="ClinicalTrials.gov: Tension-Type Headache" url="https://clinicaltrials.gov/search?cond=%22Tension-Type+Headache%22&amp;aggFilters=status:not%20rec">
+            <information-category>Clinical Trials</information-category>
+            <organization>National Institutes of Health</organization>
+            <standard-description>NIH</standard-description>
+          </site>
+          <site title="Cluster headache" url="https://medlineplus.gov/ency/article/000786.htm" language-mapped-url="https://medlineplus.gov/spanish/ency/article/000786.htm">
+            <information-category>Patient Handouts</information-category>
+            <information-category>Encyclopedia</information-category>
+            <organization>Medical Encyclopedia</organization>
+          </site>
+          <site title="Cluster Headache" url="https://www.mayoclinic.org/diseases-conditions/cluster-headache/symptoms-causes/syc-20352080?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Cough Headaches" url="https://www.mayoclinic.org/diseases-conditions/primary-cough-headaches/symptoms-causes/syc-20371200?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/primary-cough-headaches/symptoms-causes/syc-20371200?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Do I Need an MRI for My Migraine?" url="https://americanmigrainefoundation.org/resource-library/do-i-need-an-mri-for-my-migraine/">
+            <information-category>Diagnosis and Tests</information-category>
+            <organization>American Migraine Foundation</organization>
+          </site>
+          <site title="Exercise Headaches" url="https://www.mayoclinic.org/diseases-conditions/exercise-headaches/symptoms-causes/syc-20372276?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/exercise-headaches/symptoms-causes/syc-20372276?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Find a Migraine and Headache Specialist" url="https://americanmigrainefoundation.org/find-a-doctor/">
+            <information-category>Find an Expert</information-category>
+            <organization>American Migraine Foundation</organization>
+          </site>
+          <site title="Headache" url="https://www.mayoclinic.org/symptoms/headache/basics/definition/SYM-20050800?p=1">
+            <information-category>Start Here</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Headache" url="https://www.ninds.nih.gov/health-information/disorders/headache" language-mapped-url="https://www.ninds.nih.gov/es/health-information/disorders/dolor-de-cabeza">
+            <information-category>Start Here</information-category>
+            <organization>National Institute of Neurological Disorders and Stroke</organization>
+            <standard-description>NIH</standard-description>
+          </site>
+          <site title="Headache" url="https://medlineplus.gov/ency/article/003024.htm" language-mapped-url="https://medlineplus.gov/spanish/ency/article/003024.htm">
+            <information-category>Patient Handouts</information-category>
+            <information-category>Encyclopedia</information-category>
+            <organization>Medical Encyclopedia</organization>
+          </site>
+          <site title="Headache - what to ask your doctor" url="https://medlineplus.gov/ency/patientinstructions/000303.htm" language-mapped-url="https://medlineplus.gov/spanish/ency/patientinstructions/000303.htm">
+            <information-category>Encyclopedia</information-category>
+            <organization>Medical Encyclopedia</organization>
+          </site>
+          <site title="Headache Hygiene -- What Is It?" url="https://americanmigrainefoundation.org/resource-library/what-is-headache-hygiene/">
+            <information-category>Living With</information-category>
+            <organization>American Migraine Foundation</organization>
+          </site>
+          <site title="Headaches" url="https://kidshealth.org/en/kids/headache.html" language-mapped-url="https://kidshealth.org/es/kids/headache.html">
+            <information-category>Children</information-category>
+            <organization>Nemours Foundation</organization>
+          </site>
+          <site title="Headaches" url="https://familydoctor.org/symptom/headaches/" language-mapped-url="https://es.familydoctor.org/sintoma/dolores-de-cabeza/">
+            <information-category>Diagnosis and Tests</information-category>
+            <organization>American Academy of Family Physicians</organization>
+          </site>
+          <site title="Headaches" url="https://kidshealth.org/en/teens/headaches.html" language-mapped-url="https://kidshealth.org/es/teens/headaches.html">
+            <information-category>Teenagers</information-category>
+            <organization>Nemours Foundation</organization>
+          </site>
+          <site title="Headaches (For Parents)" url="https://kidshealth.org/en/parents/headache.html" language-mapped-url="https://kidshealth.org/es/parents/headache.html">
+            <information-category>Children</information-category>
+            <organization>Nemours Foundation</organization>
+          </site>
+          <site title="Headaches - danger signs" url="https://medlineplus.gov/ency/patientinstructions/000424.htm" language-mapped-url="https://medlineplus.gov/spanish/ency/patientinstructions/000424.htm">
+            <information-category>Patient Handouts</information-category>
+            <information-category>Encyclopedia</information-category>
+            <organization>Medical Encyclopedia</organization>
+          </site>
+          <site title="Headaches and Hormones: What's the Connection?" url="https://www.mayoclinic.org/diseases-conditions/chronic-daily-headaches/in-depth/headaches/art-20046729?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/chronic-daily-headaches/in-depth/headaches/art-20046729?p=1">
+            <information-category>Women</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Headaches during Pregnancy: What's the Best Treatment?" url="https://www.mayoclinic.org/healthy-lifestyle/pregnancy-week-by-week/expert-answers/headaches-during-pregnancy/faq-20058265?p=1" language-mapped-url="https://www.mayoclinic.org/es/healthy-lifestyle/pregnancy-week-by-week/expert-answers/headaches-during-pregnancy/faq-20058265?p=1">
+            <information-category>Women</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Headaches in Children" url="https://www.aapos.org/glossary/headaches-in-children">
+            <information-category>Children</information-category>
+            <organization>American Association for Pediatric Ophthalmology and Strabismus</organization>
+          </site>
+          <site title="Headaches in Children" url="https://www.mayoclinic.org/diseases-conditions/headaches-in-children/symptoms-causes/syc-20352099?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/headaches-in-children/symptoms-causes/syc-20352099?p=1">
+            <information-category>Children</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Headaches: Reduce Stress to Prevent the Pain" url="https://www.mayoclinic.org/diseases-conditions/tension-headache/in-depth/headaches/art-20046707?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/tension-headache/in-depth/headaches/art-20046707?p=1">
+            <information-category>Prevention and Risk Factors</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Headaches: Treatment Depends on Your Diagnosis and Symptoms" url="https://www.mayoclinic.org/diseases-conditions/chronic-daily-headaches/in-depth/headaches/art-20047375?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/chronic-daily-headaches/in-depth/headaches/art-20047375?p=1">
+            <information-category>Symptoms</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Headaches: What You Need to Know" url="https://www.nccih.nih.gov/health/headaches-what-you-need-to-know">
+            <information-category>Treatments and Therapies</information-category>
+            <organization>National Center for Complementary and Integrative Health</organization>
+            <standard-description>NIH</standard-description>
+          </site>
+          <site title="Intractable Headache - The Pain in Your Head that Just Won't Quit" url="https://americanmigrainefoundation.org/resource-library/intractable-headache/">
+            <information-category>Specifics</information-category>
+            <organization>American Migraine Foundation</organization>
+          </site>
+          <site title="Low-Tyramine Diet for Individuals with Headache or Migraine" url="https://headaches.org/resources/low-tyramine-diet-for-individuals-with-headache-or-migraine/">
+            <information-category>Living With</information-category>
+            <organization>National Headache Foundation</organization>
+          </site>
+          <site title="Managing tension headaches at home" url="https://medlineplus.gov/ency/patientinstructions/000421.htm" language-mapped-url="https://medlineplus.gov/spanish/ency/patientinstructions/000421.htm">
+            <information-category>Patient Handouts</information-category>
+            <information-category>Encyclopedia</information-category>
+            <organization>Medical Encyclopedia</organization>
+          </site>
+          <site title="National Institute of Neurological Disorders and Stroke" url="https://www.ninds.nih.gov/" language-mapped-url="https://espanol.ninds.nih.gov/es">
+            <information-category>Find an Expert</information-category>
+            <organization>National Institute of Neurological Disorders and Stroke</organization>
+            <standard-description>NIH</standard-description>
+          </site>
+          <site title="Nighttime Headaches: How Can I Get Relief?" url="https://www.mayoclinic.org/diseases-conditions/chronic-daily-headaches/expert-answers/nighttime-headaches/faq-20057919?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/chronic-daily-headaches/expert-answers/nighttime-headaches/faq-20057919?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Headache" url="https://pubmed.ncbi.nlm.nih.gov/?term=%22Headache%22%5Bmajr%3Anoexp%5D+OR+%22Headache+Disorders%22%5Bmajr%3Anoexp%5D+AND+humans%5Bmh%5D+AND+english%5Bla%5D+AND+%22last+1+Year%22+%5Bedat%5D+NOT+%28letter%5Bpt%5D+OR+case+reports%5Bpt%5D+OR+editorial%5Bpt%5D+OR+comment%5Bpt%5D%29+AND+free+full+text%5Bsb%5D+">
+            <information-category>Journal Articles</information-category>
+          </site>
+          <site title="Sex Headaches" url="https://www.mayoclinic.org/diseases-conditions/sex-headaches/symptoms-causes/syc-20377477?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/sex-headaches/symptoms-causes/syc-20377477?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Sinus Headaches" url="https://www.mayoclinic.org/diseases-conditions/sinus-headaches/symptoms-causes/syc-20377580?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/sinus-headaches/symptoms-causes/syc-20377580?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Spinal Headaches" url="https://www.mayoclinic.org/diseases-conditions/spinal-headaches/symptoms-causes/syc-20377913?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/spinal-headaches/symptoms-causes/syc-20377913?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Tension headache" url="https://medlineplus.gov/ency/article/000797.htm" language-mapped-url="https://medlineplus.gov/spanish/ency/article/000797.htm">
+            <information-category>Patient Handouts</information-category>
+            <information-category>Encyclopedia</information-category>
+            <organization>Medical Encyclopedia</organization>
+          </site>
+          <site title="Tension Headache" url="https://www.mayoclinic.org/diseases-conditions/tension-headache/symptoms-causes/syc-20353977?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Tension-Type Headaches: Self-Care Measures for Relief" url="https://www.mayoclinic.org/diseases-conditions/tension-headache/in-depth/headaches/art-20047631?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/tension-headache/in-depth/headaches/art-20047631?p=1">
+            <information-category>Living With</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="Thunderclap Headaches" url="https://www.mayoclinic.org/diseases-conditions/thunderclap-headaches/symptoms-causes/syc-20378361?p=1" language-mapped-url="https://www.mayoclinic.org/es/diseases-conditions/thunderclap-headaches/symptoms-causes/syc-20378361?p=1">
+            <information-category>Specifics</information-category>
+            <organization>Mayo Foundation for Medical Education and Research</organization>
+          </site>
+          <site title="When to Go to the Emergency Room for a Headache or Migraine" url="https://americanmigrainefoundation.org/resource-library/when-to-go-to-the-er-for-headache-migraine/">
+            <information-category>Diagnosis and Tests</information-category>
+            <organization>American Migraine Foundation</organization>
+          </site>
+        </health-topic>
+      </content>
+    </document>
+  </list>
+</nlmSearchResult>

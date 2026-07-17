@@ -4,13 +4,25 @@
       "https://www.wonju.go.kr/health/index.do",
       "https://www.wonju.go.kr/welfare/index.do"
     ],
-    "allowed_hosts": ["www.wonju.go.kr", "loveme.yonsei.kr"],
+    "allowed_hosts": [
+      "www.wonju.go.kr",
+      "loveme.yonsei.kr",
+      "health.kdca.go.kr",
+      "www.e-gen.or.kr",
+      "www.nice.org.uk",
+      "www.nhs.uk"
+    ],
     "allowed_sections": ["/health/", "/welfare/"],
     "mandatory_urls": [
       "https://www.wonju.go.kr/health/contents.do?key=1623",
       "https://www.wonju.go.kr/health/contents.do?key=1671",
       "https://www.wonju.go.kr/health/contents.do?key=6230",
-      "https://loveme.yonsei.kr/sub.php?menukey=12"
+      "https://loveme.yonsei.kr/sub.php?menukey=12",
+      "https://health.kdca.go.kr/healthinfo/biz/health/gnrlzHealthInfo/gnrlzHealthInfo/gnrlzHealthInfoView.do?cntnts_sn=5830",
+      "https://health.kdca.go.kr/healthinfo/biz/health/ccvdInfo/ccvcdInfo/cbvcacdInfoMain.do",
+      "https://www.e-gen.or.kr/nemc/notice_view.do?brdctsno=12899&upperfixyn=Y",
+      "https://www.nice.org.uk/guidance/cg150/chapter/recommendations",
+      "https://www.nhs.uk/symptoms/headaches/"
     ],
     "maximum_documents": 70,
     "minimum_documents": 50,
@@ -31,13 +43,14 @@
     "model": "BAAI/bge-reranker-v2-m3",
     "candidate_count": 8,
     "batch_size": 16,
-    "maximum_length": 256
+    "maximum_length": 256,
+    "minimum_relevance_score": -4.0
   },
   "generation": {
     "base_url": "http://192.168.100.58:8000/v1",
     "temperature": 0,
     "timeout_seconds": 90,
-    "maximum_tokens": 320
+    "maximum_tokens": 650
   },
   "evaluation": {
     "minimum_cases": 100,

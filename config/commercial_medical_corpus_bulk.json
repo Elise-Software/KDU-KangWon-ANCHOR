@@ -1,0 +1,93 @@
+{
+  "schema_version": "commercial-medical-corpus-bulk-v1",
+  "output_dir": "data/commercial_medical_corpus_bulk",
+  "storage": {
+    "hard_limit_bytes": 1000000000000,
+    "stop_before_bytes": 900000000000,
+    "raw_download_budget_bytes": 150000000000,
+    "keep_source_archives": true
+  },
+  "pmc": {
+    "bulk_index_url": "https://ftp.ncbi.nlm.nih.gov/pub/pmc/deprecated/oa_bulk/oa_comm/xml/",
+    "current_filelist_url": "https://pmc-oa-opendata.s3.amazonaws.com/deprecated/oa_comm/xml/metadata/csv/oa_comm.filelist.csv",
+    "object_base_url": "https://pmc-oa-opendata.s3.amazonaws.com/",
+    "allowed_licenses": ["CC0", "CC BY"],
+    "download_workers": 4,
+    "download_retry_attempts": 5,
+    "request_timeout_seconds": 180,
+    "user_agent": "KDU-KangWon-ANCHOR-commercial-medical-corpus/1.0"
+  },
+  "medlineplus": {
+    "health_topics_xml_url": "https://medlineplus.gov/xml/mplus_topics_2026-07-14.xml",
+    "genetics_xml_url": "https://medlineplus.gov/download/ghr-summaries.xml",
+    "medical_tests_index_url": "https://medlineplus.gov/lab-tests/"
+  },
+  "korean_public": {
+    "documents": [
+      {
+        "url": "https://www.mohw.go.kr/board.es?act=view&bid=0027&list_no=258818&mid=a10503000000&nPage=969&tag=",
+        "institution": "보건복지부",
+        "domain": "endocrine_metabolic"
+      },
+      {
+        "url": "https://www.mohw.go.kr/board.es?act=view&bid=0027&cg_code=&list_no=36173&mid=a10503010100&tag=",
+        "institution": "보건복지부",
+        "domain": "infectious_disease"
+      },
+      {
+        "url": "https://www.mohw.go.kr/board.es?act=view&bid=0027&cg_code=&list_no=1487115&mid=a10503000000&tag=",
+        "institution": "보건복지부",
+        "domain": "mental_health"
+      },
+      {
+        "url": "https://www.mohw.go.kr/board.es?act=view&bid=0027&list_no=1479291&mid=a10503000000&nPage=24&tag=",
+        "institution": "보건복지부",
+        "domain": "public_health_prevention"
+      },
+      {
+        "url": "https://www.mohw.go.kr/board.es?act=view&bid=0027&cg_code=&list_no=352649&mid=a10503010100&tag=",
+        "institution": "보건복지부",
+        "domain": "infectious_disease"
+      }
+    ]
+  },
+  "processing": {
+    "maximum_chunk_characters": 1600,
+    "minimum_chunk_characters": 120,
+    "maximum_chunks_per_document": 24,
+    "parquet_compression": "zstd",
+    "jsonl_zstd_level": 6,
+    "documents_per_shard": 10000,
+    "process_workers": 6,
+    "integration_threads": 2,
+    "integration_memory_limit": "24GB",
+    "reuse_integrated_parquet": false,
+    "balance": {
+      "target_documents_per_domain": 100000,
+      "maximum_dominant_domain_share": 0.12,
+      "selection_method": "lowest_stable_sha256_per_domain",
+      "domains": {
+        "cardiovascular": ["cardiac", "cardiovascular", "heart", "hypertension", "stroke", "vascular"],
+        "respiratory": ["respiratory", "lung", "pulmonary", "asthma", "copd", "pneumonia"],
+        "neurology": ["neurolog", "brain", "epilep", "headache", "dementia", "parkinson"],
+        "mental_health": ["psychiatr", "mental health", "depress", "anxiety", "suicide", "addiction"],
+        "endocrine_metabolic": ["diabet", "endocrin", "metabolic", "thyroid", "obesity", "lipid"],
+        "infectious_disease": ["infect", "virus", "viral", "bacter", "covid", "tuberculosis", "hiv"],
+        "oncology": ["cancer", "tumor", "tumour", "oncolog", "carcinoma", "leukemia", "lymphoma"],
+        "musculoskeletal": ["musculoskeletal", "bone", "joint", "arthritis", "orthop", "muscle"],
+        "gastro_hepatology": ["gastro", "intestinal", "bowel", "liver", "hepat", "pancrea"],
+        "renal_urology": ["renal", "kidney", "urolog", "urinary", "bladder", "prostate"],
+        "reproductive_womens": ["pregnan", "obstetric", "gynec", "reproductive", "maternal", "breastfeeding"],
+        "pediatrics": ["pediatric", "paediatric", "child", "infant", "neonat", "adolescent"],
+        "geriatrics": ["geriatric", "older adult", "aging", "ageing", "frailty"],
+        "dermatology": ["dermat", "skin", "eczema", "psoriasis", "melanoma"],
+        "ophthalmology_ent": ["ophthalm", "vision", "eye", "otolaryng", "hearing", "ear", "nasal"],
+        "dental_oral": ["dental", "dentistry", "oral health", "periodont", "tooth", "teeth"],
+        "genetics_rare": ["genetic", "genomic", "chromosome", "mutation", "rare disease", "heredit"],
+        "public_health_prevention": ["public health", "prevention", "screening", "epidemiolog", "vaccin", "health policy"],
+        "diagnostics_pharmacology": ["diagnostic", "biomarker", "imaging", "pharmac", "drug", "therapeutic"],
+        "general_other": []
+      }
+    }
+  }
+}

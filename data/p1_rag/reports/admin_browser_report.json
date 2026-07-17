@@ -1,0 +1,50 @@
+{
+  "base_url": "http://192.168.100.58",
+  "admin_routes": [
+    {
+      "route": "/admin/users/overview",
+      "desktop_mobile_passed": true,
+      "geometry": {
+        "headerBottom": 68,
+        "rootTop": 68,
+        "rootBottom": 1000,
+        "viewport": 1000
+      }
+    },
+    {
+      "route": "/admin/settings/general",
+      "desktop_mobile_passed": true,
+      "geometry": {
+        "headerBottom": 68,
+        "rootTop": 68,
+        "rootBottom": 1000,
+        "viewport": 1000
+      }
+    },
+    {
+      "route": "/workspace/models",
+      "desktop_mobile_passed": true,
+      "geometry": {
+        "headerBottom": 68,
+        "rootTop": 68,
+        "rootBottom": 1000,
+        "viewport": 1000
+      }
+    }
+  ],
+  "developer_toolbar": {
+    "position": "sticky",
+    "headerBottom": 68,
+    "toolbarTop": 68,
+    "toolbarBottom": 133.046875,
+    "welcomeTop": 240.296875
+  },
+  "first_response": {
+    "visible_without_refresh": true,
+    "first_visible_seconds": 2.407,
+    "institution_cards": 1,
+    "source_cards": 1,
+    "navigation_entries": 1
+  },
+  "all_checks_passed": true
+}

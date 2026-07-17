@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import platform
 import sys
 from pathlib import Path
@@ -43,6 +44,10 @@ def main() -> int:
     parser.add_argument("--skip-evaluation", action="store_true")
     args = parser.parse_args()
     config = read_json(args.config)
+    configured_generation_url = config["generation"]["base_url"]
+    generation_url = os.getenv("VLLM_BASE_URL", "").strip()
+    if generation_url:
+        config["generation"]["base_url"] = generation_url.rstrip("/")
     if args.strict and sys.version_info[:2] != (3, 12):
         raise RuntimeError(f"P1 strict execution requires Python 3.12, got {platform.python_version()}")
 
@@ -56,13 +61,14 @@ def main() -> int:
     chunks = read_jsonl(P1_ROOT / "processed/chunks.jsonl")
     index = EmbeddingIndex(config["embedding"])
     index_report = index.use_existing(chunks) or index.build(chunks)
-    reranker = Reranker(config["reranker"])
-    generator = OpenAICompatibleGenerator(config["generation"])
-    evaluation_report = (
-        {"skipped": True, "integrity_checks_passed": True}
-        if args.skip_evaluation
-        else run_evaluation(config, index, reranker, generator, strict=args.strict)
-    )
+    if args.skip_evaluation:
+        reranker = None
+        generator = None
+        evaluation_report = {"skipped": True, "integrity_checks_passed": True}
+    else:
+        reranker = Reranker(config["reranker"])
+        generator = OpenAICompatibleGenerator(config["generation"])
+        evaluation_report = run_evaluation(config, index, reranker, generator, strict=args.strict)
     after_digest, after_file_count = protected_data_digest()
     p0_unchanged = before_digest == after_digest and protected_file_count == after_file_count
     failures = []
@@ -88,8 +94,9 @@ def main() -> int:
         "index": index_report,
         "evaluation": evaluation_report,
         "reranker_model": config["reranker"]["model"],
-        "generator_base_url": generator.base_url,
-        "generator_model": generator.model_name,
+        "configured_generator_base_url": configured_generation_url,
+        "generator_base_url": generator.base_url if generator else config["generation"]["base_url"],
+        "generator_model": generator.model_name if generator else "skipped",
         "generator_temperature": config["generation"]["temperature"],
         "failure_or_manual_review_count": len(failures),
         "source_and_config_files": [
@@ -98,6 +105,7 @@ def main() -> int:
             "requirements-p1.txt",
             "config/p1_rag_config.json",
             "config/p1_rag_safety_rules.json",
+            "config/p1_symptom_intake.json",
             "scripts/run_p1_rag_pipeline.py",
             "scripts/query_wonju_p1_rag.py",
             "scripts/p1_rag/common.py",

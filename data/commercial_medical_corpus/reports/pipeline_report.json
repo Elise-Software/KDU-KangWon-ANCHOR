@@ -1,0 +1,41 @@
+{
+  "schema_version": "commercial-medical-corpus-v1",
+  "generated_at": "2026-07-16T16:21:33+00:00",
+  "config_path": "config/commercial_medical_corpus.json",
+  "output_dir": "data/commercial_medical_corpus",
+  "document_count": 6,
+  "chunk_count": 88,
+  "raw_record_count": 7,
+  "exclusion_count": 0,
+  "source_document_counts": {
+    "pmc_oa_comm": 1,
+    "medlineplus_health_topics": 2,
+    "medlineplus_medical_tests": 2,
+    "medlineplus_genetics": 1
+  },
+  "licenses": [
+    "CC BY",
+    "U.S. Public Domain"
+  ],
+  "checks": {
+    "documents_present": true,
+    "chunks_present": true,
+    "allowed_licenses_only": true,
+    "retracted_documents": 0,
+    "duplicate_document_count": 0,
+    "duplicate_chunk_count": 0,
+    "missing_required_chunk_fields": 0,
+    "raw_sha256_complete": true
+  },
+  "integrity_checks_passed": true,
+  "dataset_status": "verified",
+  "outputs": {
+    "documents_jsonl": "processed/documents.jsonl",
+    "documents_parquet": "processed/documents.parquet",
+    "chunks_jsonl": "processed/chunks.jsonl",
+    "chunks_parquet": "processed/chunks.parquet",
+    "raw_manifest": "raw/manifest.csv",
+    "exclusions": "reports/exclusions.jsonl",
+    "license_audit": "reports/license_audit.jsonl"
+  }
+}

@@ -4,6 +4,7 @@ import re
 import time
 import urllib3
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
 
@@ -13,7 +14,11 @@ from bs4 import BeautifulSoup
 from .common import P1_ROOT, now_iso, relative, sha256_bytes, stable_id, today, write_csv, write_json
 
 
-USER_AGENT = "KDU-KangWon-ANCHOR-P1/1.0 (public-data research)"
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 Chrome/131 Safari/537.36 "
+    "KDU-KangWon-ANCHOR-P1/1.0"
+)
 MANIFEST_COLUMNS = [
     "doc_id", "title", "category", "url", "reference_date",
     "reference_date_basis", "retrieved_at", "raw_path", "sha256",
@@ -38,7 +43,7 @@ def get(url: str, timeout: int) -> requests.Response:
                 response = requests.get(url, timeout=timeout, headers={"User-Agent": USER_AGENT}, verify=False)
             response.raise_for_status()
             return response
-        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+        except requests.exceptions.RequestException as exc:
             last_error = exc
             time.sleep(0.5 * (attempt + 1))
     assert last_error is not None
@@ -87,11 +92,24 @@ def extract_metadata(url: str, content: bytes) -> tuple[str, str, str, str]:
         reference_date = f"{int(match.group(1)):04d}-{int(match.group(2)):02d}-{int(match.group(3)):02d}"
         basis = "official_last_modified"
     else:
-        reference_date = today()
-        basis = "collection_date_no_published_date"
+        reviewed = re.search(
+            r"Page\s+last\s+reviewed\s*[:：]?\s*(\d{1,2})\s+([A-Za-z]+)\s+(20\d{2})",
+            text,
+            re.IGNORECASE,
+        )
+        if reviewed:
+            month = datetime.strptime(reviewed.group(2)[:3], "%b").month
+            reference_date = f"{int(reviewed.group(3)):04d}-{month:02d}-{int(reviewed.group(1)):02d}"
+            basis = "official_last_reviewed"
+        else:
+            reference_date = today()
+            basis = "collection_date_no_published_date"
     parsed = urlparse(url)
     category = (
         "mental_health" if parsed.netloc == "loveme.yonsei.kr"
+        else "clinical_guidance" if parsed.netloc in {
+            "health.kdca.go.kr", "www.e-gen.or.kr", "www.nice.org.uk", "www.nhs.uk"
+        }
         else "health" if parsed.path.startswith("/health/")
         else "welfare"
     )

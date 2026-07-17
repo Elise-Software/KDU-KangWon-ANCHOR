@@ -1,0 +1,193 @@
+name: wonju-health-ai
+
+services:
+  p1-api:
+    build:
+      context: ./p1-api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      WONJU_REPO_ROOT: /workspace
+      P1_INTERNAL_API_KEY: ${P1_INTERNAL_API_KEY:?P1_INTERNAL_API_KEY is required}
+      VLLM_BASE_URL: ${VLLM_BASE_URL:-http://wonju-vllm:8000/v1}
+      VLLM_API_KEY: ${VLLM_API_KEY:-}
+      P1_PRELOAD_MODELS: ${P1_PRELOAD_MODELS:-true}
+      HF_HOME: /workspace/.cache/huggingface
+      TRANSFORMERS_CACHE: /workspace/.cache/huggingface
+      HF_HUB_OFFLINE: ${P1_MODEL_OFFLINE:-0}
+      TRANSFORMERS_OFFLINE: ${P1_MODEL_OFFLINE:-0}
+    expose:
+      - "8010"
+    volumes:
+      - ../../scripts:/workspace/scripts:ro
+      - ../../config:/workspace/config:ro
+      - ../../data/p1_rag:/workspace/data/p1_rag:ro
+      - ../../data/integrated/wonju:/workspace/data/integrated/wonju:ro
+      - p1_model_cache:/workspace/.cache
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/ready', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 10m
+    networks:
+      - wonju-health-internal
+
+  raw-dev-proxy:
+    build:
+      context: ./p1-api
+      dockerfile: Dockerfile.raw
+    restart: unless-stopped
+    command: ["uvicorn", "raw_proxy:app", "--host", "0.0.0.0", "--port", "8020"]
+    environment:
+      RAW_PROXY_INTERNAL_API_KEY: ${RAW_PROXY_INTERNAL_API_KEY:?RAW_PROXY_INTERNAL_API_KEY is required}
+      OPEN_WEBUI_JWT_SECRET: ${OPEN_WEBUI_JWT_SECRET:?OPEN_WEBUI_JWT_SECRET is required}
+      DEVELOPER_EMAILS: ${DEVELOPER_EMAILS:-}
+      RAW_MODEL_ID: ${RAW_MODEL_ID:-gemma-4-31b-nvfp4}
+      VLLM_BASE_URL: ${VLLM_BASE_URL:-http://wonju-vllm:8000/v1}
+      VLLM_API_KEY: ${VLLM_API_KEY:-}
+    expose:
+      - "8020"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8020/health', timeout=5)"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - wonju-health-internal
+
+  open-webui:
+    build:
+      context: .
+      dockerfile: open-webui/Dockerfile
+      args:
+        OPEN_WEBUI_IMAGE: ${OPEN_WEBUI_IMAGE:-ghcr.io/open-webui/open-webui:v0.9.6}
+    restart: unless-stopped
+    environment:
+      WEBUI_NAME: "원주시 생활건강 안내 AI"
+      WEBUI_URL: ${PUBLIC_BASE_URL:-http://localhost}
+      WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY:?WEBUI_SECRET_KEY is required}
+      WEBUI_ADMIN_NAME: ${WEBUI_ADMIN_NAME:-원주시 생활건강 관리자}
+      WEBUI_ADMIN_EMAIL: ${WEBUI_ADMIN_EMAIL:?WEBUI_ADMIN_EMAIL is required}
+      WEBUI_ADMIN_PASSWORD: ${WEBUI_ADMIN_PASSWORD:?WEBUI_ADMIN_PASSWORD is required}
+      ENABLE_SIGNUP: "false"
+      DEFAULT_USER_ROLE: user
+      DEFAULT_LOCALE: ko-KR
+      DEFAULT_MODELS: wonju-health-rag
+      DEFAULT_PINNED_MODELS: wonju-health-rag
+      DEFAULT_PROMPT_SUGGESTIONS: >-
+        [{"title":["오늘 문 여는 약국","운영시간과 전화번호"],"content":"오늘 이용할 수 있는 원주시 약국과 확인할 전화번호를 알려주세요."},{"title":["보건소 이용 안내","주소와 연락처"],"content":"원주시보건소 주소, 대표전화와 이용 방법을 알려주세요."},{"title":["마음이 너무 힘들어요","즉시 도움받기"],"content":"지금 자해할 것 같고 혼자 있습니다. 어디에 즉시 연락해야 하나요?"}]
+      ENABLE_OPENAI_API: "true"
+      OPENAI_API_BASE_URLS: http://p1-api:8010/v1;http://raw-dev-proxy:8020/v1
+      OPENAI_API_KEYS: ${P1_INTERNAL_API_KEY};${RAW_PROXY_INTERNAL_API_KEY}
+      OPENAI_API_CONFIGS: >-
+        {"0":{"enable":true,"model_ids":["wonju-health-rag"],"tags":["원주시 공식 근거"],"connection_type":"external"},"1":{"enable":true,"model_ids":["${RAW_MODEL_ID:-gemma-4-31b-nvfp4}"],"tags":["개발자 전용"],"connection_type":"external"}}
+      ENABLE_FORWARD_USER_INFO_HEADERS: "true"
+      FORWARD_USER_INFO_HEADER_JWT_SECRET: ${OPEN_WEBUI_JWT_SECRET}
+      BYPASS_MODEL_ACCESS_CONTROL: "false"
+      RESET_CONFIG_ON_START: "true"
+      ENABLE_DIRECT_CONNECTIONS: "false"
+      ENABLE_WEB_SEARCH: "false"
+      ENABLE_CODE_INTERPRETER: "false"
+      ENABLE_IMAGE_GENERATION: "false"
+      ENABLE_RAG_LOCAL_WEB_FETCH: "false"
+      ENABLE_TITLE_GENERATION: "false"
+      ENABLE_TAGS_GENERATION: "false"
+      ENABLE_FOLLOW_UP_GENERATION: "false"
+      ENABLE_AUTOCOMPLETE_GENERATION: "false"
+      USER_PERMISSIONS_WORKSPACE_MODELS_ACCESS: "false"
+      USER_PERMISSIONS_WORKSPACE_KNOWLEDGE_ACCESS: "false"
+      USER_PERMISSIONS_WORKSPACE_PROMPTS_ACCESS: "false"
+      USER_PERMISSIONS_WORKSPACE_TOOLS_ACCESS: "false"
+      USER_PERMISSIONS_WORKSPACE_SKILLS_ACCESS: "false"
+      USER_PERMISSIONS_CHAT_CONTROLS: "false"
+      USER_PERMISSIONS_CHAT_VALVES: "false"
+      USER_PERMISSIONS_CHAT_SYSTEM_PROMPT: "false"
+      USER_PERMISSIONS_CHAT_PARAMS: "false"
+      USER_PERMISSIONS_CHAT_FILE_UPLOAD: "false"
+      USER_PERMISSIONS_CHAT_WEB_UPLOAD: "false"
+      USER_PERMISSIONS_CHAT_MULTIPLE_MODELS: "false"
+      USER_PERMISSIONS_FEATURES_DIRECT_TOOL_SERVERS: "false"
+      USER_PERMISSIONS_FEATURES_WEB_SEARCH: "false"
+      USER_PERMISSIONS_FEATURES_IMAGE_GENERATION: "false"
+      USER_PERMISSIONS_FEATURES_CODE_INTERPRETER: "false"
+      USER_PERMISSIONS_FEATURES_NOTES: "false"
+      USER_PERMISSIONS_FEATURES_FOLDERS: "false"
+      USER_PERMISSIONS_FEATURES_CHANNELS: "false"
+      USER_PERMISSIONS_FEATURES_API_KEYS: "false"
+      USER_PERMISSIONS_FEATURES_MEMORIES: "false"
+      USER_PERMISSIONS_FEATURES_AUTOMATIONS: "false"
+      USER_PERMISSIONS_FEATURES_CALENDAR: "false"
+    expose:
+      - "8080"
+    volumes:
+      - open_webui_data:/app/backend/data
+    depends_on:
+      p1-api:
+        condition: service_healthy
+      raw-dev-proxy:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "--fail", "http://127.0.0.1:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 90s
+    networks:
+      - wonju-health-internal
+
+  permissions-bootstrap:
+    build:
+      context: ./bootstrap
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      OPEN_WEBUI_URL: http://open-webui:8080
+      WEBUI_ADMIN_EMAIL: ${WEBUI_ADMIN_EMAIL}
+      WEBUI_ADMIN_PASSWORD: ${WEBUI_ADMIN_PASSWORD}
+      DEVELOPER_EMAILS: ${DEVELOPER_EMAILS:-}
+      DEVELOPER_GROUP_NAME: ${DEVELOPER_GROUP_NAME:-개발자}
+      GENERAL_MODEL_ID: wonju-health-rag
+      RAW_MODEL_ID: ${RAW_MODEL_ID:-gemma-4-31b-nvfp4}
+      SYNC_INTERVAL_SECONDS: ${PERMISSION_SYNC_INTERVAL_SECONDS:-60}
+    depends_on:
+      open-webui:
+        condition: service_healthy
+    networks:
+      - wonju-health-internal
+
+  caddy:
+    image: caddy:2.10.2-alpine
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-80}:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      open-webui:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/gateway/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    networks:
+      - wonju-health-internal
+
+networks:
+  wonju-health-internal:
+    name: wonju-health-internal
+    internal: false
+
+volumes:
+  open_webui_data:
+  p1_model_cache:
+  caddy_data:
+  caddy_config:

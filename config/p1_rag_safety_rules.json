@@ -1,4 +1,19 @@
 {
+  "composite_rules": [
+    {
+      "rule_id": "sudden_severe_headache",
+      "category": "emergency",
+      "all_of": [
+        ["두통", "머리가", "머리 통증"],
+        ["갑자기", "갑작스럽", "순식간", "몇 초", "몇 분 안", "바로 최고"],
+        ["깨질", "극심", "최악", "가장 심", "벼락", "번개"]
+      ],
+      "evidence_urls": [
+        "https://health.kdca.go.kr/healthinfo/biz/health/ccvdInfo/ccvcdInfo/cbvcacdInfoMain.do",
+        "https://www.nice.org.uk/guidance/cg150/chapter/recommendations"
+      ]
+    }
+  ],
   "emergency": {
     "keywords": ["의식이 없", "숨을 못", "호흡곤란", "가슴 통증", "심한 출혈", "응급", "쓰러졌", "경련", "마비"],
     "required_terms": ["119"],
@@ -20,7 +35,7 @@
   "medical_high_risk": {
     "keywords": ["진단해", "약을 얼마나", "복용량", "처방", "임신", "영아", "고열", "혈압이", "혈당이"],
     "required_terms": ["의료진"],
-    "evidence_terms": ["119"],
-    "message": "이 안내는 진단이나 처방을 대신하지 않습니다. 증상이 심하거나 빠르게 악화되면 119에 연락하고, 그렇지 않으면 의료진에게 직접 상담하세요."
+    "evidence_terms": ["의사나 약사"],
+    "message": "이 안내는 진단이나 처방, 개인별 복용량 결정을 대신하지 않습니다. 임신·영유아·기저질환·복용 중인 약에 따라 달라질 수 있으므로 약사 또는 의료진에게 직접 확인하세요. 의식이나 호흡 이상처럼 즉각적인 위험이 함께 있으면 119에 연락하세요."
   }
 }
