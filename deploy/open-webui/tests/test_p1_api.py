@@ -3,10 +3,13 @@ from __future__ import annotations
 import base64
 import json
 import re
+from pathlib import Path
 
 from fastapi.testclient import TestClient
+import jwt
 
 import app as p1_app
+from audit import AuditStore
 
 
 class FakeService:
@@ -269,6 +272,140 @@ def test_streaming_is_openai_compatible(monkeypatch):
     assert len(content_deltas) >= 2
     assert "wonju-health-meta" in "".join(content_deltas)
     assert events[-1]["choices"][0]["finish_reason"] == "stop"
+
+
+def audit_client(monkeypatch, tmp_path: Path) -> tuple[TestClient, AuditStore]:
+    monkeypatch.setenv("P1_INTERNAL_API_KEY", "test-p1-key")
+    monkeypatch.setenv("WEBUI_SECRET_KEY", "test-webui-secret-at-least-32-bytes")
+    store = AuditStore(tmp_path / "audit.sqlite3", hash_salt="test-salt", retention_days=30)
+    return TestClient(p1_app.create_app(FakeService(), store)), store
+
+
+def webui_token(user_id: str, role: str) -> str:
+    return jwt.encode(
+        {"id": user_id, "role": role},
+        "test-webui-secret-at-least-32-bytes",
+        algorithm="HS256",
+    )
+
+
+def test_runtime_audit_records_masks_filters_feedback_and_exports(monkeypatch, tmp_path):
+    test_client, store = audit_client(monkeypatch, tmp_path)
+    with test_client:
+        response = test_client.post(
+            "/v1/chat/completions",
+            headers={
+                "Authorization": "Bearer test-p1-key",
+                "X-OpenWebUI-User-Id": "resident-1",
+                "X-OpenWebUI-User-Role": "user",
+            },
+            json={
+                "model": "wonju-health-rag",
+                "messages": [{"role": "user", "content": "010-1234-5678 user@example.com 보건소 알려주세요"}],
+            },
+        )
+        assert response.status_code == 200
+        details = metadata(response.json()["choices"][0]["message"]["content"])
+        event_id = details["audit_event_id"]
+        assert event_id.startswith("audit_")
+
+        resident = webui_token("resident-1", "user")
+        feedback = test_client.post(
+            f"/audit/events/{event_id}/feedback",
+            headers={"Authorization": f"Bearer {resident}"},
+            json={"rating": "helpful", "comment": "010-9876-5432 좋아요"},
+        )
+        assert feedback.status_code == 200
+
+        admin = webui_token("admin-1", "admin")
+        summary = test_client.get(
+            "/audit/summary", headers={"Authorization": f"Bearer {admin}"}
+        )
+        assert summary.status_code == 200
+        assert summary.json() == {
+            "total": 1, "success": 1, "failure": 0,
+            "helpful": 1, "unhelpful": 0, "high_risk": 0,
+        }
+        events = test_client.get(
+            "/audit/events?status=success&rating=helpful",
+            headers={"Authorization": f"Bearer {admin}"},
+        ).json()
+        assert events["total"] == 1
+        assert events["rows"][0]["user_hash"] == store.user_hash("resident-1")
+        assert "010-1234-5678" not in events["rows"][0]["question_text"]
+        assert "user@example.com" not in events["rows"][0]["question_text"]
+        assert "010-9876-5432" not in events["rows"][0]["feedback_comment"]
+
+        exported = test_client.get(
+            "/audit/export.csv?rating=helpful",
+            headers={"Authorization": f"Bearer {admin}"},
+        )
+        assert exported.status_code == 200
+        assert exported.content.startswith(b"\xef\xbb\xbf")
+        assert event_id in exported.text
+
+
+def test_runtime_audit_rejects_non_admin_reads_and_cross_user_feedback(monkeypatch, tmp_path):
+    test_client, _ = audit_client(monkeypatch, tmp_path)
+    with test_client:
+        response = test_client.post(
+            "/v1/chat/completions",
+            headers={"Authorization": "Bearer test-p1-key", "X-OpenWebUI-User-Id": "resident-1"},
+            json={"model": "wonju-health-rag", "messages": [{"role": "user", "content": "보건소"}]},
+        )
+        event_id = metadata(response.json()["choices"][0]["message"]["content"])["audit_event_id"]
+        other = webui_token("resident-2", "user")
+        assert test_client.get(
+            "/audit/events", headers={"Authorization": f"Bearer {other}"}
+        ).status_code == 403
+        assert test_client.post(
+            f"/audit/events/{event_id}/feedback",
+            headers={"Authorization": f"Bearer {other}"},
+            json={"rating": "unhelpful"},
+        ).status_code == 403
+
+
+def test_authenticated_user_can_rate_an_anonymously_forwarded_event(monkeypatch, tmp_path):
+    test_client, store = audit_client(monkeypatch, tmp_path)
+    store.record(
+        event_id="audit_anonymous",
+        user_identity="anonymous",
+        user_role="user",
+        question="보건소를 알려주세요",
+        status="success",
+    )
+    with test_client:
+        resident = webui_token("resident-2", "user")
+        response = test_client.post(
+            "/audit/events/audit_anonymous/feedback",
+            headers={"Authorization": f"Bearer {resident}"},
+            json={"rating": "helpful"},
+        )
+        assert response.status_code == 200
+        assert store.list_events(rating="helpful")["total"] == 1
+
+
+def test_webui_role_is_resolved_server_side_when_browser_token_omits_it(monkeypatch, tmp_path):
+    test_client, _ = audit_client(monkeypatch, tmp_path)
+
+    class ProfileResponse:
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return {"id": "admin-with-minimal-token", "role": "admin", "email": "admin@example.org"}
+
+    monkeypatch.setattr(p1_app.requests, "get", lambda *args, **kwargs: ProfileResponse())
+    minimal_token = jwt.encode(
+        {"id": "admin-with-minimal-token"},
+        "test-webui-secret-at-least-32-bytes",
+        algorithm="HS256",
+    )
+    with test_client:
+        response = test_client.get(
+            "/audit/summary", headers={"Authorization": f"Bearer {minimal_token}"}
+        )
+        assert response.status_code == 200
 
 
 def test_existing_pharmacy_phone_conflict_policy_is_preserved():

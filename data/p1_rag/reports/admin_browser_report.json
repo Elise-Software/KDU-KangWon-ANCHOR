@@ -32,6 +32,14 @@
       }
     }
   ],
+  "operations_console": {
+    "route": "/admin/users/overview?wonju=operations",
+    "metric_count": 6,
+    "event_row_count": 4,
+    "filters": 4,
+    "csv_export_visible": true,
+    "desktop_mobile_passed": true
+  },
   "developer_toolbar": {
     "position": "sticky",
     "headerBottom": 68,
@@ -41,7 +49,7 @@
   },
   "first_response": {
     "visible_without_refresh": true,
-    "first_visible_seconds": 2.407,
+    "first_visible_seconds": 2.547,
     "institution_cards": 1,
     "source_cards": 1,
     "navigation_entries": 1

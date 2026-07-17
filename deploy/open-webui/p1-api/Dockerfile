@@ -15,10 +15,10 @@ RUN pip install --upgrade pip \
        fi \
     && pip install -r /app/requirements.txt
 
-COPY app.py raw_proxy.py /app/
+COPY app.py audit.py raw_proxy.py /app/
 RUN useradd --create-home --uid 10001 wonju \
-    && mkdir -p /workspace/.cache \
-    && chown -R wonju:wonju /app /workspace
+    && mkdir -p /workspace/.cache /var/lib/wonju-audit \
+    && chown -R wonju:wonju /app /workspace /var/lib/wonju-audit
 USER wonju
 
 EXPOSE 8010

@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-07-17T14:10:08+00:00",
+  "senior_scenario_count": 10,
+  "senior_scenario_minimum": 10,
+  "senior_scenarios_passed": true,
+  "senior_scenario_domains": [
+    "노인장기요양보험 급여종류 안내",
+    "치매 자가진단 평가방법 안내",
+    "심정지 상황의 심폐소생술 안내",
+    "음식물 기도폐쇄 응급대처 안내",
+    "약물 오남용 예방과 복용 주의 안내",
+    "걷기 등 지역 신체활동 사업 안내",
+    "장애인 복지·일자리 지원 안내",
+    "기초생활 자산형성·자활 지원 안내",
+    "마약류·중독 위험과 상담 필요성 안내",
+    "고령자 두통 확인질문과 가까운 의료기관 안내"
+  ],
+  "factual_scenario_count": 9,
+  "live_persona_scenario_count": 1,
+  "factual_acceptance_criteria": {
+    "recall_at_5_hit": true,
+    "groundedness_score_minimum": 0.55,
+    "citation_accuracy": 1.0
+  },
+  "factual_observed": {
+    "recall_at_5_passed_count": 9,
+    "minimum_groundedness_score": 0.6153846153846154,
+    "minimum_citation_accuracy": 1.0
+  },
+  "safety_rule_pattern_count": 31,
+  "safety_rule_minimum": 20,
+  "safety_rules_passed": true,
+  "artifacts": {
+    "senior_scenarios": "data/p1_rag/evaluation/rise_senior_scenarios.csv",
+    "safety_rules": "data/p1_rag/reports/rise_safety_rule_inventory.csv"
+  },
+  "integrity_checks_passed": true
+}

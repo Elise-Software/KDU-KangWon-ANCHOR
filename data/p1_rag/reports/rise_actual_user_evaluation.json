@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-07-17T14:05:37+00:00",
+  "participant_count": 5,
+  "minimum_participants": 5,
+  "participant_groups": {
+    "senior": 3,
+    "caregiver": 2,
+    "resident": 0
+  },
+  "required_groups_present": true,
+  "scenario_coverage": [
+    "actual-01",
+    "actual-02",
+    "actual-03",
+    "actual-04",
+    "actual-05"
+  ],
+  "minimum_scenario_coverage": 5,
+  "scenario_coverage_complete": true,
+  "completion_rate": 1.0,
+  "average_duration_seconds": 1336.6,
+  "average_ratings": {
+    "readability": 4.2,
+    "clarity": 3.6,
+    "trust": 3.6,
+    "connection_ease": 4.0,
+    "safety_clarity": 3.8
+  },
+  "comments": [
+    "의료 안내가 조금 더 명확했으면 좋았을 것 같아요.",
+    "아직 병원의 상세한 운영시간이라던가, 추가 정보들이 아직 추가되지 않았음.",
+    "위치 안내는 잘 하는데, 내 위치를 자동으로 감지하지 못해서 매번 말해야 하는게 귀찮음",
+    "핸드폰으로 했을때 전화번호,가 바로 눌렸으면 좋겠읍니다.",
+    "의료자료가 한국어보다 영어 자료라서 잘 모르겠습니다."
+  ],
+  "evaluation_kind": "actual_user",
+  "actual_user_evaluation_passed": true,
+  "simulation_acceptance_criteria_met": null,
+  "simulation_completed": null,
+  "status": "completed"
+}

@@ -9,6 +9,11 @@ services:
     environment:
       WONJU_REPO_ROOT: /workspace
       P1_INTERNAL_API_KEY: ${P1_INTERNAL_API_KEY:?P1_INTERNAL_API_KEY is required}
+      WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY:?WEBUI_SECRET_KEY is required}
+      OPEN_WEBUI_INTERNAL_URL: http://open-webui:8080
+      P1_AUDIT_DB_PATH: /var/lib/wonju-audit/runtime-audit.sqlite3
+      P1_AUDIT_HASH_SALT: ${OPEN_WEBUI_JWT_SECRET:?OPEN_WEBUI_JWT_SECRET is required}
+      P1_AUDIT_RETENTION_DAYS: ${P1_AUDIT_RETENTION_DAYS:-30}
       VLLM_BASE_URL: ${VLLM_BASE_URL:-http://wonju-vllm:8000/v1}
       VLLM_API_KEY: ${VLLM_API_KEY:-}
       P1_PRELOAD_MODELS: ${P1_PRELOAD_MODELS:-true}
@@ -24,6 +29,7 @@ services:
       - ../../data/p1_rag:/workspace/data/p1_rag:ro
       - ../../data/integrated/wonju:/workspace/data/integrated/wonju:ro
       - p1_model_cache:/workspace/.cache
+      - p1_audit_data:/var/lib/wonju-audit
     extra_hosts:
       - "host.docker.internal:host-gateway"
     healthcheck:
@@ -189,5 +195,6 @@ networks:
 volumes:
   open_webui_data:
   p1_model_cache:
+  p1_audit_data:
   caddy_data:
   caddy_config:

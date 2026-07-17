@@ -1,0 +1,20 @@
+{
+  "base_url": "http://127.0.0.1",
+  "event_id": "audit_415a80dcc0b74983bb9da93863be6d1b",
+  "resident_list_status": 403,
+  "feedback_status": 200,
+  "admin_summary_status": 200,
+  "admin_events_status": 200,
+  "csv_status": 200,
+  "question_masked": "원주시보건소 전화번호를 알려주세요 audit-03dd0443",
+  "feedback_rating": "helpful",
+  "audit_summary": {
+    "total": 4,
+    "success": 4,
+    "failure": 0,
+    "helpful": 1,
+    "unhelpful": 0,
+    "high_risk": 0
+  },
+  "passed": true
+}

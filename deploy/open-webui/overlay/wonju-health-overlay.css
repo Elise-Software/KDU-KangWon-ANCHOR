@@ -246,6 +246,192 @@ body.wonju-health-admin a[href*="OpenWebUI" i] {
   display: none !important;
 }
 
+.wonju-health-audit-console {
+  position: fixed;
+  z-index: 1150;
+  inset: 68px 0 0;
+  overflow: auto;
+  padding: 30px clamp(20px, 4vw, 64px) 48px;
+  background: #f5f8f7;
+  color: var(--wonju-ink);
+}
+
+.wonju-health-audit-heading {
+  display: flex;
+  align-items: end;
+  max-width: 1500px;
+  margin: 0 auto 22px;
+  gap: 24px;
+}
+
+.wonju-health-audit-heading h1 {
+  margin: 5px 0 6px;
+  color: var(--wonju-green-900);
+  font-size: clamp(25px, 3vw, 36px);
+  letter-spacing: -0.04em;
+}
+
+.wonju-health-audit-heading p,
+.wonju-health-audit-status {
+  margin: 0;
+  color: var(--wonju-muted);
+  font-size: 14px;
+}
+
+.wonju-health-audit-actions {
+  display: flex;
+  margin-left: auto;
+  gap: 8px;
+}
+
+.wonju-health-audit-actions button {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid #b8cec5;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--wonju-green-900);
+  font-weight: 800;
+}
+
+.wonju-health-audit-actions button.is-primary {
+  border-color: var(--wonju-green-800);
+  background: var(--wonju-green-800);
+  color: #fff;
+}
+
+.wonju-health-audit-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  max-width: 1500px;
+  margin: 0 auto 16px;
+  gap: 10px;
+}
+
+.wonju-health-audit-metric {
+  display: grid;
+  min-height: 96px;
+  padding: 16px;
+  border: 1px solid var(--wonju-border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgb(18 63 55 / 4%);
+}
+
+.wonju-health-audit-metric span {
+  color: var(--wonju-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.wonju-health-audit-metric strong {
+  align-self: end;
+  color: var(--wonju-green-900);
+  font-size: 28px;
+}
+
+.wonju-health-audit-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(130px, 190px)) minmax(240px, 1fr);
+  max-width: 1500px;
+  margin: 0 auto 12px;
+  padding: 14px;
+  border: 1px solid var(--wonju-border);
+  border-radius: 12px;
+  background: #fff;
+  gap: 12px;
+}
+
+.wonju-health-audit-field {
+  display: grid;
+  gap: 6px;
+}
+
+.wonju-health-audit-field span {
+  color: #52645e;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.wonju-health-audit-field input,
+.wonju-health-audit-field select {
+  min-height: 42px;
+  padding: 0 11px;
+  border: 1px solid #c9d9d3 !important;
+  border-radius: 8px;
+  background: #fbfdfc;
+  color: var(--wonju-ink);
+}
+
+.wonju-health-audit-status {
+  max-width: 1500px;
+  margin: 0 auto 10px;
+}
+
+.wonju-health-audit-status.is-error { color: #b42318; }
+
+.wonju-health-audit-table-shell {
+  max-width: 1500px;
+  margin: 0 auto;
+  overflow: auto;
+  border: 1px solid var(--wonju-border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.wonju-health-audit-table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.wonju-health-audit-table th,
+.wonju-health-audit-table td {
+  padding: 12px 11px;
+  border-bottom: 1px solid #e5ece9;
+  overflow-wrap: anywhere;
+  text-align: left;
+  vertical-align: top;
+}
+
+.wonju-health-audit-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #eaf3ef;
+  color: var(--wonju-green-900);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.wonju-health-audit-question {
+  min-width: 280px;
+  max-width: 480px;
+  line-height: 1.55;
+}
+
+.wonju-health-audit-badge {
+  display: inline-flex;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #dff3e9;
+  color: #176445;
+  font-weight: 800;
+}
+
+.wonju-health-audit-badge.is-failure {
+  background: #fde8e7;
+  color: #b42318;
+}
+
+.wonju-health-audit-empty {
+  padding: 40px !important;
+  color: var(--wonju-muted);
+  text-align: center !important;
+}
+
 .wonju-health-header-brand {
   display: flex;
   align-items: center;
@@ -1406,7 +1592,7 @@ body.wonju-health-auth #auth-container button[type="submit"] {
   .wonju-health-admin-header { padding-inline: 10px; }
   .wonju-health-admin-header .wonju-health-lockup-copy small,
   .wonju-health-admin-context,
-  .wonju-health-admin-link:not(:last-child) { display: none; }
+  .wonju-health-admin-link:not(:first-child):not(:last-child) { display: none; }
   .wonju-health-admin-actions { gap: 4px; }
   .wonju-health-admin-link:last-child {
     min-height: 44px;
@@ -1414,6 +1600,32 @@ body.wonju-health-auth #auth-container button[type="submit"] {
     font-size: 13px;
   }
   body.wonju-health-admin .wonju-health-workspace-content { padding: 16px 12px !important; }
+  .wonju-health-audit-console { inset: 64px 0 0; padding: 20px 12px 32px; }
+  .wonju-health-audit-heading { display: grid; align-items: start; gap: 14px; }
+  .wonju-health-audit-actions { width: 100%; margin-left: 0; }
+  .wonju-health-audit-actions button { flex: 1; }
+  .wonju-health-audit-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wonju-health-audit-metric { min-height: 82px; padding: 13px; }
+  .wonju-health-audit-metric strong { font-size: 24px; }
+  .wonju-health-audit-filters { grid-template-columns: 1fr 1fr; }
+  .wonju-health-audit-field.is-search { grid-column: 1 / -1; }
+  .wonju-health-audit-table { font-size: 12px; }
+  .wonju-health-audit-table th,
+  .wonju-health-audit-table td { padding: 10px 6px; overflow-wrap: anywhere; }
+  .wonju-health-audit-table th:nth-child(1),
+  .wonju-health-audit-table td:nth-child(1),
+  .wonju-health-audit-table th:nth-child(5),
+  .wonju-health-audit-table td:nth-child(5),
+  .wonju-health-audit-table th:nth-child(6),
+  .wonju-health-audit-table td:nth-child(6),
+  .wonju-health-audit-table th:nth-child(8),
+  .wonju-health-audit-table td:nth-child(8) { display: none; }
+  .wonju-health-audit-table th:nth-child(2) { width: 43%; }
+  .wonju-health-audit-table th:nth-child(3) { width: 17%; }
+  .wonju-health-audit-table th:nth-child(4) { width: 18%; }
+  .wonju-health-audit-table th:nth-child(7) { width: 22%; }
+  .wonju-health-audit-question { min-width: 0; max-width: none; }
+  .wonju-health-audit-badge { max-width: 100%; padding-inline: 5px; white-space: normal; }
 
   .wonju-health-welcome {
     width: 100%;

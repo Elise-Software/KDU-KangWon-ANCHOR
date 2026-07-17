@@ -20,6 +20,12 @@
 		respond "ok" 200
 	}
 
+	# Same-origin administrator and feedback API. Every request is still
+	# authorized by the P1 service with the Open WebUI JWT.
+	handle_path /wonju-admin-api/* {
+		reverse_proxy p1-api:8010
+	}
+
 	# Never expose Open WebUI's generated PWA identity. The browser references
 	# the branded file directly; this rewrite also keeps the conventional path
 	# clean for clients that request it explicitly.
