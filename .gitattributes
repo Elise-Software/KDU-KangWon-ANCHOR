@@ -1,0 +1,4 @@
+# Linux deployment files must retain LF line endings when checked out or copied
+# from a Windows workstation to the DGX Spark host.
+*.sh text eol=lf
+*.service text eol=lf
