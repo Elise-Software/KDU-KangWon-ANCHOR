@@ -160,6 +160,27 @@ systemctl --user status wonju-vllm.service
 Docker 준비를 기다린 뒤 `wonju-health-internal` 네트워크를 보장하고,
 `127.0.0.1:8000:8000` 외의 호스트 포트를 열지 않는다.
 
+### DGX Spark Compose 스택 자동 복구
+
+vLLM이 준비된 뒤 Caddy·Open WebUI·P1 API·개발자 프록시·권한 동기화 컨테이너도
+자동으로 시작해야 한다. `wonju-health-ai.service`는 Compose의 healthcheck가 모두
+통과할 때까지 최대 15분 기다리며, 부팅마다 이미지를 불필요하게 다시 빌드하지 않는다.
+
+Spark 서버에서 `.env`를 실제 운영 비밀값으로 준비한 뒤 한 번만 실행한다.
+
+```bash
+cd /home/elise/Desktop/KDU-KangWon-ANCHOR/deploy/open-webui
+chmod 0755 systemd/run-wonju-vllm.sh systemd/run-wonju-health-ai.sh \
+  systemd/install-dgx-spark-services.sh
+./systemd/install-dgx-spark-services.sh
+systemctl --user status wonju-vllm.service wonju-health-ai.service
+docker compose ps
+```
+
+운영 코드를 갱신할 때는 먼저 `docker compose up --build -d --wait`로 새 이미지를
+검증하고, 이후 재부팅은 `wonju-health-ai.service`가 기존 검증된 이미지를 기동한다.
+`.env`와 Docker volume은 저장소에 포함하지 않는다.
+
 ## 모델 권한
 
 일반 사용자에게 보이는 모델은 정확히 하나여야 한다.

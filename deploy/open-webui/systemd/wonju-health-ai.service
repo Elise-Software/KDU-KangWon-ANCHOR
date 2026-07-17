@@ -1,0 +1,16 @@
+[Unit]
+Description=Wonju Health AI Compose stack
+Wants=network-online.target wonju-vllm.service
+After=network-online.target wonju-vllm.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/elise/Desktop/KDU-KangWon-ANCHOR/deploy/open-webui
+ExecStart=/home/elise/Desktop/KDU-KangWon-ANCHOR/deploy/open-webui/systemd/run-wonju-health-ai.sh
+ExecStop=/usr/bin/docker compose --env-file /home/elise/Desktop/KDU-KangWon-ANCHOR/deploy/open-webui/.env down
+RemainAfterExit=yes
+TimeoutStartSec=20min
+TimeoutStopSec=2min
+
+[Install]
+WantedBy=default.target
