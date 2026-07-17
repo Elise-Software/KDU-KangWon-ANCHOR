@@ -218,8 +218,8 @@ uv pip install --python ".venv-p1\Scripts\python.exe" `
 & ".\.venv-p1\Scripts\python.exe" -m pytest -q
 ```
 
-최종 배포 전용 테스트는 `68 passed`, 저장소 전체 테스트는
-`127 passed, 1 skipped`를 확인했다.
+배포·P1·RISE 변경을 포함한 최신 저장소 전체 테스트는 `140 passed, 1 skipped`다.
+배포 전용 검증은 위 명령으로 현재 Compose·권한·브라우저 의존성 환경에서 다시 실행한다.
 
 실행 중인 전체 스택은 기존 사용자의 비밀번호를 명령행에 남기지 않고 임시 일반
 사용자를 만들어 검증할 수 있다. 아래처럼 비밀번호 인자를 생략하면 검증기가
