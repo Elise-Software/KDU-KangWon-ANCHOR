@@ -125,6 +125,7 @@ def encoded_metadata() -> str:
         "risk_category": "none",
         "safety_rule_applied": False,
         "safety_contacts": [],
+        "audit_event_id": "audit_browser_test",
         "institutions": [{
             "name": "원주시보건소",
             "address": "원주시 원일로 139",
@@ -555,6 +556,84 @@ def test_admin_routes_use_branded_console_without_being_misclassified_as_chat():
         page.set_viewport_size({"width": 390, "height": 844})
         assert page.get_by_role("link", name="챗봇으로", exact=True).is_visible()
         assert_no_horizontal_overflow(page, widths=(390,), label="mobile admin console")
+        browser.close()
+
+
+def test_admin_operations_console_renders_filters_runtime_failures_and_feedback():
+    css = (ROOT / "overlay" / "wonju-health-overlay.css").read_text(encoding="utf-8")
+    js = (ROOT / "overlay" / "wonju-health-overlay.js").read_text(encoding="utf-8")
+    html = f"""<!doctype html><html><head><style>{css}</style></head><body>
+      <div id="application-root" class="h-screen"><aside id="sidebar">OI</aside>
+      <div id="users-tabs-container"><a id="overview">사용자</a></div><main>사용자 관리</main></div>
+      <script>localStorage.setItem('token', 'admin-test-token');</script><script>{js}</script></body></html>"""
+    summary = {"total": 3, "success": 2, "failure": 1, "helpful": 1, "unhelpful": 1, "high_risk": 1}
+    events = {"total": 1, "limit": 100, "offset": 0, "rows": [{
+        "event_id": "audit_1", "created_at": "2026-07-17T10:00:00+00:00",
+        "question_text": "머리가 갑자기 아파요", "status": "failure",
+        "risk_category": "emergency", "duration_ms": 2100,
+        "institution_count": 0, "citation_count": 0,
+        "feedback_rating": "unhelpful", "error_code": "Timeout:abc",
+    }]}
+    with playwright.sync_playwright() as manager:
+        browser = launch_browser(manager)
+        page = browser.new_page(viewport={"width": 1440, "height": 1000})
+
+        def fulfill(route):
+            if route.request.url.endswith("/audit/summary"):
+                route.fulfill(json=summary)
+            elif "/audit/events" in route.request.url:
+                route.fulfill(json=events)
+            else:
+                route.fulfill(body=html, content_type="text/html; charset=utf-8")
+
+        page.route("http://wonju-admin.test/**", fulfill)
+        page.goto("http://wonju-admin.test/admin/users/overview?wonju=operations")
+        page.wait_for_selector("#wonju-health-audit-console")
+        page.get_by_text("응답 실패", exact=True).wait_for()
+        assert page.locator(".wonju-health-audit-metric").count() == 6
+        assert page.get_by_text("머리가 갑자기 아파요", exact=True).is_visible()
+        assert page.get_by_text("Timeout:abc", exact=True).is_visible()
+        assert page.get_by_role("button", name="CSV 내보내기").is_visible()
+        assert_no_horizontal_overflow(page, label="administrator operations console")
+        page.set_viewport_size({"width": 390, "height": 844})
+        assert page.get_by_role("link", name="운영 현황", exact=True).is_visible()
+        assert_no_horizontal_overflow(page, widths=(390,), label="mobile operations console")
+        browser.close()
+
+
+def test_feedback_action_posts_the_audit_event_id():
+    encoded = encoded_metadata()
+    css = (ROOT / "overlay" / "wonju-health-overlay.css").read_text(encoding="utf-8")
+    js = (ROOT / "overlay" / "wonju-health-overlay.js").read_text(encoding="utf-8")
+    html = f"""<!doctype html><html><head><style>{css}</style></head><body>
+      <main id="chat-container"><div id="chat-pane"><section id="messages-container">
+        <article class="chat-assistant"><div><p>공식 안내입니다.</p>
+        <pre><code class="language-wonju-health-meta">{encoded}</code></pre></div>
+        <button aria-label="좋은 응답">좋아요</button></article>
+      </section><form><div id="message-input-container"><textarea id="chat-input"></textarea></div></form>
+      </div></main><script>localStorage.setItem('token', 'resident-test-token');</script><script>{js}</script></body></html>"""
+    captured = []
+    with playwright.sync_playwright() as manager:
+        browser = launch_browser(manager)
+        page = browser.new_page()
+
+        def fulfill(route):
+            if "/wonju-admin-api/audit/events/" in route.request.url:
+                captured.append({"url": route.request.url, "body": route.request.post_data_json})
+                route.fulfill(json={"updated": True})
+            else:
+                route.fulfill(body=html, content_type="text/html; charset=utf-8")
+
+        page.route("http://wonju-feedback.test/**", fulfill)
+        page.goto("http://wonju-feedback.test/")
+        button = page.get_by_role("button", name="도움이 된 답변")
+        button.click()
+        page.wait_for_function("document.querySelector('[data-wonju-action=helpful]').dataset.wonjuFeedbackSent === 'helpful'")
+        assert captured == [{
+            "url": "http://wonju-feedback.test/wonju-admin-api/audit/events/audit_browser_test/feedback",
+            "body": {"rating": "helpful"},
+        }]
+        assert button.get_attribute("aria-pressed") == "true"
         browser.close()
 
 

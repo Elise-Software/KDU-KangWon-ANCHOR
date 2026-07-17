@@ -83,6 +83,7 @@
       user: '<circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/>',
       menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
       external: '<path d="M14 3h7v7M10 14 21 3M21 14v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6"/>',
+      chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
       info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'
     };
     wrapper.innerHTML = `<svg viewBox="0 0 24 24" focusable="false">${paths[name] || paths.brand}</svg>`;
@@ -402,6 +403,10 @@
     }
 
     const metadata = decoded.metadata;
+    const assistant = content.closest(".chat-assistant, .wonju-health-assistant-message");
+    if (metadata.audit_event_id && assistant) {
+      assistant.dataset.wonjuAuditEvent = metadata.audit_event_id;
+    }
     const safety = safetyCard(metadata);
     const institutions = institutionCards(metadata.institutions);
     const sources = sourceCards(metadata.citations);
@@ -654,7 +659,8 @@
     const link = element("a", "wonju-health-admin-link", label);
     link.href = href;
     link.prepend(icon(iconName));
-    if (window.location.pathname.startsWith(href)) link.setAttribute("aria-current", "page");
+    const current = `${window.location.pathname}${window.location.search}`;
+    if (current.startsWith(href)) link.setAttribute("aria-current", "page");
     return link;
   }
 
@@ -675,6 +681,7 @@
     const actions = element("nav", "wonju-health-admin-actions");
     actions.setAttribute("aria-label", "관리자 메뉴");
     actions.append(
+      adminLink("운영 현황", "/admin/users/overview?wonju=operations", "chart"),
       adminLink("사용자", "/admin/users", "user"),
       adminLink("환경 설정", "/admin/settings", "building"),
       adminLink("모델·도구", "/workspace", "cross"),
@@ -682,6 +689,194 @@
     );
     header.append(brand, context, actions);
     document.body.prepend(header);
+  }
+
+  function auditToken() {
+    return localStorage.getItem("token") || "";
+  }
+
+  async function auditRequest(path, options = {}) {
+    const token = auditToken();
+    if (!token) throw new Error("관리자 인증 정보가 없습니다.");
+    const headers = new Headers(options.headers || {});
+    headers.set("Authorization", `Bearer ${token}`);
+    if (options.body) headers.set("Content-Type", "application/json");
+    const response = await fetch(`/wonju-admin-api${path}`, {
+      ...options,
+      headers,
+      credentials: "same-origin"
+    });
+    if (!response.ok) throw new Error(`관리 API 오류 (${response.status})`);
+    return response;
+  }
+
+  function auditSelect(label, name, options) {
+    const field = element("label", "wonju-health-audit-field");
+    field.append(element("span", "", label));
+    const select = element("select");
+    select.name = name;
+    for (const [value, text] of options) {
+      const option = element("option", "", text);
+      option.value = value;
+      select.append(option);
+    }
+    field.append(select);
+    return field;
+  }
+
+  function auditFilters(consoleNode) {
+    const params = new URLSearchParams();
+    const form = consoleNode.querySelector(".wonju-health-audit-filters");
+    for (const name of ["status", "risk", "rating", "q"]) {
+      const value = (form.elements[name]?.value || "").trim();
+      if (value) params.set(name, value);
+    }
+    return params;
+  }
+
+  function renderAuditRows(consoleNode, rows) {
+    const body = consoleNode.querySelector("tbody");
+    body.replaceChildren();
+    if (!rows.length) {
+      const row = element("tr");
+      const cell = element("td", "wonju-health-audit-empty", "조건에 맞는 기록이 없습니다.");
+      cell.colSpan = 8;
+      row.append(cell);
+      body.append(row);
+      return;
+    }
+    const riskLabels = {
+      none: "일반", emergency: "응급", suicide: "자살위기",
+      addiction: "중독", medical_high_risk: "의료 고위험"
+    };
+    for (const event of rows) {
+      const row = element("tr");
+      const created = new Date(event.created_at).toLocaleString("ko-KR", { hour12: false });
+      const status = element("span", `wonju-health-audit-badge is-${event.status}`,
+        event.status === "success" ? "정상" : "실패");
+      const feedback = event.feedback_rating === "helpful" ? "도움됨"
+        : event.feedback_rating === "unhelpful" ? "개선 필요" : "-";
+      const values = [
+        created,
+        event.question_text,
+        status,
+        riskLabels[event.risk_category] || event.risk_category,
+        `${event.duration_ms}ms`,
+        `${event.institution_count} / ${event.citation_count}`,
+        feedback,
+        event.error_code || "-"
+      ];
+      values.forEach((value, index) => {
+        const cell = element("td", index === 1 ? "wonju-health-audit-question" : "");
+        cell.append(value instanceof Node ? value : document.createTextNode(value));
+        row.append(cell);
+      });
+      body.append(row);
+    }
+  }
+
+  async function refreshAuditConsole(consoleNode) {
+    const status = consoleNode.querySelector(".wonju-health-audit-status");
+    status.textContent = "운영 기록을 불러오는 중입니다…";
+    try {
+      const params = auditFilters(consoleNode);
+      const [summaryResponse, eventsResponse] = await Promise.all([
+        auditRequest("/audit/summary"),
+        auditRequest(`/audit/events?${params.toString()}`)
+      ]);
+      const summary = await summaryResponse.json();
+      const events = await eventsResponse.json();
+      const metrics = [
+        ["전체 질의", summary.total], ["정상 응답", summary.success],
+        ["응답 실패", summary.failure], ["고위험 안내", summary.high_risk],
+        ["도움됨", summary.helpful], ["개선 필요", summary.unhelpful]
+      ];
+      const metricHost = consoleNode.querySelector(".wonju-health-audit-metrics");
+      metricHost.replaceChildren();
+      for (const [label, value] of metrics) {
+        const card = element("article", "wonju-health-audit-metric");
+        card.append(element("span", "", label), element("strong", "", String(value || 0)));
+        metricHost.append(card);
+      }
+      renderAuditRows(consoleNode, events.rows || []);
+      status.textContent = `최근 기록 ${events.rows?.length || 0}건 / 검색 결과 ${events.total || 0}건 · 개인정보 마스킹 · 30일 보존`;
+    } catch (error) {
+      status.textContent = `운영 기록을 불러오지 못했습니다. ${error.message}`;
+      status.classList.add("is-error");
+    }
+  }
+
+  async function exportAuditConsole(consoleNode) {
+    const params = auditFilters(consoleNode);
+    const response = await auditRequest(`/audit/export.csv?${params.toString()}`);
+    const blob = await response.blob();
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `wonju-health-audit-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  }
+
+  function ensureAuditConsole() {
+    const enabled = new URLSearchParams(window.location.search).get("wonju") === "operations";
+    document.body.classList.toggle("wonju-health-audit-mode", enabled);
+    if (!enabled || document.querySelector("#wonju-health-audit-console")) return;
+    const consoleNode = element("main", "wonju-health-audit-console");
+    consoleNode.id = "wonju-health-audit-console";
+    const heading = element("header", "wonju-health-audit-heading");
+    const copy = element("div");
+    copy.append(
+      element("span", "wonju-health-kicker", "서비스 운영 증빙"),
+      element("h1", "", "질의·실패·피드백 운영 현황"),
+      element("p", "", "주민 식별정보를 해시·마스킹한 최근 30일 기록입니다.")
+    );
+    const actions = element("div", "wonju-health-audit-actions");
+    const refresh = element("button", "", "새로고침");
+    refresh.type = "button";
+    const exportButton = element("button", "is-primary", "CSV 내보내기");
+    exportButton.type = "button";
+    actions.append(refresh, exportButton);
+    heading.append(copy, actions);
+
+    const filters = element("form", "wonju-health-audit-filters");
+    filters.append(
+      auditSelect("응답 상태", "status", [["", "전체"], ["success", "정상"], ["failure", "실패"]]),
+      auditSelect("위험 분류", "risk", [["", "전체"], ["none", "일반"], ["emergency", "응급"], ["suicide", "자살위기"], ["addiction", "중독"], ["medical_high_risk", "의료 고위험"]]),
+      auditSelect("사용자 평가", "rating", [["", "전체"], ["helpful", "도움됨"], ["unhelpful", "개선 필요"]])
+    );
+    const query = element("label", "wonju-health-audit-field is-search");
+    query.append(element("span", "", "질의 검색"));
+    const input = element("input");
+    input.name = "q";
+    input.placeholder = "마스킹된 질의 내용 검색";
+    query.append(input);
+    filters.append(query);
+
+    const tableShell = element("div", "wonju-health-audit-table-shell");
+    const table = element("table", "wonju-health-audit-table");
+    const header = element("thead");
+    const headerRow = element("tr");
+    for (const label of ["시각", "질의", "상태", "위험", "응답시간", "기관/출처", "피드백", "오류"])
+      headerRow.append(element("th", "", label));
+    header.append(headerRow);
+    table.append(header, element("tbody"));
+    tableShell.append(table);
+    consoleNode.append(
+      heading,
+      element("section", "wonju-health-audit-metrics"),
+      filters,
+      element("p", "wonju-health-audit-status", "운영 기록을 준비하고 있습니다."),
+      tableShell
+    );
+    document.body.append(consoleNode);
+    refresh.addEventListener("click", () => refreshAuditConsole(consoleNode));
+    exportButton.addEventListener("click", () => exportAuditConsole(consoleNode));
+    filters.addEventListener("change", () => refreshAuditConsole(consoleNode));
+    filters.addEventListener("submit", (event) => {
+      event.preventDefault();
+      refreshAuditConsole(consoleNode);
+    });
+    refreshAuditConsole(consoleNode);
   }
 
   function decorateAdminContent() {
@@ -755,6 +950,7 @@
     document.body.classList.add("wonju-health-admin");
     ensureAdminHeader();
     decorateAdminContent();
+    ensureAuditConsole();
     return true;
   }
 
@@ -1088,6 +1284,26 @@
     liveMetadataShells().forEach(renderCards);
     decorateGuidance();
   }
+
+  document.addEventListener("click", async (event) => {
+    const action = event.target.closest?.("[data-wonju-action='helpful'], [data-wonju-action='unhelpful']");
+    if (!action) return;
+    const message = action.closest(".chat-assistant, .wonju-health-assistant-message");
+    const auditEvent = message?.dataset.wonjuAuditEvent;
+    const rating = action.dataset.wonjuAction;
+    if (!auditEvent || action.dataset.wonjuFeedbackSent === rating) return;
+    try {
+      await auditRequest(`/audit/events/${encodeURIComponent(auditEvent)}/feedback`, {
+        method: "POST",
+        body: JSON.stringify({ rating })
+      });
+      action.dataset.wonjuFeedbackSent = rating;
+      action.setAttribute("aria-pressed", "true");
+      action.title = "의견이 관리자 운영 현황에 반영되었습니다.";
+    } catch (_) {
+      action.title = "의견 저장에 실패했습니다. 잠시 후 다시 눌러주세요.";
+    }
+  }, true);
 
   let queued = false;
   const observer = new MutationObserver(() => {

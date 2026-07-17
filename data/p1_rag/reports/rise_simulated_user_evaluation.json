@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-07-17T13:52:26+00:00",
+  "participant_count": 5,
+  "minimum_participants": 5,
+  "participant_groups": {
+    "senior": 1,
+    "caregiver": 1,
+    "resident": 3
+  },
+  "required_groups_present": true,
+  "scenario_coverage": [
+    "actual-01",
+    "actual-02",
+    "actual-03",
+    "actual-04",
+    "actual-05"
+  ],
+  "minimum_scenario_coverage": 5,
+  "scenario_coverage_complete": true,
+  "completion_rate": 1.0,
+  "average_duration_seconds": 118.2,
+  "average_ratings": {
+    "readability": 4.2,
+    "clarity": 4.2,
+    "trust": 4.2,
+    "connection_ease": 4.4,
+    "safety_clarity": 4.4
+  },
+  "comments": [
+    "지도와 전화 연결 버튼을 한 화면에서 확인하는 사전점검. 실제 사용자 의견이 아닌 합성 시나리오 결과임",
+    "기관 연락처와 공식 출처 구분 표시를 확인하는 사전점검. 실제 사용자 의견이 아닌 합성 시나리오 결과임",
+    "큰 글자와 단계별 증상 안내의 가독성을 확인하는 사전점검. 실제 사용자 의견이 아닌 합성 시나리오 결과임",
+    "보호자 관점에서 긴급 연락 버튼과 경고 우선순위를 확인하는 사전점검. 실제 사용자 의견이 아닌 합성 시나리오 결과임",
+    "출처 카드와 근거 식별정보 접근성을 확인하는 사전점검. 실제 사용자 의견이 아닌 합성 시나리오 결과임"
+  ],
+  "evaluation_kind": "synthetic_pretest",
+  "actual_user_evaluation_passed": false,
+  "simulation_acceptance_criteria_met": true,
+  "simulation_completed": true,
+  "status": "simulation_acceptance_criteria_met_not_actual_users"
+}

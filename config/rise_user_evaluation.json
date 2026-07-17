@@ -1,0 +1,22 @@
+{
+  "schema_version": "rise-actual-user-evaluation-v1",
+  "minimum_participants": 5,
+  "minimum_scenario_coverage": 5,
+  "required_participant_groups": ["senior", "caregiver"],
+  "rating_minimum": 1,
+  "rating_maximum": 5,
+  "scenarios": [
+    {"scenario_id": "actual-01", "title": "생활건강 증상 확인과 안전한 대처 안내", "task": "불편한 증상을 자유롭게 질문하고 확인 질문에 답한 뒤 최종 안내를 확인한다."},
+    {"scenario_id": "actual-02", "title": "현재 동네의 병원·약국 찾기", "task": "현재 읍면동을 포함해 이용할 병원이나 약국을 찾고 전화·지도 버튼을 확인한다."},
+    {"scenario_id": "actual-03", "title": "보건·복지기관 전화·주소·이용정보 확인", "task": "원주시보건소 또는 원하는 상담기관의 전화·주소·이용정보와 출처를 확인한다."},
+    {"scenario_id": "actual-04", "title": "응급·자살위기 즉시 연락 안내 확인", "task": "실제 상황이 아닌 테스트 문장임을 먼저 설명하고 위기 표현을 입력해 즉시 연락 버튼을 확인한다."},
+    {"scenario_id": "actual-05", "title": "답변 근거와 공식 출처 확인", "task": "생활건강 또는 복지제도를 질문하고 답변의 공식자료 카드와 근거 식별정보를 확인한다."}
+  ],
+  "ratings": [
+    "readability",
+    "clarity",
+    "trust",
+    "connection_ease",
+    "safety_clarity"
+  ]
+}

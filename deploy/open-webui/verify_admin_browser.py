@@ -28,6 +28,19 @@ ADMIN_ROUTES = (
 )
 
 
+def dotenv(path: Path | None) -> dict[str, str]:
+    values: dict[str, str] = {}
+    if not path:
+        return values
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+        key, value = stripped.split("=", 1)
+        values[key.strip()] = value.strip().strip('"').strip("'")
+    return values
+
+
 def launch_browser(manager):
     kwargs: dict[str, Any] = {"headless": True}
     executable = default_browser()
@@ -166,16 +179,61 @@ def verify_first_response(page: Page, base_url: str, output: Path) -> dict[str, 
     }
 
 
+def verify_operations_console(page: Page, base_url: str, output: Path) -> dict[str, Any]:
+    page.set_viewport_size({"width": 1440, "height": 1000})
+    page.goto(
+        base_url + "/admin/users/overview?wonju=operations",
+        wait_until="domcontentloaded",
+        timeout=60_000,
+    )
+    console = page.locator("#wonju-health-audit-console")
+    console.wait_for(state="visible", timeout=30_000)
+    page.locator(".wonju-health-audit-metric").first.wait_for(state="visible", timeout=30_000)
+    page.wait_for_function(
+        "document.querySelectorAll('.wonju-health-audit-metric').length === 6",
+        timeout=30_000,
+    )
+    page.locator(".wonju-health-audit-table tbody tr").first.wait_for(state="visible", timeout=30_000)
+    if page.locator(".wonju-health-audit-status.is-error").count():
+        raise AssertionError(page.locator(".wonju-health-audit-status.is-error").inner_text())
+    if not page.get_by_role("button", name="CSV 내보내기", exact=True).is_visible():
+        raise AssertionError("audit CSV export is not visible to the administrator")
+    assert_no_horizontal_overflow(page, label="administrator operations console")
+    take_screenshot(page, output, "admin_operations_desktop.png")
+
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.wait_for_timeout(250)
+    assert_no_horizontal_overflow(page, label="mobile administrator operations console")
+    take_screenshot(page, output, "admin_operations_mobile.png")
+    page.set_viewport_size({"width": 1440, "height": 1000})
+    return {
+        "route": "/admin/users/overview?wonju=operations",
+        "metric_count": page.locator(".wonju-health-audit-metric").count(),
+        "event_row_count": page.locator(".wonju-health-audit-table tbody tr").count(),
+        "filters": page.locator(".wonju-health-audit-filters select, .wonju-health-audit-filters input").count(),
+        "csv_export_visible": True,
+        "desktop_mobile_passed": True,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-url", default="http://192.168.100.58")
-    parser.add_argument("--admin-email", required=True)
+    parser.add_argument("--admin-email", default="")
     parser.add_argument("--admin-password", default=os.getenv("WONJU_HEALTH_ADMIN_PASSWORD", ""))
+    parser.add_argument("--env-file", type=Path)
     parser.add_argument("--screenshot-dir", type=Path, default=Path("data/p1_rag/reports/admin_browser"))
     parser.add_argument("--report", type=Path, default=Path("data/p1_rag/reports/admin_browser_report.json"))
     args = parser.parse_args()
+    environment = dotenv(args.env_file)
+    if not args.admin_email:
+        args.admin_email = environment.get("WEBUI_ADMIN_EMAIL", "")
+    if not args.admin_password:
+        args.admin_password = environment.get("WEBUI_ADMIN_PASSWORD", "")
     if not args.admin_password:
         args.admin_password = getpass.getpass("Open WebUI admin password: ")
+    if not args.admin_email:
+        parser.error("--admin-email or WEBUI_ADMIN_EMAIL in --env-file is required")
 
     try:
         with sync_playwright() as manager:
@@ -186,12 +244,14 @@ def main() -> int:
                 verify_admin_route(page, args.base_url.rstrip("/"), route_id, route, args.screenshot_dir)
                 for route_id, route in ADMIN_ROUTES
             ]
+            operations = verify_operations_console(page, args.base_url.rstrip("/"), args.screenshot_dir)
             toolbar = verify_developer_toolbar(page, args.base_url.rstrip("/"), args.screenshot_dir)
             first_response = verify_first_response(page, args.base_url.rstrip("/"), args.screenshot_dir)
             browser.close()
         report = {
             "base_url": args.base_url,
             "admin_routes": routes,
+            "operations_console": operations,
             "developer_toolbar": toolbar,
             "first_response": first_response,
             "all_checks_passed": True,

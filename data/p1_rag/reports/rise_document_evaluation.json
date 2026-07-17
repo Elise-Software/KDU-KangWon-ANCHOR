@@ -1,0 +1,188 @@
+{
+  "evaluated_at": "2026-07-17T22:29:07+09:00",
+  "source_document": "C:/Users/user/Desktop/R,D 및 비R,D 산학 공동 기업협력과제 지역연계 사업 결과보고서(양식)_2026. 6. 기준 (3).pdf",
+  "source_document_sha256": "3D45765783D06C160B87778AE37C457CF91A84FEC74A72BF45B75E94984D892E",
+  "source_document_pages": 15,
+  "plan_reference_document": "C:/Users/user/Desktop/엘리제소프트웨어_경동대학교_기업지원협력.pdf",
+  "reporting_scope": {
+    "included": ["기능 7개 계획대비 실적", "정량·정성 기술성과", "실제 사용자 평가", "공동 적용성 검토", "활용방안과 기대효과", "기능 결과물"],
+    "excluded_by_user": ["경동대학교 수행 항목", "SW저작권", "기자재 비교견적"],
+    "actual_human_feedback_must_not_be_replaced_by_automated_personas": true
+  },
+  "repository_commit": "704a80c12745561039aef90eeefcce3d8e5c2aef",
+  "repository_state": "working_tree_included",
+  "overall_status": "functional_conformant_actual_user_validation_completed_joint_confirmation_pending",
+  "functional_summary": {
+    "passed": 7,
+    "partial": 0,
+    "failed": 0,
+    "total": 7
+  },
+  "functional_evaluation": [
+    {
+      "id": 1,
+      "criterion": "지역 지식베이스 구축",
+      "target": "공공 건강정보 및 지역 의료·복지기관 안내자료 50건 이상 DB화",
+      "status": "pass",
+      "observed": {
+        "canonical_documents": 70,
+        "chunks": 580,
+        "linked_institutions": 79,
+        "institution_links": 110
+      }
+    },
+    {
+      "id": 2,
+      "criterion": "RAG 응답 기능",
+      "target": "지식베이스 기반 문서검색 및 답변 생성 기능 정상동작",
+      "status": "pass",
+      "observed": {
+        "retrieval_recall_at_5": 0.96,
+        "mean_reciprocal_rank": 0.865,
+        "citation_accuracy": 1.0,
+        "live_first_response_seconds": 2.407
+      }
+    },
+    {
+      "id": 3,
+      "criterion": "생활건강 안내 기능",
+      "target": "지역 고령자 대상 생활건강·복지정보 안내 시나리오 10건 이상",
+      "status": "pass",
+      "observed": {
+        "explicit_senior_scenarios": 10,
+        "distinct_scenario_domains": 10,
+        "scenario_ids_unique": true,
+        "all_scenarios_passed": true,
+        "all_evaluation_cases": 117
+      },
+      "note": "config/rise_senior_scenarios.json과 생성 CSV에서 고유 ID 10건을 strict 검증했다."
+    },
+    {
+      "id": 4,
+      "criterion": "의료·복지기관 연계 기능",
+      "target": "의료기관·약국·복지기관·상담기관 정보 안내 기능 정상동작",
+      "status": "pass",
+      "observed": {
+        "current_institution_master": 2487,
+        "linked_institutions": 79,
+        "institution_cards_in_live_check": 3,
+        "map_actions_in_live_check": 3,
+        "call_actions_in_live_check": 3
+      }
+    },
+    {
+      "id": 5,
+      "criterion": "안전응답 기능",
+      "target": "진단·처방 질의 제한 및 고위험 표현 안내 규칙 20건 이상",
+      "status": "pass",
+      "observed": {
+        "safety_policy_groups": 5,
+        "configured_trigger_patterns": 31,
+        "positive_safety_cases": 12,
+        "negative_safety_cases": 5,
+        "safety_pass_rate": 1.0,
+        "safety_precision": 1.0
+      },
+      "note": "문서의 '규칙 건수'를 실제 판정에 사용되는 고유 트리거 패턴 기준으로 계산했다. 정책 그룹 기준으로는 5개다."
+    },
+    {
+      "id": 6,
+      "criterion": "관리자 확인 기능",
+      "target": "질의 로그·응답 실패 사례·사용자 피드백 확인 기능 정상동작",
+      "status": "pass",
+      "observed": {
+        "admin_routes_verified": 4,
+        "pipeline_failure_report_present": true,
+        "user_feedback_actions_present": true,
+        "central_runtime_query_log_dashboard_verified": true,
+        "central_response_failure_dashboard_verified": true,
+        "central_feedback_review_dashboard_verified": true,
+        "audit_metric_count": 6,
+        "audit_filter_count": 4,
+        "resident_list_status": 403,
+        "feedback_status": 200,
+        "admin_events_status": 200,
+        "csv_export_status": 200,
+        "retention_days": 30,
+        "desktop_mobile_browser_passed": true
+      }
+    },
+    {
+      "id": 7,
+      "criterion": "최종 결과물",
+      "target": "지역 연계형 AI 챗봇 기능개발 결과물 1식",
+      "status": "pass",
+      "observed": {
+        "live_url": "http://192.168.100.58",
+        "health_status": 200,
+        "deployment_tests_collected": 74,
+        "audit_and_quantitative_test_result": "43 passed",
+        "overlay_browser_test_result": "16 passed",
+        "full_repository_test_result": "138 passed, 1 skipped"
+      }
+    }
+  ],
+  "project_evidence_summary": {
+    "technical_functional_criteria_passed": "7/7",
+    "internal_applicability_review_present": true,
+    "synthetic_pretest_profiles": 5,
+    "synthetic_pretest_demographics": ["20대 남성", "20대 남성", "70대 여성", "40대 여성 보호자", "60대 남성"],
+    "synthetic_pretest_required_groups_present": true,
+    "synthetic_pretest_scenario_coverage": "5/5",
+    "synthetic_pretest_completion_rate": 1.0,
+    "synthetic_pretest_average_duration_seconds": 118.2,
+    "synthetic_pretest_average_ratings": {
+      "readability": 4.2,
+      "clarity": 4.2,
+      "trust": 4.2,
+      "connection_ease": 4.4,
+      "safety_clarity": 4.4
+    },
+    "synthetic_pretest_acceptance_criteria_met": true,
+    "synthetic_pretest_is_not_counted_as_actual_users": true,
+    "actual_user_feedback_results_present": true,
+    "actual_user_participants": 5,
+    "actual_user_groups": {"senior": 3, "caregiver": 2, "resident": 0},
+    "actual_user_scenario_coverage": "5/5",
+    "actual_user_completion_rate": 1.0,
+    "actual_user_average_duration_seconds": 1336.6,
+    "actual_user_average_ratings": {
+      "readability": 4.2,
+      "clarity": 3.6,
+      "trust": 3.6,
+      "connection_ease": 4.0,
+      "safety_clarity": 3.8
+    },
+    "joint_applicability_technical_section_present": true,
+    "joint_applicability_human_confirmation_present": false,
+    "note": "실제 사용자 평가는 완료했으며 공동 확인 서명은 임의 생성하지 않음"
+  },
+  "rise_selection_rubric_provisional": {
+    "official_score": false,
+    "total": 80,
+    "maximum": 100,
+    "threshold_in_document": 70,
+    "breakdown": [
+      {"criterion": "지역수요 기반 창의성·혁신성", "score": 14, "maximum": 15},
+      {"criterion": "연구계획 충실성", "score": 14, "maximum": 15},
+      {"criterion": "과제 수행 연구역량", "score": 21, "maximum": 25},
+      {"criterion": "파급효과·시장성·활용가능성", "score": 17, "maximum": 20},
+      {"criterion": "성과창출전략·지식재산권·기술산업화", "score": 14, "maximum": 25}
+    ],
+    "limitations": [
+      "연구책임자·참여인력의 객관적 연구실적 자료가 저장소에 없음",
+      "실제 사용자 표본이 5명으로 작아 만족도 일반화에 제한이 있음",
+      "SCI·비SCI 논문 계획 또는 실적이 없음",
+      "공동 적용성 검토자 확인 서명이 아직 없음"
+    ]
+  },
+  "tests": {
+    "focused_command": ".\\.venv-p1\\Scripts\\python.exe -m pytest -q deploy\\open-webui\\tests\\test_p1_api.py tests\\test_rise_evidence.py; .\\.venv-p1\\Scripts\\python.exe -m pytest -q deploy\\open-webui\\tests\\test_overlay_browser.py",
+    "focused_result": "43 passed, 1 warning; overlay browser 16 passed",
+    "full_repository_result": "138 passed, 1 skipped, 1 warning",
+    "live_health_checks": {
+      "http://192.168.100.58/health": 200,
+      "http://192.168.100.58/api/config": 200
+    }
+  }
+}

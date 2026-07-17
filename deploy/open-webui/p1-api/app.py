@@ -21,8 +21,11 @@ from typing import Any
 from urllib.parse import quote
 
 from fastapi import FastAPI, Header, HTTPException, Request
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import JSONResponse, Response, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
+import requests
+
+from audit import AuditStore, decode_webui_token
 
 
 MODEL_ID = "wonju-health-rag"
@@ -49,6 +52,11 @@ class ChatRequest(BaseModel):
     stream: bool = False
     temperature: float | None = None
     max_tokens: int | None = None
+
+
+class FeedbackRequest(BaseModel):
+    rating: str
+    comment: str = ""
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -1215,6 +1223,7 @@ def card_metadata_blocks(result: dict[str, Any], max_encoded_length: int = 3600)
         "risk_category": result.get("risk_category", "none"),
         "safety_rule_applied": bool(result.get("safety_rule_applied")),
         "safety_contacts": result.get("safety_contacts", []),
+        "audit_event_id": result.get("audit_event_id", ""),
     }
     institutions = [
         card_institution_metadata(row) for row in result.get("institutions", [])
@@ -1235,6 +1244,7 @@ def card_metadata_blocks(result: dict[str, Any], max_encoded_length: int = 3600)
         "risk_category": "none",
         "safety_rule_applied": False,
         "safety_contacts": [],
+        "audit_event_id": base["audit_event_id"],
     }
     for institution in institutions:
         institution_metadata = {**neutral, "institutions": [institution], "citations": []}
@@ -1383,7 +1393,55 @@ def authorize(authorization: str | None) -> None:
         raise HTTPException(status_code=401, detail="invalid internal API credential")
 
 
-def create_app(service: Any | None = None) -> FastAPI:
+def bearer_token(authorization: str | None) -> str:
+    return authorization.removeprefix("Bearer ").strip() if authorization else ""
+
+
+def webui_user(authorization: str | None, *, require_admin: bool = False) -> dict[str, Any]:
+    token = bearer_token(authorization)
+    try:
+        user = decode_webui_token(token, os.getenv("WEBUI_SECRET_KEY", ""))
+    except PermissionError as exc:
+        raise HTTPException(status_code=401, detail=str(exc)) from exc
+    if not user.get("role"):
+        # Open WebUI browser JWTs intentionally contain only a user ID in
+        # some versions. Resolve the current role through Open WebUI itself,
+        # using that same signed token, instead of trusting a client header.
+        try:
+            response = requests.get(
+                f"{os.getenv('OPEN_WEBUI_INTERNAL_URL', 'http://open-webui:8080').rstrip('/')}/api/v1/auths/",
+                headers={"Authorization": f"Bearer {token}"},
+                timeout=5,
+            )
+            response.raise_for_status()
+            profile = response.json()
+            if str(profile.get("id", "")) != str(user["id"]):
+                raise PermissionError("Open WebUI user identity does not match")
+            user = {**user, "role": profile.get("role", "user"), "email": profile.get("email", "")}
+        except (requests.RequestException, ValueError, PermissionError) as exc:
+            raise HTTPException(status_code=401, detail="Open WebUI user verification failed") from exc
+    if require_admin and user.get("role") != "admin":
+        raise HTTPException(status_code=403, detail="administrator access is required")
+    return user
+
+
+def forwarded_user(request: Request) -> tuple[str, str]:
+    identity = (
+        request.headers.get("x-openwebui-user-id")
+        or request.headers.get("x-open-webui-user-id")
+        or request.headers.get("x-openwebui-user-email")
+        or request.headers.get("x-open-webui-user-email")
+        or "anonymous"
+    )
+    role = (
+        request.headers.get("x-openwebui-user-role")
+        or request.headers.get("x-open-webui-user-role")
+        or "user"
+    )
+    return identity, role
+
+
+def create_app(service: Any | None = None, audit_store: AuditStore | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(application: FastAPI):
         if service is None and truthy(os.getenv("P1_PRELOAD_MODELS", "true")):
@@ -1396,11 +1454,17 @@ def create_app(service: Any | None = None) -> FastAPI:
 
     application = FastAPI(title="Wonju Health P1 RAG API", version="1.0.0", lifespan=lifespan)
     application.state.service = service or WonjuRagService()
+    application.state.audit = audit_store or AuditStore.from_env()
 
     @application.get("/health")
     async def health() -> dict[str, Any]:
         status = application.state.service.status()
-        return {**status, "time": datetime.now(timezone.utc).isoformat()}
+        return {
+            **status,
+            "audit_storage": True,
+            "audit_retention_days": application.state.audit.retention_days,
+            "time": datetime.now(timezone.utc).isoformat(),
+        }
 
     @application.get("/ready")
     async def ready() -> JSONResponse:
@@ -1421,7 +1485,11 @@ def create_app(service: Any | None = None) -> FastAPI:
         }
 
     @application.post("/v1/chat/completions")
-    async def chat(payload: ChatRequest, authorization: str | None = Header(default=None)):
+    async def chat(
+        payload: ChatRequest,
+        request: Request,
+        authorization: str | None = Header(default=None),
+    ):
         authorize(authorization)
         if payload.model != MODEL_ID:
             raise HTTPException(status_code=404, detail=f"model '{payload.model}' is not available")
@@ -1432,16 +1500,105 @@ def create_app(service: Any | None = None) -> FastAPI:
         )
         if not question:
             raise HTTPException(status_code=400, detail="a non-empty user message is required")
+        audit_event_id = f"audit_{uuid.uuid4().hex}"
+        started = time.perf_counter()
+        user_identity, user_role = forwarded_user(request)
         try:
             result = intake_result or await asyncio.to_thread(application.state.service.query, question)
         except Exception as exc:
             request_id = uuid.uuid4().hex[:12]
+            application.state.audit.record(
+                event_id=audit_event_id,
+                user_identity=user_identity,
+                user_role=user_role,
+                question=question,
+                status="failure",
+                duration_ms=round((time.perf_counter() - started) * 1000),
+                error_code=f"{type(exc).__name__}:{request_id}",
+            )
             raise HTTPException(status_code=503, detail=f"P1 RAG unavailable ({request_id}): {type(exc).__name__}") from exc
+        result["audit_event_id"] = audit_event_id
+        application.state.audit.record(
+            event_id=audit_event_id,
+            user_identity=user_identity,
+            user_role=user_role,
+            question=question,
+            status="success",
+            risk_category=str(result.get("risk_category", "none")),
+            response_kind=str(result.get("response_kind", "answer")),
+            duration_ms=round((time.perf_counter() - started) * 1000),
+            institution_count=len(result.get("institutions", [])),
+            citation_count=len(result.get("citations", [])),
+        )
         content = render_content(result)
         completion_id = f"chatcmpl-wonju-{uuid.uuid4().hex}"
         if payload.stream:
             return sse_response(content, completion_id)
         return completion_payload(content, completion_id)
+
+    @application.post("/audit/events/{event_id}/feedback")
+    async def feedback(
+        event_id: str,
+        payload: FeedbackRequest,
+        authorization: str | None = Header(default=None),
+    ) -> dict[str, Any]:
+        user = webui_user(authorization)
+        try:
+            updated = application.state.audit.set_feedback(
+                event_id,
+                actor_identity=str(user["id"]),
+                actor_role=str(user.get("role", "user")),
+                rating=payload.rating,
+                comment=payload.comment,
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except PermissionError as exc:
+            raise HTTPException(status_code=403, detail=str(exc)) from exc
+        if not updated:
+            raise HTTPException(status_code=404, detail="audit event was not found")
+        return {"updated": True, "event_id": event_id, "rating": payload.rating}
+
+    @application.get("/audit/summary")
+    async def audit_summary(authorization: str | None = Header(default=None)) -> dict[str, int]:
+        webui_user(authorization, require_admin=True)
+        return application.state.audit.summary()
+
+    @application.get("/audit/events")
+    async def audit_events(
+        status: str = "",
+        risk: str = "",
+        rating: str = "",
+        q: str = "",
+        limit: int = 100,
+        offset: int = 0,
+        authorization: str | None = Header(default=None),
+    ) -> dict[str, Any]:
+        webui_user(authorization, require_admin=True)
+        return application.state.audit.list_events(
+            status=status,
+            risk=risk,
+            rating=rating,
+            query=q,
+            limit=limit,
+            offset=offset,
+        )
+
+    @application.get("/audit/export.csv")
+    async def audit_export(
+        status: str = "",
+        risk: str = "",
+        rating: str = "",
+        q: str = "",
+        authorization: str | None = Header(default=None),
+    ) -> Response:
+        webui_user(authorization, require_admin=True)
+        content = application.state.audit.export_csv(status=status, risk=risk, rating=rating, query=q)
+        return Response(
+            content=content,
+            media_type="text/csv; charset=utf-8",
+            headers={"Content-Disposition": "attachment; filename=wonju-health-audit.csv"},
+        )
 
     return application
 

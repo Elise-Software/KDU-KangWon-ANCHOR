@@ -1,0 +1,32 @@
+﻿rule_id,category,rule_type,pattern,required_terms
+composite.sudden_severe_headache,emergency,composite_all_of,"[[""두통"", ""머리가"", ""머리 통증""], [""갑자기"", ""갑작스럽"", ""순식간"", ""몇 초"", ""몇 분 안"", ""바로 최고""], [""깨질"", ""극심"", ""최악"", ""가장 심"", ""벼락"", ""번개""]]",
+emergency.keyword.01,emergency,keyword,의식이 없,119
+emergency.keyword.02,emergency,keyword,숨을 못,119
+emergency.keyword.03,emergency,keyword,호흡곤란,119
+emergency.keyword.04,emergency,keyword,가슴 통증,119
+emergency.keyword.05,emergency,keyword,심한 출혈,119
+emergency.keyword.06,emergency,keyword,응급,119
+emergency.keyword.07,emergency,keyword,쓰러졌,119
+emergency.keyword.08,emergency,keyword,경련,119
+emergency.keyword.09,emergency,keyword,마비,119
+suicide.keyword.01,suicide,keyword,자살,109 | 119
+suicide.keyword.02,suicide,keyword,죽고 싶,109 | 119
+suicide.keyword.03,suicide,keyword,살기 싫,109 | 119
+suicide.keyword.04,suicide,keyword,극단적 선택,109 | 119
+suicide.keyword.05,suicide,keyword,목숨을 끊,109 | 119
+suicide.keyword.06,suicide,keyword,자해,109 | 119
+addiction.keyword.01,addiction,keyword,중독,119
+addiction.keyword.02,addiction,keyword,금단,119
+addiction.keyword.03,addiction,keyword,과다복용,119
+addiction.keyword.04,addiction,keyword,약물,119
+addiction.keyword.05,addiction,keyword,마약,119
+addiction.keyword.06,addiction,keyword,알코올,119
+medical_high_risk.keyword.01,medical_high_risk,keyword,진단해,의료진
+medical_high_risk.keyword.02,medical_high_risk,keyword,약을 얼마나,의료진
+medical_high_risk.keyword.03,medical_high_risk,keyword,복용량,의료진
+medical_high_risk.keyword.04,medical_high_risk,keyword,처방,의료진
+medical_high_risk.keyword.05,medical_high_risk,keyword,임신,의료진
+medical_high_risk.keyword.06,medical_high_risk,keyword,영아,의료진
+medical_high_risk.keyword.07,medical_high_risk,keyword,고열,의료진
+medical_high_risk.keyword.08,medical_high_risk,keyword,혈압이,의료진
+medical_high_risk.keyword.09,medical_high_risk,keyword,혈당이,의료진
